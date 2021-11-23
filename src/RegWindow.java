@@ -35,7 +35,7 @@ public class RegWindow extends JFrame {
 	private Component verticalStrut_1;
 	private Component horizontalStrut;
 	private Component horizontalStrut_1;
-		//carbaputo
+		//carbaputooooooooooooooo
 	/**
 	 * Create the panel.
 	 */
