@@ -1,4 +1,5 @@
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import javax.swing.JTextField;
@@ -13,8 +14,12 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
-import javax.swing.border.MatteBorder;
+import javax.swing.*;
 import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.border.SoftBevelBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RegWindow extends JFrame {
 	/**
@@ -35,6 +40,12 @@ public class RegWindow extends JFrame {
 	private Component verticalStrut_1;
 	private Component horizontalStrut;
 	private Component horizontalStrut_1;
+	private JButton btnFinalizar;
+	private String nombre;
+	private String apellidos;
+	private String domicilio;
+	private String fechaNac;
+	private String dni;	
 	/**
 	 * Create the panel.
 	 */
@@ -55,12 +66,12 @@ public class RegWindow extends JFrame {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		getContentPane().setLayout(gridBagLayout);
 		
-		/*verticalStrut = Box.createVerticalStrut(2000);
+		verticalStrut = Box.createVerticalStrut(2000);
 		GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
 		gbc_verticalStrut.insets = new Insets(0, 0, 5, 5);
 		gbc_verticalStrut.gridx = 1;
 		gbc_verticalStrut.gridy = 0;
-		getContentPane().add(verticalStrut, gbc_verticalStrut);*/
+		getContentPane().add(verticalStrut, gbc_verticalStrut);
 		
 		horizontalStrut = Box.createHorizontalStrut(200);
 		GridBagConstraints gbc_horizontalStrut = new GridBagConstraints();
@@ -71,23 +82,67 @@ public class RegWindow extends JFrame {
 		
 		horizontalStrut_1 = Box.createHorizontalStrut(200);
 		GridBagConstraints gbc_horizontalStrut_1 = new GridBagConstraints();
-		gbc_horizontalStrut_1.insets = new Insets(0, 0, 5, 5);
+		gbc_horizontalStrut_1.insets = new Insets(0, 0, 5, 0);
 		gbc_horizontalStrut_1.gridx = 3;
 		gbc_horizontalStrut_1.gridy = 2;
 		getContentPane().add(horizontalStrut_1, gbc_horizontalStrut_1);
 		
-		/*verticalStrut_1 = Box.createVerticalStrut(2000);
+		btnFinalizar = new JButton("Finalizar");
+		btnFinalizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(!textFieldNombre.getText().equals("")) {
+					if(!textFieldApellidos.getText().equals("")) {						
+						if(!textFieldDomicilio.getText().equals("")) {							
+							if(!textFieldFechaNac.getText().equals("")) {
+								if(!textFieldDni.getText().equals("")) {
+									nombre=textFieldNombre.getText();
+									apellidos=textFieldApellidos.getText();
+									domicilio=textFieldDomicilio.getText();
+									fechaNac=textFieldFechaNac.getText();
+									dni=textFieldDni.getText();
+									textFieldNombre.setText("");
+									textFieldApellidos.setText("");
+									textFieldDomicilio.setText("");
+									textFieldFechaNac.setText("");
+									textFieldDni.setText("");
+								}else {
+									JOptionPane.showMessageDialog(null, "Introduzca su dni.");
+								}
+							}else {
+								JOptionPane.showMessageDialog(null, "Introduzca su fecha de nacimiento.");
+							}
+						}else {
+							JOptionPane.showMessageDialog(null, "Introduzca su domicilio.");
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "Introduzca sus apellidos.");
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Introduzca su nombre.");
+				}
+			}
+		});
+		btnFinalizar.setMinimumSize(new Dimension(220, 23));
+		btnFinalizar.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		GridBagConstraints gbc_btnFinalizar = new GridBagConstraints();
+		gbc_btnFinalizar.insets = new Insets(0, 0, 5, 5);
+		gbc_btnFinalizar.gridx = 1;
+		gbc_btnFinalizar.gridy = 6;
+		gbc_btnFinalizar.gridwidth = 2;
+		getContentPane().add(btnFinalizar, gbc_btnFinalizar);
+		
+		verticalStrut_1 = Box.createVerticalStrut(2000);
 		GridBagConstraints gbc_verticalStrut_1 = new GridBagConstraints();
 		gbc_verticalStrut_1.insets = new Insets(0, 0, 0, 5);
 		gbc_verticalStrut_1.gridx = 1;
-		gbc_verticalStrut_1.gridy = 6;
-		getContentPane().add(verticalStrut_1, gbc_verticalStrut_1);*/
+		gbc_verticalStrut_1.gridy = 7;
+		getContentPane().add(verticalStrut_1, gbc_verticalStrut_1);
 		
 		textFieldDomicilio = new JTextField();
 		textFieldDomicilio.setMinimumSize(new Dimension(100, 20));
 		textFieldDomicilio.setColumns(10);
 		GridBagConstraints gbc_textFieldDomicilio = new GridBagConstraints();
-		gbc_textFieldDomicilio.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldDomicilio.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldDomicilio.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldDomicilio.gridx = 2;
 		gbc_textFieldDomicilio.gridy = 3;
@@ -97,7 +152,7 @@ public class RegWindow extends JFrame {
 		textFieldFechaNac.setMinimumSize(new Dimension(100, 20));
 		textFieldFechaNac.setColumns(10);
 		GridBagConstraints gbc_textFieldFechaNac = new GridBagConstraints();
-		gbc_textFieldFechaNac.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldFechaNac.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldFechaNac.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldFechaNac.gridx = 2;
 		gbc_textFieldFechaNac.gridy = 4;
@@ -175,7 +230,7 @@ public class RegWindow extends JFrame {
 		textFieldNombre = new JTextField();
 		textFieldNombre.setMinimumSize(new Dimension(100, 20));
 		GridBagConstraints gbc_textFieldNombre = new GridBagConstraints();
-		gbc_textFieldNombre.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldNombre.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldNombre.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldNombre.gridx = 2;
 		gbc_textFieldNombre.gridy = 1;
@@ -186,7 +241,7 @@ public class RegWindow extends JFrame {
 		textFieldApellidos.setMinimumSize(new Dimension(100, 20));
 		textFieldApellidos.setColumns(10);
 		GridBagConstraints gbc_textFieldApellidos = new GridBagConstraints();
-		gbc_textFieldApellidos.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldApellidos.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldApellidos.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldApellidos.gridx = 2;
 		gbc_textFieldApellidos.gridy = 2;
@@ -196,7 +251,7 @@ public class RegWindow extends JFrame {
 		textFieldDni.setMinimumSize(new Dimension(100, 20));
 		textFieldDni.setColumns(10);
 		GridBagConstraints gbc_textFieldDni = new GridBagConstraints();
-		gbc_textFieldDni.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldDni.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldDni.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldDni.gridx = 2;
 		gbc_textFieldDni.gridy = 5;

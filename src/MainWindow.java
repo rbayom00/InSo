@@ -77,6 +77,7 @@ public class MainWindow {
 		frame.getContentPane().add(horizontalStrut, gbc_horizontalStrut);
 		
 		JButton btnIniciarSesion = new JButton("Iniciar Sesi\u00F3n");
+		btnIniciarSesion.setMinimumSize(new Dimension(150, 30));
 		btnIniciarSesion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnIniciarSesion.setSize(new Dimension(95, 23));
 		GridBagConstraints gbc_btnIniciarSesion = new GridBagConstraints();
@@ -107,6 +108,7 @@ public class MainWindow {
 		frame.getContentPane().add(horizontalStrut_1, gbc_horizontalStrut_1);
 		
 		JButton btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.setMinimumSize(new Dimension(150, 30));
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
