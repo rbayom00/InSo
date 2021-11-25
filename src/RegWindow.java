@@ -33,9 +33,11 @@ public class RegWindow extends JFrame {
 	private JTextField textDomicilio;
 	private JTextField textFechaNac;
 	private JTextField textDni;
+	private JTextField textContrasena;
 	private JTextField textFieldDomicilio;
 	private JTextField textFieldFechaNac;
 	private JTextField textFieldDni;
+	private JTextField textFieldContrasena;
 	private Component verticalStrut;
 	private Component verticalStrut_1;
 	private Component horizontalStrut;
@@ -46,6 +48,7 @@ public class RegWindow extends JFrame {
 	private String domicilio;
 	private String fechaNac;
 	private String dni;	
+	private String contrasena;
 	/**
 	 * Create the panel.
 	 */
@@ -95,16 +98,22 @@ public class RegWindow extends JFrame {
 						if(!textFieldDomicilio.getText().equals("")) {							
 							if(!textFieldFechaNac.getText().equals("")) {
 								if(!textFieldDni.getText().equals("")) {
-									nombre=textFieldNombre.getText();
-									apellidos=textFieldApellidos.getText();
-									domicilio=textFieldDomicilio.getText();
-									fechaNac=textFieldFechaNac.getText();
-									dni=textFieldDni.getText();
-									textFieldNombre.setText("");
-									textFieldApellidos.setText("");
-									textFieldDomicilio.setText("");
-									textFieldFechaNac.setText("");
-									textFieldDni.setText("");
+									if(!textFieldContrasena.getText().equals("")) {
+										nombre=textFieldNombre.getText();
+										apellidos=textFieldApellidos.getText();
+										domicilio=textFieldDomicilio.getText();
+										fechaNac=textFieldFechaNac.getText();
+										dni=textFieldDni.getText();
+										contrasena=textFieldContrasena.getText();
+										textFieldNombre.setText("");
+										textFieldApellidos.setText("");
+										textFieldDomicilio.setText("");
+										textFieldFechaNac.setText("");
+										textFieldDni.setText("");
+										textFieldContrasena.setText("");
+									}else {
+										JOptionPane.showMessageDialog(null, "Introduzca una contraseña.");
+									}									
 								}else {
 									JOptionPane.showMessageDialog(null, "Introduzca su dni.");
 								}
@@ -127,7 +136,7 @@ public class RegWindow extends JFrame {
 		GridBagConstraints gbc_btnFinalizar = new GridBagConstraints();
 		gbc_btnFinalizar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnFinalizar.gridx = 1;
-		gbc_btnFinalizar.gridy = 6;
+		gbc_btnFinalizar.gridy = 7;
 		gbc_btnFinalizar.gridwidth = 2;
 		getContentPane().add(btnFinalizar, gbc_btnFinalizar);
 		
@@ -135,7 +144,7 @@ public class RegWindow extends JFrame {
 		GridBagConstraints gbc_verticalStrut_1 = new GridBagConstraints();
 		gbc_verticalStrut_1.insets = new Insets(0, 0, 0, 5);
 		gbc_verticalStrut_1.gridx = 1;
-		gbc_verticalStrut_1.gridy = 7;
+		gbc_verticalStrut_1.gridy = 8;
 		getContentPane().add(verticalStrut_1, gbc_verticalStrut_1);
 		
 		textFieldDomicilio = new JTextField();
@@ -170,6 +179,19 @@ public class RegWindow extends JFrame {
 		gbc_textDni.gridx = 1;
 		gbc_textDni.gridy = 5;
 		getContentPane().add(textDni, gbc_textDni);
+		
+		textContrasena = new JTextField();
+		textContrasena.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		textContrasena.setMinimumSize(new Dimension(110, 20));
+		textContrasena.setText("Contraseña:");
+		textContrasena.setEditable(false);
+		textContrasena.setColumns(10);
+		GridBagConstraints gbc_textContrasena = new GridBagConstraints();
+		gbc_textContrasena.insets = new Insets(0, 0, 5, 5);
+		gbc_textContrasena.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textContrasena.gridx = 1;
+		gbc_textContrasena.gridy = 6;
+		getContentPane().add(textContrasena, gbc_textContrasena);
 		
 		textFechaNac = new JTextField();
 		textFechaNac.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -256,6 +278,16 @@ public class RegWindow extends JFrame {
 		gbc_textFieldDni.gridx = 2;
 		gbc_textFieldDni.gridy = 5;
 		getContentPane().add(textFieldDni, gbc_textFieldDni);
+		
+		textFieldContrasena = new JTextField();
+		textFieldContrasena.setMinimumSize(new Dimension(100, 20));
+		textFieldContrasena.setColumns(10);
+		GridBagConstraints gbc_textFieldContrasena = new GridBagConstraints();
+		gbc_textFieldContrasena.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldContrasena.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldContrasena.gridx = 2;
+		gbc_textFieldContrasena.gridy = 6;
+		getContentPane().add(textFieldContrasena, gbc_textFieldContrasena);
 		
 	}
 
