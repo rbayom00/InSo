@@ -77,6 +77,13 @@ public class MainWindow {
 		frame.getContentPane().add(horizontalStrut, gbc_horizontalStrut);
 		
 		JButton btnIniciarSesion = new JButton("Iniciar Sesi\u00F3n");
+		btnIniciarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.setVisible(false);
+				IniWindow iniwindow=new IniWindow();
+				iniwindow.setVisible(true);
+			}
+		});
 		btnIniciarSesion.setMinimumSize(new Dimension(150, 30));
 		btnIniciarSesion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnIniciarSesion.setSize(new Dimension(95, 23));
