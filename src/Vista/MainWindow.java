@@ -26,7 +26,9 @@ import java.awt.Cursor;
 public class MainWindow {
 
 	public JFrame frame;
-
+	/* TODO
+	 * hacer que la clase sea un frame sin main y crear una clase en controlador que sea la que inicie la app
+	 * */
 	/**
 	 * Launch the application.
 	 */
@@ -121,7 +123,7 @@ public class MainWindow {
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				RegWindow regwindow=new RegWindow();
+				LoginWindow regwindow=new LoginWindow();
 				regwindow.setVisible(true);
 			}
 		});
