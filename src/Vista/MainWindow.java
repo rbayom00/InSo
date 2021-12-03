@@ -1,3 +1,4 @@
+package Vista;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -7,6 +8,7 @@ import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.Box;
