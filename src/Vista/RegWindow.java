@@ -197,7 +197,7 @@ public class RegWindow extends JFrame {
 		
 		textFechaNac = new JTextField();
 		textFechaNac.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		textFechaNac.setMinimumSize(new Dimension(110, 20));
+		textFechaNac.setMinimumSize(new Dimension(140, 20));
 		textFechaNac.setText("Fecha de nacimiento:");
 		textFechaNac.setEditable(false);
 		textFechaNac.setColumns(10);
