@@ -6,7 +6,7 @@ import Vista.MainWindow;
 
 public class Main {
 	/**
-	 * Launch the application.
+	 * Launch the application...
 	 */
 	
 	public static void main(String[] args) {
