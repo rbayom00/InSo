@@ -42,6 +42,7 @@ public class LogWindow extends JFrame {
 	 * Create the panel.
 	 */
 	public LogWindow() {
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -90,6 +91,9 @@ public class LogWindow extends JFrame {
 						textFieldContrasena.setText("");
 						textFieldDni.setText("");
 						textFieldContrasena.setText("");
+						setVisible(false);
+						GameWindow game = new GameWindow();
+						game.setVisible(true);
 					}else {
 						JOptionPane.showMessageDialog(null, "Introduzca una contraseña.");
 					}									
