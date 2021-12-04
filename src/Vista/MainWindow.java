@@ -26,25 +26,6 @@ import java.awt.Cursor;
 public class MainWindow {
 
 	public JFrame frame;
-	/* TODO
-	 * hacer que la clase sea un frame sin main y crear una clase en controlador que sea la que inicie la app
-	 * */
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWindow window = new MainWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the application.
 	 */
