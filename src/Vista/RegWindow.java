@@ -23,7 +23,7 @@ import javax.swing.border.SoftBevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LoginWindow extends JFrame {
+public class RegWindow extends JFrame {
 	/**
 	 * 
 	 */
@@ -54,7 +54,7 @@ public class LoginWindow extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public LoginWindow() {
+	public RegWindow() {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {

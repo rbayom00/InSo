@@ -22,7 +22,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
-public class IniWindow extends JFrame {
+public class LogWindow extends JFrame {
 
 	/**
 	 * 
@@ -41,7 +41,7 @@ public class IniWindow extends JFrame {
 	/**
 	 * Create the panel.
 	 */
-	public IniWindow() {
+	public LogWindow() {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {

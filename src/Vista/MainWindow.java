@@ -1,6 +1,4 @@
 package Vista;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
@@ -20,7 +18,6 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 import javax.swing.JPanel;
 import java.awt.Dimension;
-import javax.swing.SwingConstants;
 import java.awt.Cursor;
 
 public class MainWindow {
@@ -65,7 +62,7 @@ public class MainWindow {
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setVisible(false);
-				IniWindow iniwindow=new IniWindow();
+				LogWindow iniwindow=new LogWindow();
 				iniwindow.setVisible(true);
 			}
 		});
@@ -104,7 +101,7 @@ public class MainWindow {
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				LoginWindow regwindow=new LoginWindow();
+				RegWindow regwindow=new RegWindow();
 				regwindow.setVisible(true);
 			}
 		});
