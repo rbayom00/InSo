@@ -14,6 +14,8 @@ import javax.swing.Box;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GameWindow extends JFrame {
 	/**
@@ -30,6 +32,13 @@ public class GameWindow extends JFrame {
 		scrollPane.setColumnHeaderView(horizontalBoxPerfil);
 		
 		JButton btnPerfil = new JButton("Perfil");
+		btnPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				ProfileAdmin admin = new ProfileAdmin();
+				admin.setVisible(true);
+			}
+		});
 		btnPerfil.setMaximumSize(new Dimension(100, 100));
 		btnPerfil.setSize(new Dimension(100, 100));
 		btnPerfil.setPreferredSize(new Dimension(100, 100));
@@ -83,5 +92,8 @@ public class GameWindow extends JFrame {
 		horizontalBox_1.add(btnNewButton_3_1);
 		
 	}
+	/*TODO
+	 * Hacer el metodo para que el admin desde su perfil pueda añadir juegos
+	 * */ 
 
 }
