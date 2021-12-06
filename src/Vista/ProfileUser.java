@@ -2,21 +2,19 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JScrollPane;
-import javax.swing.Box;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.ActionEvent;
 
-public class ProfileAdmin extends JFrame {
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+public class ProfileUser extends JFrame {
 	private JTextField textNombre;
 	private JTextField textFieldNombre;
 	private JTextField textApellidos;
@@ -34,7 +32,7 @@ public class ProfileAdmin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ProfileAdmin() {
+	public ProfileUser() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -133,15 +131,6 @@ public class ProfileAdmin extends JFrame {
 		
 		JButton btnModificarPerfil = new JButton("Modificar Perfil");
 		horizontalBox_6.add(btnModificarPerfil);
-		
-		JButton btnAnadirJuego = new JButton("A\u00F1adir Juego");
-		btnAnadirJuego.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				game.anadirJuego();
-			}
-		});
-		horizontalBox_6.add(btnAnadirJuego);
-		
 	}
 
 }
