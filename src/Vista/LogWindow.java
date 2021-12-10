@@ -95,7 +95,7 @@ public class LogWindow extends JFrame {
 						GameWindow game = new GameWindow();
 						game.setVisible(true);
 					}else {
-						JOptionPane.showMessageDialog(null, "Introduzca una contraseña.");
+						JOptionPane.showMessageDialog(null, "Introduzca una contraseï¿½a.");
 					}									
 				}else {
 					JOptionPane.showMessageDialog(null, "Introduzca su dni.");
@@ -134,7 +134,7 @@ public class LogWindow extends JFrame {
 		textContrasena = new JTextField();
 		textContrasena.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		textContrasena.setMinimumSize(new Dimension(110, 20));
-		textContrasena.setText("Contraseña:");
+		textContrasena.setText("Contraseï¿½a:");
 		textContrasena.setEditable(false);
 		textContrasena.setColumns(10);
 		GridBagConstraints gbc_textContrasena = new GridBagConstraints();
