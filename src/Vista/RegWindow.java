@@ -118,7 +118,7 @@ public class RegWindow extends JFrame {
 										GameWindow game = new GameWindow();
 										game.setVisible(true);
 									}else {
-										JOptionPane.showMessageDialog(null, "Introduzca una contrase�a.");
+										JOptionPane.showMessageDialog(null, "Introduzca una contraseña.");
 									}									
 								}else {
 									JOptionPane.showMessageDialog(null, "Introduzca su dni.");
@@ -189,7 +189,7 @@ public class RegWindow extends JFrame {
 		textContrasena = new JTextField();
 		textContrasena.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		textContrasena.setMinimumSize(new Dimension(110, 20));
-		textContrasena.setText("Contrase�a:");
+		textContrasena.setText("Contraseña:");
 		textContrasena.setEditable(false);
 		textContrasena.setColumns(10);
 		GridBagConstraints gbc_textContrasena = new GridBagConstraints();

@@ -58,7 +58,7 @@ public class MainWindow {
 		gbc_horizontalStrut.gridy = 1;
 		frame.getContentPane().add(horizontalStrut, gbc_horizontalStrut);
 		
-		JButton btnIniciarSesion = new JButton("Iniciar Sesi\u00F3n");
+		JButton btnIniciarSesion = new JButton("Iniciar Sesión");
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setVisible(false);

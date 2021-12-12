@@ -108,7 +108,7 @@ public class GameWindow extends JFrame {
 	public void anadirJuego() {
 		Box horizontalBox_4 = Box.createHorizontalBox();
 		verticalBoxGames.add(horizontalBox_4);
-		JButton btnNewButton_4_1 = new JButton("Bot�n prueba");
+		JButton btnNewButton_4_1 = new JButton("Botón prueba");
 		btnNewButton_4_1.setPreferredSize(new Dimension(990, 990));
 		btnNewButton_4_1.setMaximumSize(new Dimension(990, 1100));
 		horizontalBox_4.add(btnNewButton_4_1);

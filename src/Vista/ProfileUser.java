@@ -117,7 +117,7 @@ public class ProfileUser extends JFrame {
 		verticalBox.add(horizontalBox_5);
 		
 		textContrasena = new JTextField();
-		textContrasena.setText("Contrase\u00F1a:");
+		textContrasena.setText("Contraseña:");
 		textContrasena.setEditable(false);
 		horizontalBox_5.add(textContrasena);
 		textContrasena.setColumns(10);

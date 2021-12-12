@@ -117,7 +117,7 @@ public class ProfileModerator extends JFrame {
 		verticalBox.add(horizontalBox_5);
 		
 		textContrasena = new JTextField();
-		textContrasena.setText("Contrase\u00F1a:");
+		textContrasena.setText("Contraseña:");
 		textContrasena.setEditable(false);
 		horizontalBox_5.add(textContrasena);
 		textContrasena.setColumns(10);
@@ -132,7 +132,7 @@ public class ProfileModerator extends JFrame {
 		JButton btnModificarPerfil = new JButton("Modificar Perfil");
 		horizontalBox_6.add(btnModificarPerfil);
 		
-		JButton btnAnadirJuego = new JButton("A\u00F1adir Juego");
+		JButton btnAnadirJuego = new JButton("Añadir Juego");
 		btnAnadirJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				game.anadirJuego();
