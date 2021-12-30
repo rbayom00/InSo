@@ -1,14 +1,11 @@
-package Modelo;
+package modelo;
+import java.sql.*;
+
+/*
+ * Clase encargada de realizar la conexión con la base de datos del proyecto
+ * @author Carballo
+ */
 
 public class Connection {
-
-	public Connection() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 }
