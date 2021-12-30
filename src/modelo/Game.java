@@ -1,8 +1,8 @@
-package modelos;
+package modelo;
 
-public class Admin {
+public class Game {
 
-	public Admin() {
+	public Game() {
 		// TODO Auto-generated constructor stub
 	}
 

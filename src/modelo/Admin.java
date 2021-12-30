@@ -1,8 +1,8 @@
-package modelos;
+package modelo;
 
-public class Ranking {
+public class Admin {
 
-	public Ranking() {
+	public Admin() {
 		// TODO Auto-generated constructor stub
 	}
 
