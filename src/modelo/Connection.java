@@ -12,7 +12,7 @@ public class Connection {
     public static final String pass = "vc@PPV@1d3fR5n0";
     public static final String host = "localhost";
     public static final String port = "3306";
-    public static final String db = "";
+    public static final String db = "test";
     //Url a la conexión de la base de datos con respecto a las vars anteriores
     public static final String url= "jdbc:mysql://"+host+":"+port+"/"+db;
     
