@@ -11,16 +11,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
+
+import modelo.Connection;
 
 public class LogWindow extends JFrame {
 
@@ -29,7 +35,7 @@ public class LogWindow extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField textFieldDni;
-	private JTextField textFieldContrasena;
+	private JPasswordField textFieldContrasena;
 	private JTextField textContrasena;
 	private Component verticalStrut;
 	private Component verticalStrut_1;
@@ -87,13 +93,17 @@ public class LogWindow extends JFrame {
 					if(!textFieldContrasena.getText().equals("")) {
 						dni=textFieldDni.getText();
 						contrasena=textFieldContrasena.getText();
-						textFieldDni.setText("");
-						textFieldContrasena.setText("");
-						textFieldDni.setText("");
-						textFieldContrasena.setText("");
-						setVisible(false);
-						GameWindow game = new GameWindow();
-						game.setVisible(true);
+						if(consultarInicio(dni,contrasena)) {
+							setVisible(false);
+							GameWindow game = new GameWindow();
+							game.setVisible(true);
+						}else {
+							textFieldDni.setText("");
+							textFieldContrasena.setText("");
+							textFieldDni.setText("");
+							textFieldContrasena.setText("");
+							JOptionPane.showMessageDialog(null, "DNI o contraseña erroneos.");
+						}						
 					}else {
 						JOptionPane.showMessageDialog(null, "Introduzca una contraseña.");
 					}									
@@ -154,7 +164,7 @@ public class LogWindow extends JFrame {
 		getContentPane().add(textFieldDni, gbc_textFieldDni);
 		textFieldDni.setColumns(10);
 		
-		textFieldContrasena = new JTextField();
+		textFieldContrasena = new JPasswordField();
 		textFieldContrasena.setMinimumSize(new Dimension(100, 20));
 		textFieldContrasena.setColumns(10);
 		GridBagConstraints gbc_textFieldContrasena = new GridBagConstraints();
@@ -165,5 +175,32 @@ public class LogWindow extends JFrame {
 		getContentPane().add(textFieldContrasena, gbc_textFieldContrasena);
 		
 	}
-	private JPanel contentPane;
+	
+	private boolean consultarInicio(String dni, String contrasena) {
+		Connection n = new Connection();		
+		String contrasenaBD;
+		try {
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select contrasena from usuarios where DNI='"+dni+"';");
+			ResultSet result = consulta.executeQuery();
+			result.next();
+			contrasenaBD = result.getString("contrasena");
+			result.close();
+			n.disconnect();					
+			} catch (SQLException error) {
+				return false;
+			}
+		if(contrasena.equals(contrasenaBD)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
+
+
+
+
+
+
+
+
