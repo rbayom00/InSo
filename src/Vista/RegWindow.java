@@ -9,6 +9,8 @@ import javax.swing.JTextPane;
 import java.awt.Insets;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.Dimension;
@@ -19,6 +21,8 @@ import javax.swing.*;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
+
+import modelo.Connection;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -39,7 +43,7 @@ public class RegWindow extends JFrame {
 	private JTextField textFieldDomicilio;
 	private JTextField textFieldFechaNac;
 	private JTextField textFieldDni;
-	private JTextField textFieldContrasena;
+	private JPasswordField textFieldContrasena;
 	private Component verticalStrut;
 	private Component verticalStrut_1;
 	private Component horizontalStrut;
@@ -108,15 +112,20 @@ public class RegWindow extends JFrame {
 										fechaNac=textFieldFechaNac.getText();
 										dni=textFieldDni.getText();
 										contrasena=textFieldContrasena.getText();
-										textFieldNombre.setText("");
-										textFieldApellidos.setText("");
-										textFieldDomicilio.setText("");
-										textFieldFechaNac.setText("");
-										textFieldDni.setText("");
-										textFieldContrasena.setText("");
-										setVisible(false);
-										GameWindow game = new GameWindow();
-										game.setVisible(true);
+										if(registrarUsuario(nombre,apellidos,domicilio,fechaNac,dni,contrasena)) {
+											JOptionPane.showMessageDialog(null, "Usuario registrado correctamente, ya puede iniciar sesión.");
+											setVisible(false);
+											MainWindow main=new MainWindow();
+											main.frame.setVisible(true);
+										}else {
+											JOptionPane.showMessageDialog(null, "Registro fallido pruebe de nuevo.");
+											textFieldNombre.setText("");
+											textFieldApellidos.setText("");
+											textFieldDomicilio.setText("");
+											textFieldFechaNac.setText("");
+											textFieldDni.setText("");
+											textFieldContrasena.setText("");
+										}										
 									}else {
 										JOptionPane.showMessageDialog(null, "Introduzca una contraseña.");
 									}									
@@ -154,7 +163,7 @@ public class RegWindow extends JFrame {
 		getContentPane().add(verticalStrut_1, gbc_verticalStrut_1);
 		
 		textFieldDomicilio = new JTextField();
-		textFieldDomicilio.setMinimumSize(new Dimension(100, 20));
+		textFieldDomicilio.setMinimumSize(new Dimension(200, 20));
 		textFieldDomicilio.setColumns(10);
 		GridBagConstraints gbc_textFieldDomicilio = new GridBagConstraints();
 		gbc_textFieldDomicilio.insets = new Insets(0, 0, 5, 5);
@@ -164,7 +173,7 @@ public class RegWindow extends JFrame {
 		getContentPane().add(textFieldDomicilio, gbc_textFieldDomicilio);
 		
 		textFieldFechaNac = new JTextField();
-		textFieldFechaNac.setMinimumSize(new Dimension(100, 20));
+		textFieldFechaNac.setMinimumSize(new Dimension(200, 20));
 		textFieldFechaNac.setColumns(10);
 		GridBagConstraints gbc_textFieldFechaNac = new GridBagConstraints();
 		gbc_textFieldFechaNac.insets = new Insets(0, 0, 5, 5);
@@ -175,7 +184,7 @@ public class RegWindow extends JFrame {
 		
 		textDni = new JTextField();
 		textDni.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		textDni.setMinimumSize(new Dimension(110, 20));
+		textDni.setMinimumSize(new Dimension(200, 20));
 		textDni.setText("DNI:");
 		textDni.setEditable(false);
 		textDni.setColumns(10);
@@ -188,7 +197,7 @@ public class RegWindow extends JFrame {
 		
 		textContrasena = new JTextField();
 		textContrasena.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		textContrasena.setMinimumSize(new Dimension(110, 20));
+		textContrasena.setMinimumSize(new Dimension(200, 20));
 		textContrasena.setText("Contraseña:");
 		textContrasena.setEditable(false);
 		textContrasena.setColumns(10);
@@ -201,8 +210,8 @@ public class RegWindow extends JFrame {
 		
 		textFechaNac = new JTextField();
 		textFechaNac.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		textFechaNac.setMinimumSize(new Dimension(140, 20));
-		textFechaNac.setText("Fecha de nacimiento:");
+		textFechaNac.setMinimumSize(new Dimension(200, 20));
+		textFechaNac.setText("Fecha de nacimiento(ej:1998-06-23):");
 		textFechaNac.setEditable(false);
 		textFechaNac.setColumns(10);
 		GridBagConstraints gbc_textFechaNac = new GridBagConstraints();
@@ -214,7 +223,7 @@ public class RegWindow extends JFrame {
 		
 		textDomicilio = new JTextField();
 		textDomicilio.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		textDomicilio.setMinimumSize(new Dimension(110, 20));
+		textDomicilio.setMinimumSize(new Dimension(200, 20));
 		textDomicilio.setText("Domicilio:");
 		textDomicilio.setEditable(false);
 		textDomicilio.setColumns(10);
@@ -230,7 +239,7 @@ public class RegWindow extends JFrame {
 		gbc_textApellidos.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textApellidos.gridx = 1;
 		gbc_textApellidos.gridy = 2;
-		textApellidos.setMinimumSize(new Dimension(110, 20));
+		textApellidos.setMinimumSize(new Dimension(200, 20));
 		textApellidos.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		textApellidos.setBounds(new Rectangle(0, 0, 500, 500));
 		textApellidos.setSize(new Dimension(500, 500));
@@ -245,7 +254,7 @@ public class RegWindow extends JFrame {
 		gbc_textNombre.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textNombre.gridx = 1;
 		gbc_textNombre.gridy = 1;
-		textNombre.setMinimumSize(new Dimension(110, 20));
+		textNombre.setMinimumSize(new Dimension(200, 20));
 		textNombre.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		textNombre.setBounds(new Rectangle(0, 0, 500, 500));
 		textNombre.setSize(new Dimension(500, 500));
@@ -256,7 +265,7 @@ public class RegWindow extends JFrame {
 		textNombre.setColumns(10);
 		
 		textFieldNombre = new JTextField();
-		textFieldNombre.setMinimumSize(new Dimension(100, 20));
+		textFieldNombre.setMinimumSize(new Dimension(200, 20));
 		GridBagConstraints gbc_textFieldNombre = new GridBagConstraints();
 		gbc_textFieldNombre.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldNombre.fill = GridBagConstraints.HORIZONTAL;
@@ -266,7 +275,7 @@ public class RegWindow extends JFrame {
 		textFieldNombre.setColumns(10);
 		
 		textFieldApellidos = new JTextField();
-		textFieldApellidos.setMinimumSize(new Dimension(100, 20));
+		textFieldApellidos.setMinimumSize(new Dimension(200, 20));
 		textFieldApellidos.setColumns(10);
 		GridBagConstraints gbc_textFieldApellidos = new GridBagConstraints();
 		gbc_textFieldApellidos.insets = new Insets(0, 0, 5, 5);
@@ -276,7 +285,7 @@ public class RegWindow extends JFrame {
 		getContentPane().add(textFieldApellidos, gbc_textFieldApellidos);
 		
 		textFieldDni = new JTextField();
-		textFieldDni.setMinimumSize(new Dimension(100, 20));
+		textFieldDni.setMinimumSize(new Dimension(200, 20));
 		textFieldDni.setColumns(10);
 		GridBagConstraints gbc_textFieldDni = new GridBagConstraints();
 		gbc_textFieldDni.insets = new Insets(0, 0, 5, 5);
@@ -285,16 +294,28 @@ public class RegWindow extends JFrame {
 		gbc_textFieldDni.gridy = 5;
 		getContentPane().add(textFieldDni, gbc_textFieldDni);
 		
-		textFieldContrasena = new JTextField();
-		textFieldContrasena.setMinimumSize(new Dimension(100, 20));
+		textFieldContrasena = new JPasswordField();
+		textFieldContrasena.setMinimumSize(new Dimension(200, 20));
 		textFieldContrasena.setColumns(10);
 		GridBagConstraints gbc_textFieldContrasena = new GridBagConstraints();
 		gbc_textFieldContrasena.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldContrasena.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldContrasena.gridx = 2;
 		gbc_textFieldContrasena.gridy = 6;
-		getContentPane().add(textFieldContrasena, gbc_textFieldContrasena);
-		
+		getContentPane().add(textFieldContrasena, gbc_textFieldContrasena);		
 	}
-
+	
+	private boolean registrarUsuario(String nombre,String apellidos,String domicilio,String fechaNac,String dni,String contrasena) {
+		Connection n = new Connection();
+		try {
+			Statement stat = n.getConnection().createStatement();
+			stat.executeUpdate("INSERT INTO SISTEMA VALUES ('"+nombre+"');");
+			stat.executeUpdate("INSERT INTO USUARIOS (DNI, contrasena, fecha_nacimiento, nombre, apellidos, domicilio) VALUES ('"+dni+"', '"+contrasena+"', '"+fechaNac+"', '"+nombre+"', '"+apellidos+"', '"+domicilio+"');");	
+			stat.close();
+			n.disconnect();
+		} catch (SQLException error) {
+			return false;
+		}
+		return true;
+	}
 }
