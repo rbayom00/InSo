@@ -1,9 +1,15 @@
 package modelo;
 
 public class Game {
-
+	
+	private String infoJuego;
+	private String precio;
+	private String premio;
+	private int numeroPlazas;
+	private int personasApuntadas;
+	
 	public Game() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public static void main(String[] args) {
