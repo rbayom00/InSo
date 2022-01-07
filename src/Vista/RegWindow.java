@@ -304,7 +304,10 @@ public class RegWindow extends JFrame {
 		gbc_textFieldContrasena.gridy = 6;
 		getContentPane().add(textFieldContrasena, gbc_textFieldContrasena);		
 	}
-	
+	/**
+	 * ATENCION
+	 * ESTE METODO ESTA EN PERSON, HAY UN EVENTO EN ESTA CLASE QUE LLAMA A ESTE METODO, POR ESO NO LO HE BORRADO
+	 */
 	private boolean registrarUsuario(String nombre,String apellidos,String domicilio,String fechaNac,String dni,String contrasena) {
 		Connection n = new Connection();
 		try {

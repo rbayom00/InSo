@@ -176,6 +176,11 @@ public class LogWindow extends JFrame {
 		
 	}
 	
+	/**
+	 * ATENCION
+	 * ESTE METODO HA SIDO COPIADO A LA CLASE PERSON
+	 * HAY UN EVENTO DE ESTA CLASE QUE LLAMA AL METODO, POR ESO NO LO HE BORRADO DE AQUI
+	 */
 	private boolean consultarInicio(String dni, String contrasena) {
 		Connection n = new Connection();		
 		String contrasenaBD;
