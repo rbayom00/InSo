@@ -23,12 +23,12 @@ public class Person {
 		this.dom = dom;
 	}
 	
-	private boolean registrarUsuario(String nombre,String apellidos,String domicilio,String fechaNac,String dni,String contrasena) {
+	public boolean registrarUsuario() {
 		Connection n = new Connection();
 		try {
 			Statement stat = n.getConnection().createStatement();
-			stat.executeUpdate("INSERT INTO SISTEMA VALUES ('"+nombre+"');");
-			stat.executeUpdate("INSERT INTO USUARIOS (DNI, contrasena, fecha_nacimiento, nombre, apellidos, domicilio) VALUES ('"+dni+"', '"+contrasena+"', '"+fechaNac+"', '"+nombre+"', '"+apellidos+"', '"+domicilio+"');");	
+			stat.executeUpdate("INSERT INTO SISTEMA VALUES ('"+this.nombre+"');");
+			stat.executeUpdate("INSERT INTO USUARIOS (DNI, contrasena, fecha_nacimiento, nombre, apellidos, domicilio) VALUES ('"+this.dni+"', '"+this.contrasena+"', '"+this.fecha_nac+"', '"+this.nombre+"', '"+this.apellidos+"', '"+this.dom+"');");	
 			stat.close();
 			n.disconnect();
 		} catch (SQLException error) {
@@ -37,11 +37,11 @@ public class Person {
 		return true;
 	}
 	
-	private boolean consultarInicio(String dni, String contrasena) {
+	public boolean consultarInicio() {
 		Connection n = new Connection();		
 		String contrasenaBD;
 		try {
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select contrasena from usuarios where DNI='"+dni+"';");
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select contrasena from usuarios where DNI='"+this.dni+"';");
 			ResultSet result = consulta.executeQuery();
 			result.next();
 			contrasenaBD = result.getString("contrasena");
@@ -50,7 +50,7 @@ public class Person {
 			} catch (SQLException error) {
 				return false;
 			}
-		if(contrasena.equals(contrasenaBD)) {
+		if(this.contrasena.equals(contrasenaBD)) {
 			return true;
 		}else {
 			return false;

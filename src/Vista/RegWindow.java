@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.border.SoftBevelBorder;
 
 import modelo.Connection;
+import modelo.Person;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -112,7 +113,8 @@ public class RegWindow extends JFrame {
 										fechaNac=textFieldFechaNac.getText();
 										dni=textFieldDni.getText();
 										contrasena=textFieldContrasena.getText();
-										if(registrarUsuario(nombre,apellidos,domicilio,fechaNac,dni,contrasena)) {
+										Person p=new Person(dni,contrasena,fechaNac,nombre,apellidos,domicilio);
+										if(p.registrarUsuario()) {
 											JOptionPane.showMessageDialog(null, "Usuario registrado correctamente, ya puede iniciar sesión.");
 											setVisible(false);
 											MainWindow main=new MainWindow();
@@ -303,22 +305,5 @@ public class RegWindow extends JFrame {
 		gbc_textFieldContrasena.gridx = 2;
 		gbc_textFieldContrasena.gridy = 6;
 		getContentPane().add(textFieldContrasena, gbc_textFieldContrasena);		
-	}
-	/**
-	 * ATENCION
-	 * ESTE METODO ESTA EN PERSON, HAY UN EVENTO EN ESTA CLASE QUE LLAMA A ESTE METODO, POR ESO NO LO HE BORRADO
-	 */
-	private boolean registrarUsuario(String nombre,String apellidos,String domicilio,String fechaNac,String dni,String contrasena) {
-		Connection n = new Connection();
-		try {
-			Statement stat = n.getConnection().createStatement();
-			stat.executeUpdate("INSERT INTO SISTEMA VALUES ('"+nombre+"');");
-			stat.executeUpdate("INSERT INTO USUARIOS (DNI, contrasena, fecha_nacimiento, nombre, apellidos, domicilio) VALUES ('"+dni+"', '"+contrasena+"', '"+fechaNac+"', '"+nombre+"', '"+apellidos+"', '"+domicilio+"');");	
-			stat.close();
-			n.disconnect();
-		} catch (SQLException error) {
-			return false;
-		}
-		return true;
 	}
 }

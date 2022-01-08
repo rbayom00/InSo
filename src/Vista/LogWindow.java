@@ -27,6 +27,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import modelo.Connection;
+import modelo.Person;
 
 public class LogWindow extends JFrame {
 
@@ -93,7 +94,8 @@ public class LogWindow extends JFrame {
 					if(!textFieldContrasena.getText().equals("")) {
 						dni=textFieldDni.getText();
 						contrasena=textFieldContrasena.getText();
-						if(consultarInicio(dni,contrasena)) {
+						Person p=new Person(dni,contrasena);
+						if(p.consultarInicio()) {
 							setVisible(false);
 							GameWindow game = new GameWindow();
 							game.setVisible(true);
@@ -174,31 +176,6 @@ public class LogWindow extends JFrame {
 		gbc_textFieldContrasena.gridy = 2;
 		getContentPane().add(textFieldContrasena, gbc_textFieldContrasena);
 		
-	}
-	
-	/**
-	 * ATENCION
-	 * ESTE METODO HA SIDO COPIADO A LA CLASE PERSON
-	 * HAY UN EVENTO DE ESTA CLASE QUE LLAMA AL METODO, POR ESO NO LO HE BORRADO DE AQUI
-	 */
-	private boolean consultarInicio(String dni, String contrasena) {
-		Connection n = new Connection();		
-		String contrasenaBD;
-		try {
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select contrasena from usuarios where DNI='"+dni+"';");
-			ResultSet result = consulta.executeQuery();
-			result.next();
-			contrasenaBD = result.getString("contrasena");
-			result.close();
-			n.disconnect();					
-			} catch (SQLException error) {
-				return false;
-			}
-		if(contrasena.equals(contrasenaBD)) {
-			return true;
-		}else {
-			return false;
-		}
 	}
 }
 
