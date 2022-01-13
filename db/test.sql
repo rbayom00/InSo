@@ -3,7 +3,10 @@ USE test;
 
 CREATE TABLE IF NOT EXISTS SISTEMA(
 	nombre VARCHAR(36),
-    PRIMARY KEY(nombre),
+    PRIMARY KEY(nombre)	
+);
+
+CREATE TABLE IF NOT EXISTS SISTEMAJUEGOS(
 	numJuegos INT
 );
 
