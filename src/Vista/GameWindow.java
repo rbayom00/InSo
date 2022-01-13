@@ -4,8 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Connection;
+import modelo.Game;
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -17,6 +22,10 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class GameWindow extends JFrame {
@@ -62,56 +71,60 @@ public class GameWindow extends JFrame {
 		
 		Component verticalStrut = Box.createVerticalStrut(20);
 		verticalBoxGames.add(verticalStrut);
-		
-		Box horizontalBox_2 = Box.createHorizontalBox();
-		verticalBoxGames.add(horizontalBox_2);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setPreferredSize(new Dimension(990, 400));
-		btnNewButton.setMinimumSize(new Dimension(990, 1100));
-		btnNewButton.setMaximumSize(new Dimension(990, 1100));
-		horizontalBox_2.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setPreferredSize(new Dimension(990, 400));
-		btnNewButton_1.setMaximumSize(new Dimension(990, 1100));
-		horizontalBox_2.add(btnNewButton_1);
-		
-		Box horizontalBox = Box.createHorizontalBox();
-		verticalBoxGames.add(horizontalBox);
-		
-		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setPreferredSize(new Dimension(990, 990));
-		btnNewButton_2.setMaximumSize(new Dimension(990, 1100));
-		horizontalBox.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("New button");
-		btnNewButton_3.setPreferredSize(new Dimension(990, 990));
-		btnNewButton_3.setMaximumSize(new Dimension(990, 1100));
-		horizontalBox.add(btnNewButton_3);
-		
-		Box horizontalBox_1 = Box.createHorizontalBox();
-		verticalBoxGames.add(horizontalBox_1);
-		
-		JButton btnNewButton_2_1 = new JButton("New button");
-		btnNewButton_2_1.setPreferredSize(new Dimension(990, 990));
-		btnNewButton_2_1.setMaximumSize(new Dimension(990, 1100));
-		horizontalBox_1.add(btnNewButton_2_1);
-		
-		JButton btnNewButton_3_1 = new JButton("New button");
-		btnNewButton_3_1.setPreferredSize(new Dimension(990, 990));
-		btnNewButton_3_1.setMaximumSize(new Dimension(990, 1100));
-		horizontalBox_1.add(btnNewButton_3_1);
+		crearBotonesJuegos();
 		
 	}
 	
-	public void anadirJuego() {
-		Box horizontalBox_4 = Box.createHorizontalBox();
-		verticalBoxGames.add(horizontalBox_4);
-		JButton btnNewButton_4_1 = new JButton("Botón prueba");
-		btnNewButton_4_1.setPreferredSize(new Dimension(990, 990));
-		btnNewButton_4_1.setMaximumSize(new Dimension(990, 1100));
-		horizontalBox_4.add(btnNewButton_4_1);
+	public void crearBotonesJuegos() {
+		Connection n = new Connection();	
+		ArrayList<Game> juegos=new ArrayList<Game>();
+		int nJuegos;
+		String nombresJuegos;
+		try {
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select numJuegos from SISTEMAJUEGOS;");
+			ResultSet result = consulta.executeQuery();
+			result.next();
+			nJuegos = result.getInt("numJuegos");
+			result.close();
+			if(nJuegos!=0) {
+				for(int i=1;i<=nJuegos;i++) {
+					PreparedStatement consulta2 = n.getConnection().prepareStatement("Select nombreJuego from JUEGOS where numeroJuego='"+i+"';");
+					ResultSet result2 = consulta2.executeQuery();
+					result2.next();
+					nombresJuegos = result2.getString("nombreJuego");
+					result2.close();
+					juegos.add(new Game(nombresJuegos));
+				}	
+			}					
+			n.disconnect();					
+		} catch (SQLException error) {	
+			JOptionPane.showMessageDialog(null, "Excepción lanzada.\nComprueba consola para + info","testResultSetBBDD() ERROR",JOptionPane.ERROR_MESSAGE);
+			System.out.println("\nError en la BBDD al realizar un statement. Comprobar conexión, query o tabla.");
+			System.out.println("\nSi en la tabla ya existe el valor, debes borrarlo manualmente");
+			System.out.println("Mensaje de la excepción: "+error.getMessage());
+		}
+		if(juegos.size()!=0) {
+			ArrayList<Box> horizontalBoxes=new ArrayList<Box>();
+			ArrayList<JButton> btns=new ArrayList<JButton>();
+			for(int i=0;i<juegos.size();i+=2) {
+				horizontalBoxes.add(Box.createHorizontalBox());
+			}
+			for(int i=0;i<juegos.size();i++) {
+				btns.add(new JButton(juegos.get(i).getNombreJuego()));
+				btns.get(i).setPreferredSize(new Dimension(990, 990));
+				btns.get(i).setMaximumSize(new Dimension(990, 1100));
+			}
+			int aux=0;
+			for(int i=0;i<juegos.size();i++) {
+				if((i%2)==0) {
+					horizontalBoxes.get(aux).add(btns.get(i));
+					verticalBoxGames.add(horizontalBoxes.get(aux));
+				}else {
+					horizontalBoxes.get(aux).add(btns.get(i));
+					verticalBoxGames.add(horizontalBoxes.get(aux));
+					aux+=1;
+				}
+			}		
+		}		
 	}
-
 }
