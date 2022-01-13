@@ -137,7 +137,7 @@ public class ProfileAdmin extends JFrame {
 		JButton btnAnadirJuego = new JButton("Añadir Juego");
 		btnAnadirJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				game.anadirJuego();
+				
 			}
 		});
 		horizontalBox_6.add(btnAnadirJuego);

@@ -2,19 +2,18 @@ package modelo;
 
 public class Game {
 	
+	private String nombreJuego;
 	private String infoJuego;
 	private String precio;
 	private String premio;
 	private int numeroPlazas;
 	private int personasApuntadas;
 	
-	public Game() {
-		
+	public Game(String nombreJuego) {		
+		this.nombreJuego=nombreJuego;
 	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	
+	public String getNombreJuego() {
+		return this.nombreJuego;
 	}
-
 }
