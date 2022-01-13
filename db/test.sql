@@ -3,7 +3,8 @@ USE test;
 
 CREATE TABLE IF NOT EXISTS SISTEMA(
 	nombre VARCHAR(36),
-    PRIMARY KEY(nombre)
+    PRIMARY KEY(nombre),
+	numJuegos INT
 );
 
 CREATE TABLE IF NOT EXISTS USUARIOS(
@@ -18,7 +19,6 @@ CREATE TABLE IF NOT EXISTS USUARIOS(
 );
 
 CREATE TABLE IF NOT EXISTS JUEGOS(
-	nombre VARCHAR(36),
-    numero INT,
-    PRIMARY KEY(nombre)
+	nombreJuego VARCHAR(36),
+    PRIMARY KEY(nombreJuego)
 );
