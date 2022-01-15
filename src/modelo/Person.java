@@ -4,6 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.swing.JOptionPane;
+
 import java.security.NoSuchAlgorithmException;
 
 public class Person {
@@ -43,6 +46,10 @@ public class Person {
 			stat.close();
 			n.disconnect();
 		} catch (SQLException error) {
+			 JOptionPane.showMessageDialog(null, "Excepción lanzada.\nComprueba consola para + info","testStatementBBDD() ERROR",JOptionPane.ERROR_MESSAGE);
+				System.out.println("\nError en la BBDD al realizar un statement. Comprobar conexión, query o tabla.");
+				System.out.println("\nSi en la tabla ya existe el valor, debes borrarlo manualmente");
+				System.out.println("Mensaje de la excepción: "+error.getMessage());
 			return false;
 		}
 		return true;
