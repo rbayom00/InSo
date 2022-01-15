@@ -26,3 +26,11 @@ CREATE TABLE IF NOT EXISTS JUEGOS(
 	nombreJuego VARCHAR(36),
     PRIMARY KEY(nombreJuego)
 );
+
+CREATE table if not exists ranking(
+	nombreJuego varchar(36),
+    puntuacion int,
+    DNI varchar(9),
+    FOREIGN KEY (nombreJuego) REFERENCES JUEGOS(nombreJuego),
+    FOREIGN KEY (DNI) REFERENCES USUARIOS(DNI),
+);
