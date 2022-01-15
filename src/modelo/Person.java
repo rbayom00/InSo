@@ -10,6 +10,12 @@ public class Person {
 
 	private String dni, contrasena, fecha_nac, nombre, apellidos, dom;
 	
+	public Person(String dni,String nombre,String apellidos) {
+		this.dni=dni;
+		this.nombre=nombre;
+		this.apellidos=apellidos;
+	}
+	
 	public Person(String dni,String contrasena) {
 		this.dni = dni;
 		try{
