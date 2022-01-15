@@ -84,6 +84,13 @@ public class InfoGameWindow extends JFrame {
 		verticalBox.add(horizontalBox);
 		
 		JButton btnRanking = new JButton("Ranking");
+		btnRanking.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				RankingWindow ranking=new RankingWindow(juego);
+				ranking.setVisible(true);
+			}
+		});
 		btnRanking.setSize(new Dimension(200, 80));
 		btnRanking.setPreferredSize(new Dimension(200, 80));
 		btnRanking.setMinimumSize(new Dimension(200, 80));
