@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.security.NoSuchAlgorithmException;
 
 public class Person {
 
@@ -11,18 +12,16 @@ public class Person {
 	
 	public Person(String dni,String contrasena) {
 		this.dni = dni;
-		this.contrasena = contrasena;
-	}
-	
-	public Person(String dni,String nombre,String apellidos) {
-		this.dni=dni;
-		this.nombre=nombre;
-		this.apellidos=apellidos;
+		try{
+			this.contrasena = Hashing.toString(Hashing.getSHA(contrasena));
+		} catch (NoSuchAlgorithmException e) {}
 	}
 
 	public Person(String dni,String contrasena,String fecha_nac,String nombre,String apellidos,String dom) {
 		this.dni = dni;
-		this.contrasena = contrasena;
+		try{
+			this.contrasena = Hashing.toString(Hashing.getSHA(contrasena));
+		} catch (NoSuchAlgorithmException e) {}
 		this.fecha_nac = fecha_nac;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -58,7 +57,7 @@ public class Person {
 			}
 		if(this.contrasena.equals(contrasenaBD)) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}

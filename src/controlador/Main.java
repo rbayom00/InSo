@@ -1,6 +1,7 @@
 package controlador;
 
 import java.awt.EventQueue;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import Vista.MainWindow;
 import modelo.Connection;
+import modelo.Hashing;
 
 public class Main {
 	/**
@@ -17,8 +19,9 @@ public class Main {
 	 */
 	
 	public static void main(String[] args) {
-		//--------**BORRAR**---TEST BASE DE DATOS---**BORRAR**-----------
-		
+		//--------**BORRAR**---TEST---**BORRAR**-----------
+			
+			//-------TEST DE BASE DE DATOS--------
 			//DESCOMENTA CUALQUIERA DE LOS MÉTODOS Y EJECUTA EL MAIN PARA PROBARLOS
 			//REVISA LA DOCUMENTACIÓN DE CADA UNO PARA VER LO QUE HACE MÁS ABAJO
 		
@@ -26,7 +29,14 @@ public class Main {
 		//testResultSetBBDD();
 		//testCrearUsuario();
 		
+			//TEST DE HASHING EN SHA-256
+			//Obtenemos el hash con getSHA y lo pasamos a un valor hexadecimal con toString
+		//try {
+		//	byte[] a = Hashing.getSHA("clave a encodear");
+		//	System.out.println(Hashing.toString(a));
+		//} catch (NoSuchAlgorithmException e) {}
 		//--------**BORRAR**---TEST BASE DE DATOS---**BORRAR**------------
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
