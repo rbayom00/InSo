@@ -3,11 +3,8 @@ USE test;
 
 CREATE TABLE IF NOT EXISTS SISTEMA(
 	nombre VARCHAR(36),
+	numJuegos INT,
     PRIMARY KEY(nombre)	
-);
-
-CREATE TABLE IF NOT EXISTS SISTEMAJUEGOS(
-	numJuegos INT
 );
 
 CREATE TABLE IF NOT EXISTS USUARIOS(
@@ -32,5 +29,5 @@ CREATE table if not exists ranking(
     puntuacion int,
     DNI varchar(9),
     FOREIGN KEY (nombreJuego) REFERENCES JUEGOS(nombreJuego),
-    FOREIGN KEY (DNI) REFERENCES USUARIOS(DNI),
+    FOREIGN KEY (DNI) REFERENCES USUARIOS(DNI)
 );
