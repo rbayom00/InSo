@@ -29,8 +29,10 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class GameWindow extends JFrame {
-	private int numBtns=0;
 	private Box verticalBoxGames;
+	private ArrayList<Box> horizontalBoxes=new ArrayList<Box>();
+	private ArrayList<JButton> btns=new ArrayList<JButton>();
+	private ArrayList<Game> juegos=new ArrayList<Game>();
 	/**
 	 * Create the frame.
 	 */
@@ -71,13 +73,47 @@ public class GameWindow extends JFrame {
 		
 		Component verticalStrut = Box.createVerticalStrut(20);
 		verticalBoxGames.add(verticalStrut);
+		
 		crearBotonesJuegos();
 		
+		for(int i=0;i<juegos.size();i++) {
+			final int final_i=i;
+			btns.get(i).addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					setVisible(false);
+					infoGameWindow infoJuego = new infoGameWindow(juegos.get(final_i));
+					infoJuego.setVisible(true);
+				}
+			});
+		}
+		
+		/*btns.get(0).addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				infoGameWindow infoJuego = new infoGameWindow(1);
+				infoJuego.setVisible(true);
+			}
+		});
+		
+		btns.get(1).addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				infoGameWindow infoJuego = new infoGameWindow(2);
+				infoJuego.setVisible(true);
+			}
+		});
+		
+		btns.get(2).addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				infoGameWindow infoJuego = new infoGameWindow(3);
+				infoJuego.setVisible(true);
+			}
+		});*/
 	}
 	
 	public void crearBotonesJuegos() {
 		Connection n = new Connection();	
-		ArrayList<Game> juegos=new ArrayList<Game>();
 		int nJuegos;
 		String nombresJuegos;
 		try {
@@ -99,16 +135,15 @@ public class GameWindow extends JFrame {
 			n.disconnect();					
 		} catch (SQLException error) {
 		}
-		if(juegos.size()!=0) {
-			ArrayList<Box> horizontalBoxes=new ArrayList<Box>();
-			ArrayList<JButton> btns=new ArrayList<JButton>();
+		if(juegos.size()!=0) {			
 			for(int i=0;i<juegos.size();i+=2) {
 				horizontalBoxes.add(Box.createHorizontalBox());
 			}
-			for(int i=0;i<juegos.size();i++) {
-				btns.add(new JButton(juegos.get(i).getNombreJuego()));
-				btns.get(i).setPreferredSize(new Dimension(990, 990));
-				btns.get(i).setMaximumSize(new Dimension(990, 1100));
+			for(int i=0;i<juegos.size();i++) {				
+				JButton boton=new JButton(juegos.get(i).getNombreJuego());
+				boton.setPreferredSize(new Dimension(990, 990));
+				boton.setMaximumSize(new Dimension(990, 1100));
+				btns.add(boton);
 			}
 			int aux=0;
 			for(int i=0;i<juegos.size();i++) {
