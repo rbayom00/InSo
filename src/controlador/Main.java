@@ -15,7 +15,7 @@ import modelo.Hashing;
 
 public class Main {
 	/**
-	 * Launch the application...
+	 * Ejecuta la aplicacion
 	 */
 	
 	public static void main(String[] args) {
