@@ -16,6 +16,10 @@ public class Ranking {
 		rellenarPersonas();
 	}
 	
+	public ArrayList<Person> getPersonas(){
+		return personas;
+	}
+	
 	private void rellenarPersonas() {
 		Connection n = new Connection();
 		Person p;
