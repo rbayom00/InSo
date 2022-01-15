@@ -1,25 +1,19 @@
 package Vista;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import java.awt.GridBagLayout;
-import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
-import javax.swing.JTextPane;
 import java.awt.Insets;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.Component;
-import javax.swing.Box;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.*;
 import java.awt.Color;
-import javax.swing.JButton;
+
 import javax.swing.border.SoftBevelBorder;
 
 import modelo.Connection;
@@ -76,6 +70,13 @@ public class RegWindow extends JFrame {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		getContentPane().setLayout(gridBagLayout);
+		
+		Action actionEnter = new AbstractAction(){
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	btnFinalizar.doClick();
+		    }
+		};
 		
 		verticalStrut = Box.createVerticalStrut(2000);
 		GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
@@ -165,6 +166,7 @@ public class RegWindow extends JFrame {
 		getContentPane().add(verticalStrut_1, gbc_verticalStrut_1);
 		
 		textFieldDomicilio = new JTextField();
+		textFieldDomicilio.addActionListener(actionEnter);
 		textFieldDomicilio.setMinimumSize(new Dimension(200, 20));
 		textFieldDomicilio.setColumns(10);
 		GridBagConstraints gbc_textFieldDomicilio = new GridBagConstraints();
@@ -175,6 +177,7 @@ public class RegWindow extends JFrame {
 		getContentPane().add(textFieldDomicilio, gbc_textFieldDomicilio);
 		
 		textFieldFechaNac = new JTextField();
+		textFieldFechaNac.addActionListener(actionEnter);
 		textFieldFechaNac.setMinimumSize(new Dimension(200, 20));
 		textFieldFechaNac.setColumns(10);
 		GridBagConstraints gbc_textFieldFechaNac = new GridBagConstraints();
@@ -267,6 +270,7 @@ public class RegWindow extends JFrame {
 		textNombre.setColumns(10);
 		
 		textFieldNombre = new JTextField();
+		textFieldNombre.addActionListener(actionEnter);
 		textFieldNombre.setMinimumSize(new Dimension(200, 20));
 		GridBagConstraints gbc_textFieldNombre = new GridBagConstraints();
 		gbc_textFieldNombre.insets = new Insets(0, 0, 5, 5);
@@ -277,6 +281,7 @@ public class RegWindow extends JFrame {
 		textFieldNombre.setColumns(10);
 		
 		textFieldApellidos = new JTextField();
+		textFieldApellidos.addActionListener(actionEnter);
 		textFieldApellidos.setMinimumSize(new Dimension(200, 20));
 		textFieldApellidos.setColumns(10);
 		GridBagConstraints gbc_textFieldApellidos = new GridBagConstraints();
@@ -287,6 +292,7 @@ public class RegWindow extends JFrame {
 		getContentPane().add(textFieldApellidos, gbc_textFieldApellidos);
 		
 		textFieldDni = new JTextField();
+		textFieldDni.addActionListener(actionEnter);
 		textFieldDni.setMinimumSize(new Dimension(200, 20));
 		textFieldDni.setColumns(10);
 		GridBagConstraints gbc_textFieldDni = new GridBagConstraints();
@@ -297,6 +303,7 @@ public class RegWindow extends JFrame {
 		getContentPane().add(textFieldDni, gbc_textFieldDni);
 		
 		textFieldContrasena = new JPasswordField();
+		textFieldContrasena.addActionListener(actionEnter);
 		textFieldContrasena.setMinimumSize(new Dimension(200, 20));
 		textFieldContrasena.setColumns(10);
 		GridBagConstraints gbc_textFieldContrasena = new GridBagConstraints();
