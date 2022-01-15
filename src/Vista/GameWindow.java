@@ -82,7 +82,7 @@ public class GameWindow extends JFrame {
 			btns.get(i).addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					setVisible(false);
-					infoGameWindow infoJuego = new infoGameWindow(juegos.get(final_i));
+					InfoGameWindow infoJuego = new InfoGameWindow(juegos.get(final_i));
 					infoJuego.setVisible(true);
 				}
 			});

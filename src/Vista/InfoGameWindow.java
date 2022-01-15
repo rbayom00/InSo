@@ -24,12 +24,12 @@ import java.awt.GridLayout;
 import java.awt.ComponentOrientation;
 import javax.swing.SwingConstants;
 
-public class infoGameWindow extends JFrame {
+public class InfoGameWindow extends JFrame {
 	private Game juego;
 	/**
 	 * Create the frame.
 	 */
-	public infoGameWindow(Game juego) {
+	public InfoGameWindow(Game juego) {
 		this.juego=juego;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		getContentPane().setLayout(new GridLayout(0, 1, 0, 0));		
