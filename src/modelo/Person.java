@@ -13,6 +13,12 @@ public class Person {
 		this.dni = dni;
 		this.contrasena = contrasena;
 	}
+	
+	public Person(String dni,String nombre,String apellidos) {
+		this.dni=dni;
+		this.nombre=nombre;
+		this.apellidos=apellidos;
+	}
 
 	public Person(String dni,String contrasena,String fecha_nac,String nombre,String apellidos,String dom) {
 		this.dni = dni;

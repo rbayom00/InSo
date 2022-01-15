@@ -15,6 +15,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Game;
+import modelo.Ranking;
+
 import javax.swing.JScrollPane;
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -31,6 +33,7 @@ public class RankingWindow extends JFrame {
 	private JPanel panel;
 	private Game juego;
 	private JTable table;
+	private Ranking ranking;
 	/**
 	 * Create the frame.
 	 */
@@ -93,8 +96,10 @@ public class RankingWindow extends JFrame {
 		fila[3]="1578";
 		modelo.addRow(fila);
 		table = new JTable(modelo);
-		scrollPane.setViewportView(table);
-		
+		scrollPane.setViewportView(table);		
+	}
+	
+	private void rellenarTabla() {
 		
 	}
 }
