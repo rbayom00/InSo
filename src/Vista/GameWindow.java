@@ -49,6 +49,7 @@ public class GameWindow extends JFrame {
 		getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		getContentPane().add(scrollPane);
 		
 		Box horizontalBoxPerfil = Box.createHorizontalBox();
