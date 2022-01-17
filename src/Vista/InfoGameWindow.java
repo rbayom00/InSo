@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import modelo.Admin;
 import modelo.Game;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -52,7 +53,8 @@ public class InfoGameWindow extends JFrame {
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
-				ProfileAdmin admin = new ProfileAdmin();
+				Admin adminP=new Admin("02773491J","02773491J","2001-06-22","Raúl","Bayón Martínez","C/Colada nº13 1ºC");
+				ProfileAdmin admin = new ProfileAdmin(adminP);
 				admin.setVisible(true);
 			}
 		});

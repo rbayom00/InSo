@@ -1,14 +1,7 @@
 package modelo;
 
-public class Admin {
-
-	public Admin() {
-		// TODO Auto-generated constructor stub
+public class Admin extends Person{
+	public Admin(String dni, String contrasena, String fecha_nac, String nombre, String apellidos, String dom) {
+		super(dni, contrasena, fecha_nac, nombre, apellidos, dom);
 	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

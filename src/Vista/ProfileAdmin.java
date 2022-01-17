@@ -4,8 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Admin;
+import modelo.Connection;
+import modelo.Game;
+
 import javax.swing.JScrollPane;
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -14,6 +20,10 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class ProfileAdmin extends JFrame {
@@ -29,24 +39,21 @@ public class ProfileAdmin extends JFrame {
 	private JTextField textFieldDni;
 	private JTextField textContrasena;
 	private JTextField textFieldContrasena;
-	public GameWindow game;
 
 	/**
 	 * Create the frame.
 	 */
-	public ProfileAdmin() {
+	public ProfileAdmin(Admin admin) {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				GameWindow game=new GameWindow();
 				game.setVisible(true);
 				e.getWindow().dispose();
 			}
 		});
 		setBounds(100, 100, 450, 300);
-		
-		game= new GameWindow();
-				
 		Box verticalBox = Box.createVerticalBox();
 		getContentPane().add(verticalBox, BorderLayout.CENTER);
 		
@@ -60,6 +67,7 @@ public class ProfileAdmin extends JFrame {
 		textNombre.setColumns(10);
 		
 		textFieldNombre = new JTextField();
+		textFieldNombre.setText(admin.getNombre());
 		horizontalBox.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
@@ -73,6 +81,7 @@ public class ProfileAdmin extends JFrame {
 		textApellidos.setColumns(10);
 		
 		textFieldApellidos = new JTextField();
+		textFieldApellidos.setText(admin.getApellidos());
 		horizontalBox_1.add(textFieldApellidos);
 		textFieldApellidos.setColumns(10);
 		
@@ -86,6 +95,7 @@ public class ProfileAdmin extends JFrame {
 		textDomicilio.setColumns(10);
 		
 		textFieldDomicilio = new JTextField();
+		textFieldDomicilio.setText(admin.getDomicilio());
 		horizontalBox_2.add(textFieldDomicilio);
 		textFieldDomicilio.setColumns(10);
 		
@@ -99,6 +109,7 @@ public class ProfileAdmin extends JFrame {
 		textFechaNac.setColumns(10);
 		
 		textFieldFechaNac = new JTextField();
+		textFieldFechaNac.setText(admin.getFechaNac());
 		horizontalBox_3.add(textFieldFechaNac);
 		textFieldFechaNac.setColumns(10);
 		
@@ -112,6 +123,7 @@ public class ProfileAdmin extends JFrame {
 		textDni.setColumns(10);
 		
 		textFieldDni = new JTextField();
+		textFieldDni.setText(admin.getDni());
 		horizontalBox_4.add(textFieldDni);
 		textFieldDni.setColumns(10);
 		
@@ -137,11 +149,30 @@ public class ProfileAdmin extends JFrame {
 		JButton btnAnadirJuego = new JButton("Añadir Juego");
 		btnAnadirJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				String name = JOptionPane.showInputDialog("Por favor introduzca el nombre del juego.");
+				Game juego=new Game(name);
+				anadirJuegos(juego);
 			}
 		});
-		horizontalBox_6.add(btnAnadirJuego);
-		
+		horizontalBox_6.add(btnAnadirJuego);		
 	}
-
+	
+	public void anadirJuegos(Game juego) {
+		Connection n = new Connection();
+		int numJuegos = 0;
+		try {
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select numJuegos from SISTEMA;");
+			ResultSet result = consulta.executeQuery();
+			result.next();
+			numJuegos = result.getInt("numJuegos");
+			result.close();
+			Statement stat = n.getConnection().createStatement();
+			stat.executeUpdate("UPDATE SISTEMA SET numJuegos ="+String.valueOf(numJuegos+1)+";");	
+			stat.executeUpdate("INSERT INTO JUEGOS (numeroJuego,nombreJuego) VALUES ("+String.valueOf(numJuegos+1)+",'"+juego.getNombreJuego()+"');");
+			stat.close();
+			n.disconnect();					
+			} catch (SQLException error) {
+				 JOptionPane.showMessageDialog(null, "Excepción lanzada.\nComprueba consola para + info","testStatementBBDD() ERROR",JOptionPane.ERROR_MESSAGE);
+			}
+	}
 }

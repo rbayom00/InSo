@@ -45,6 +45,18 @@ public class Person {
 		return this.apellidos;
 	}
 	
+	public String getDomicilio() {
+		return this.dom;
+	}
+	
+	public String getFechaNac() {
+		return this.fecha_nac;
+	}
+	
+	public String getDni() {
+		return this.dni;
+	}
+	
 	public boolean registrarUsuario() {
 		Connection n = new Connection();
 		try {
