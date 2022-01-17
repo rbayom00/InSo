@@ -37,6 +37,14 @@ public class Person {
 		this.dom = dom;
 	}
 	
+	public String getNombre() {
+		return this.nombre;
+	}
+	
+	public String getApellidos() {
+		return this.apellidos;
+	}
+	
 	public boolean registrarUsuario() {
 		Connection n = new Connection();
 		try {

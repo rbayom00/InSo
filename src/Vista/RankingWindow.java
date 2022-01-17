@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Game;
+import modelo.Person;
 import modelo.Ranking;
 
 import javax.swing.JScrollPane;
@@ -34,10 +36,13 @@ public class RankingWindow extends JFrame {
 	private Game juego;
 	private JTable table;
 	private Ranking ranking;
+	private DefaultTableModel modelo;
 	/**
 	 * Create the frame.
 	 */
 	public RankingWindow(Game juego) {
+		this.juego=juego;
+		this.ranking=new Ranking(this.juego);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		getContentPane().setLayout(new GridLayout(0, 1, 0, 0));	
 		addWindowListener(new WindowAdapter() {
@@ -48,7 +53,7 @@ public class RankingWindow extends JFrame {
 				e.getWindow().dispose();
 			}
 		});
-		
+				
 		JScrollPane scrollPane = new JScrollPane();
 		getContentPane().add(scrollPane);
 		
@@ -79,7 +84,7 @@ public class RankingWindow extends JFrame {
 		lblNombreJuego.setAlignmentX(0.5f);
 		horizontalBoxPerfil.add(lblNombreJuego);
 		
-		DefaultTableModel modelo = new DefaultTableModel() {
+		modelo = new DefaultTableModel() {
 			@Override
 			 public boolean isCellEditable(int row, int column) {
 			       return false;
@@ -89,17 +94,21 @@ public class RankingWindow extends JFrame {
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Apellidos");
 		modelo.addColumn("Puntuación");
-		Object[] fila = new Object[4];
-		fila[0]="1";
-		fila[1]="Raúl";
-		fila[2]="Bayón Martínez";
-		fila[3]="1578";
-		modelo.addRow(fila);
+		rellenarTabla();
 		table = new JTable(modelo);
-		scrollPane.setViewportView(table);		
+		scrollPane.setViewportView(table);			
 	}
 	
 	private void rellenarTabla() {
-		
+		ArrayList<Person> personas=this.ranking.getPersonas();
+		ArrayList<Integer> puntuaciones=this.ranking.getPuntuaciones();
+		for(int i=0;i<personas.size();i++) {
+			Object[] fila = new Object[4];
+			fila[0]=i+1;
+			fila[1]=personas.get(i).getNombre();
+			fila[2]=personas.get(i).getApellidos();
+			fila[3]=puntuaciones.get(i).toString();
+			modelo.addRow(fila);
+		}				
 	}
 }

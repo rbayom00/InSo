@@ -9,6 +9,7 @@ public class Ranking {
 	
 	private Game game;
 	private ArrayList<Person> personas;
+	private ArrayList<Integer> puntuaciones;
 	private int numParticipantes;
 	
 	public Ranking(Game game) {
@@ -20,18 +21,27 @@ public class Ranking {
 		return personas;
 	}
 	
+	public ArrayList<Integer> getPuntuaciones(){
+		return puntuaciones;
+	}
+	
 	private void rellenarPersonas() {
 		Connection n = new Connection();
-		Person p;
+		this.personas=new ArrayList<Person>();
+		this.puntuaciones=new ArrayList<Integer>();
+		Person persona = null;
+		int puntuacion = 0;
 		try {
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select u.nombre,u.apellidos from usuarios as u,ranking as r where u.DNI=r.DNI;");
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select u.DNI,u.nombre,u.apellidos,r.puntuacion from usuarios as u,ranking as r, juegos as j where u.DNI=r.DNI AND j.nombreJuego=r.nombreJuego;");
 			ResultSet result = consulta.executeQuery();
 			result.next();
-			p=new Person(result.getString("dni"),result.getString("nombre"),result.getString("apellidos"));
-			personas.add(p);
+			persona=new Person(result.getString("DNI"),result.getString("nombre"),result.getString("apellidos"));			
+			puntuacion=result.getInt("puntuacion");
 			result.close();
 			n.disconnect();					
 			} catch (SQLException error) {				
 			}
+		puntuaciones.add(puntuacion);
+		personas.add(persona);
 	}
 }

@@ -87,30 +87,6 @@ public class GameWindow extends JFrame {
 				}
 			});
 		}
-		
-		/*btns.get(0).addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-				infoGameWindow infoJuego = new infoGameWindow(1);
-				infoJuego.setVisible(true);
-			}
-		});
-		
-		btns.get(1).addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-				infoGameWindow infoJuego = new infoGameWindow(2);
-				infoJuego.setVisible(true);
-			}
-		});
-		
-		btns.get(2).addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-				infoGameWindow infoJuego = new infoGameWindow(3);
-				infoJuego.setVisible(true);
-			}
-		});*/
 	}
 	
 	public void crearBotonesJuegos() {
@@ -118,7 +94,7 @@ public class GameWindow extends JFrame {
 		int nJuegos;
 		String nombresJuegos;
 		try {
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select numJuegos from SISTEMAJUEGOS;");
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select numJuegos from SISTEMA;");
 			ResultSet result = consulta.executeQuery();
 			result.next();
 			nJuegos = result.getInt("numJuegos");
