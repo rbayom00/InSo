@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
@@ -94,4 +95,12 @@ public class Person {
 			return false;
 		}
 	}
+	
+	/*public boolean mayorEdad() {
+		boolean mayorEdad = false;
+		Calendar c1 = Calendar.getInstance();
+		
+		if(Connection.user.get)
+		return mayorEdad;
+	}*/
 }
