@@ -21,6 +21,7 @@ public class Hashing {
         byte enc[] = sha.digest(pass.getBytes(StandardCharsets.UTF_8));
         return enc;
     }
+	
 	/*
 	 * Convierte hash a una variable de tipo String para comparar/almacenar en bbdd
 	 */

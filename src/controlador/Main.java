@@ -9,11 +9,16 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import org.apache.logging.log4j.*;
+
 import Vista.MainWindow;
 import modelo.Connection;
 import modelo.Hashing;
 
 public class Main {
+	
+	static final Logger logger = LogManager.getLogger(Main.class);
+	
 	/**
 	 * Ejecuta la aplicacion
 	 */
@@ -25,25 +30,21 @@ public class Main {
 			//DESCOMENTA CUALQUIERA DE LOS MÉTODOS Y EJECUTA EL MAIN PARA PROBARLOS
 			//REVISA LA DOCUMENTACIÓN DE CADA UNO PARA VER LO QUE HACE MÁS ABAJO
 		
-		//testStatementBBDD();
-		//testResultSetBBDD();
-		//testCrearUsuario();
+			//testStatementBBDD();
+			//testResultSetBBDD();
+			//testCrearUsuario();
 		
-			//TEST DE HASHING EN SHA-256
-			//Obtenemos el hash con getSHA y lo pasamos a un valor hexadecimal con toString
-		//try {
-		//	byte[] a = Hashing.getSHA("clave a encodear");
-		//	System.out.println(Hashing.toString(a));
-		//} catch (NoSuchAlgorithmException e) {}
-		//--------**BORRAR**---TEST BASE DE DATOS---**BORRAR**------------
+		//--------**BORRAR**---TEST---**BORRAR**------------
 		
+		logger.info("Logger iniciado correctamente.");
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					MainWindow window = new MainWindow();
 					window.frame.setVisible(true);
+					logger.info("Ejecución correcta de la interfaz gráfica.");
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error("Error en el arranque de la interfaz gráfica: "+e);
 				}
 			}
 		});

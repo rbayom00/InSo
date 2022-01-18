@@ -1,6 +1,11 @@
 package modelo;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import org.apache.logging.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import controlador.Main;
 
 /*
  * Clase encargada de realizar la conexión con la base de datos del proyecto.
@@ -8,6 +13,7 @@ import java.sql.SQLException;
  */
 
 public class Connection {
+	private static final Logger logger = LogManager.getLogger(Main.class);
 	public static final String user = "VCApp";
     public static final String pass = "vc@PPV@1d3fR5n0";
     public static final String host = "localhost";
@@ -23,11 +29,11 @@ public class Connection {
     		Class.forName("com.mysql.cj.jdbc.Driver");
     		this.conn = DriverManager.getConnection(url, user, pass);
     	} catch(ClassNotFoundException err) {
-    		err.printStackTrace();
-    		System.out.println("Connection Error: Class Not Found (MySQL Driver). Check libraries.");
+    		logger.error("Error en la conexión: Clase no encontrada (Driver MySQL). Comprueba las librerías");
+    		logger.error(err);
     	} catch(SQLException err) {
-    		err.printStackTrace();
-    		System.out.println("Connection Error: SQL Error. Check db, login or service.");
+    		logger.error("Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio");
+    		logger.error(err.getMessage());
     	}
     }
     

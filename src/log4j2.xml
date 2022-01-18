@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="basePath">log</Property>
+    </Properties>
+	<Appenders>
+		<File name="logFile" fileName="${basePath}/VCApp.log">
+			<PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+		</File>
+		<Console name="logConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+	</Appenders>
+	<Loggers>
+		<Root level="INFO">
+			<AppenderRef ref="logFile" />
+			<AppenderRef ref="logConsole" />
+		</Root>
+	</Loggers>
+</Configuration>
