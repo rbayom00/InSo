@@ -123,6 +123,7 @@ public class ProfileAdmin extends JFrame {
 		textDni.setColumns(10);
 		
 		textFieldDni = new JTextField();
+		textFieldDni.setEditable(false);
 		textFieldDni.setText(admin.getDni());
 		horizontalBox_4.add(textFieldDni);
 		textFieldDni.setColumns(10);
@@ -143,9 +144,6 @@ public class ProfileAdmin extends JFrame {
 		Box horizontalBox_6 = Box.createHorizontalBox();
 		verticalBox.add(horizontalBox_6);
 		
-		JButton btnModificarPerfil = new JButton("Modificar Perfil");
-		horizontalBox_6.add(btnModificarPerfil);
-		
 		JButton btnAnadirJuego = new JButton("Añadir Juego");
 		btnAnadirJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -154,7 +152,15 @@ public class ProfileAdmin extends JFrame {
 				anadirJuegos(juego);
 			}
 		});
-		horizontalBox_6.add(btnAnadirJuego);		
+		horizontalBox_6.add(btnAnadirJuego);
+		
+		JButton btnModificarPerfil = new JButton("Modificar Perfil");
+		btnModificarPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				admin.editarPerfil(textFieldContrasena.getText(),textFieldFechaNac.getText(),textFieldNombre.getText(),textFieldApellidos.getText(),textFieldDomicilio.getText());
+			}
+		});
+		horizontalBox_6.add(btnModificarPerfil);		
 	}
 	
 	public void anadirJuegos(Game juego) {

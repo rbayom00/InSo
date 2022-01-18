@@ -108,6 +108,24 @@ public class Person {
 		}
 	}
 	
+	public void editarPerfil(String contrasena,String fecha_nac,String nombre,String apellidos,String dom) {
+		try{
+			this.contrasena = Hashing.toString(Hashing.getSHA(contrasena));
+		} catch (NoSuchAlgorithmException e) {}
+		this.fecha_nac=fecha_nac;
+		this.nombre=nombre;
+		this.apellidos=apellidos;
+		this.dom=dom;
+		Connection n = new Connection();
+		try {
+			Statement stat = n.getConnection().createStatement();
+			stat.executeUpdate("UPDATE USUARIOS SET Contrasena = '"+this.contrasena+"', fecha_nacimiento='"+this.fecha_nac+"', nombre='"+this.nombre+"', apellidos='"+this.apellidos+"', domicilio='"+this.apellidos+"' WHERE DNI = '"+this.dni+"';");	
+			stat.close();
+			n.disconnect();
+			} catch (SQLException error) {
+			}
+	}
+	
 	/*public boolean mayorEdad() {
 		boolean mayorEdad = false;
 		Calendar c1 = Calendar.getInstance();
