@@ -127,10 +127,29 @@ public class Person {
 	}
 	
 	/*public boolean mayorEdad() {
-		boolean mayorEdad = false;
-		Calendar c1 = Calendar.getInstance();
-		
-		if(Connection.user.get)
-		return mayorEdad;
+		Connection n = new Connection();
+		int edadUser;
+
+		try {
+			PreparedStatement consulta = n.getConnection()
+					.prepareStatement("Select edad from Age where DNI='" + this.dni + "';");
+			ResultSet result = consulta.executeQuery();
+			result.next();
+			edadUser = result.getInt("edad");
+			result.close();
+			n.disconnect();
+		} catch (SQLException error) {
+			logger.error("Error SQL: Login de usuario " + this.dni + " incorrecto. Comprobar conexión, query o tabla.");
+			logger.error(error.getMessage());
+			return false;
+		}
+
+		if (edadUser >= 18) {
+			logger.info("Usuario de " + edadUser + " es mayor de edad.");
+			return true;
+		} else {
+			logger.info("El usuario es menor de edad");
+			return false;
+		}
 	}*/
 }
