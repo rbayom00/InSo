@@ -1,0 +1,87 @@
+CREATE DATABASE IF NOT EXISTS VCApp;
+USE VCApp;
+
+CREATE TABLE IF NOT EXISTS System_(
+	SystemName VARCHAR(36),
+	GameCount INT,
+    PRIMARY KEY(SystemName)
+);
+
+CREATE TABLE IF NOT EXISTS Users(
+	DNI CHAR(9) NOT NULL,
+	Name VARCHAR(96) NOT NULL,
+	Surname VARCHAR(128) NOT NULL,
+	Birth_Date DATE NOT NULL,
+	Age INT,
+	Address VARCHAR(128) NOT NULL,
+    PhoneNumber INT,
+	Password VARCHAR(256) NOT NULL,
+	#'0' for Admin, '1' for Mod, '2' for Users
+	UserType INT NOT NULL,
+    price DECIMAL(16,2) DEFAULT '0.00' NOT NULL,
+    PRIMARY KEY(DNI)
+);
+
+CREATE TABLE IF NOT EXISTS Has(
+	SystemName VARCHAR(36),
+	DNI CHAR(9),
+	PRIMARY KEY (SystemName, DNI),
+    FOREIGN KEY (SystemName) REFERENCES System_(SystemName),
+	FOREIGN KEY (DNI) REFERENCES Users(DNI)
+);
+
+CREATE TABLE IF NOT EXISTS Adult_User(
+	AdultDNI CHAR(9) NOT NULL,
+    FOREIGN KEY (AdultDNI) REFERENCES Users(DNI)
+);
+
+CREATE TABLE IF NOT EXISTS Underage_User(
+	UnderageDNI CHAR(9) NOT NULL,
+    FOREIGN KEY (UnderageDNI) REFERENCES Users(DNI)
+);
+
+CREATE TABLE IF NOT EXISTS Administrator_User(
+	AdminDNI CHAR(9) NOT NULL,
+    FOREIGN KEY (AdminDNI) REFERENCES Users(DNI)
+);
+
+CREATE TABLE IF NOT EXISTS Moderator_User(
+	ModDNI CHAR(9) NOT NULL,
+    FOREIGN KEY (ModDNI) REFERENCES Users(DNI)
+);
+
+CREATE TABLE IF NOT EXISTS Tournament(
+	TournamentID VARCHAR(5) NOT NULL,
+	TournamentName VARCHAR(32) NOT NULL,
+	GameName VARCHAR(32) NOT NULL,
+	GameDescription VARCHAR(1024) NOT NULL,
+	#'P' for paid, 'F' for free
+	TournamentModality CHAR(1) NOT NULL,
+    PRIMARY KEY(TournamentID)
+);
+
+CREATE TABLE IF NOT EXISTS Ranking(
+	TournamentID VARCHAR(5) NOT NULL,
+	PlayerDNI CHAR(9) NOT NULL,
+	Score INT DEFAULT 0,
+	PRIMARY KEY (TournamentID),
+    FOREIGN KEY (TournamentID) REFERENCES Tournament(TournamentID)
+);
+
+CREATE TABLE IF NOT EXISTS Plays(
+	TournamentID VARCHAR(5) NOT NULL,
+	DNI CHAR(9),
+	PRIMARY KEY (TournamentID, DNI),
+    FOREIGN KEY (TournamentID) REFERENCES Tournament(TournamentID),
+	FOREIGN KEY (DNI) REFERENCES Users(DNI)
+);
+
+CREATE TABLE IF NOT EXISTS Free_Tournament(
+	FreeTournamentID VARCHAR(5) NOT NULL,
+    FOREIGN KEY (FreeTournamentID) REFERENCES Tournament(TournamentID)
+);
+
+CREATE TABLE IF NOT EXISTS Paid_Tournament(
+	PaidTournamentID VARCHAR(5) NOT NULL,
+    FOREIGN KEY (PaidTournamentID) REFERENCES Tournament(TournamentID)
+);
