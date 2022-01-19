@@ -46,6 +46,10 @@ public class Person {
 		this.dom = dom;
 	}
 	
+	public String getContrasena() {
+		return this.contrasena;
+	}
+	
 	public String getNombre() {
 		return this.nombre;
 	}
