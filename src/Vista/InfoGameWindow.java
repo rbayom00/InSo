@@ -36,6 +36,19 @@ public class InfoGameWindow extends JFrame {
 	public InfoGameWindow(Game juego,Person user) {
 		this.user=user;
 		this.juego=juego;
+		
+		/**
+		 * CODIGO PARA PROBAR QUE FURRULA LA INFO SOBRE JUEGOS
+		 */
+		/*
+		this.juego.setInfoJuego("petancaaaaaaaa");
+		this.juego.setNumeroPlazas(30);
+		this.juego.setPremio("UN JAMON");
+		this.juego.setPrecio("14 RUBLOS");
+		this.juego.setPersonasApuntadas(5);
+		*/
+		
+		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		getContentPane().setLayout(new GridLayout(0, 1, 0, 0));		
 		addWindowListener(new WindowAdapter() {
@@ -82,7 +95,7 @@ public class InfoGameWindow extends JFrame {
 		scrollPane.setViewportView(verticalBox);
 		
 		JTextPane textPaneInfo = new JTextPane();
-		textPaneInfo.setText("Nombre: <dynamic>\r\n\r\nDescripcion: <dynamic>\r\n\r\nPrecio de la Inscripcion: " + this.juego.getPrecio() + "\r\n\r\nPremio:" + this.juego.getPremio() + "\r\n\r\nPlazas totales: " + this.juego.getNumeroPlazas() + "\r\n\r\nPlazas disponibles: " + (Integer.valueOf(this.juego.getNumeroPlazas()) - this.juego.getPersonasApuntadas()));
+		textPaneInfo.setText("Nombre: " + this.juego.getNombreJuego() + "\r\n\r\nDescripcion: " + this.juego.getInfoJuego() +" \r\n\r\nPrecio de la Inscripcion: " + this.juego.getPrecio() + "\r\n\r\nPremio: " + this.juego.getPremio() + "\r\n\r\nPlazas totales: " + this.juego.getNumeroPlazas() + "\r\n\r\nPlazas disponibles: " + (Integer.valueOf(this.juego.getNumeroPlazas()) - this.juego.getPersonasApuntadas()));
 		textPaneInfo.setEditable(false);
 		textPaneInfo.setCaretPosition(0);
 		verticalBox.add(textPaneInfo);
