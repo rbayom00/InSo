@@ -1,1 +1,27 @@
-20:04:16 [main] INFO  controlador.Main - Logger iniciado correctamente.
+20:04:16 [main] INFO  controlador.Main - Logger iniciado correctamente.11:49:02 [main] INFO  controlador.Main - Logger iniciado correctamente.
+11:49:02 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+11:52:37 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 02773491J correcto.
+11:52:39 [AWT-EventQueue-0] ERROR controlador.Main - Error SQL: Verificación de usuario 02773491J incorrecto. Comprobar conexión, query o tabla.
+11:52:39 [AWT-EventQueue-0] ERROR controlador.Main - Unknown column 'UserType' in 'field list'
+11:55:19 [main] INFO  controlador.Main - Logger iniciado correctamente.
+11:55:19 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+11:55:32 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 02773491J correcto.
+12:05:20 [main] INFO  controlador.Main - Logger iniciado correctamente.
+12:05:20 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+12:05:33 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 02773491J correcto.
+12:15:31 [main] INFO  controlador.Main - Logger iniciado correctamente.
+12:15:31 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+12:16:17 [AWT-EventQueue-0] ERROR controlador.Main - Error SQL: Registro de usuario fallido. Comprobar conexión, query o tabla.
+12:16:17 [AWT-EventQueue-0] ERROR controlador.Main - Cannot add or update a child row: a foreign key constraint fails (`test`.`usuarios`, CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`nombre`) REFERENCES `sistema` (`nombre`))
+12:16:47 [main] INFO  controlador.Main - Logger iniciado correctamente.
+12:16:47 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+12:17:01 [main] INFO  controlador.Main - Logger iniciado correctamente.
+12:17:01 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+12:17:18 [main] INFO  controlador.Main - Logger iniciado correctamente.
+12:17:18 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+12:54:44 [main] INFO  controlador.Main - Logger iniciado correctamente.
+12:54:44 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+12:54:54 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 02773491J correcto.
+13:09:35 [main] INFO  controlador.Main - Logger iniciado correctamente.
+13:09:35 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+13:09:47 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 02773491J correcto.

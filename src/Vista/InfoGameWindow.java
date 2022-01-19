@@ -131,11 +131,20 @@ public class InfoGameWindow extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				juego.setPersonasApuntadas(juego.getPersonasApuntadas() + 1);
-				ranking.getPersonas().add(user);
-				ranking.getPuntuaciones().add(0);
-				//CENTRAR
-				JOptionPane.showMessageDialog(btnInscribirse, "Has sido inscrito en el torneo correctamente");
+				//COMPROBACION DE SI EL USUARIO YA ESTA INSCRITO EN EL TORNEO
+				if(ranking.getPersonas().contains(user)) {
+					JOptionPane.showMessageDialog(btnInscribirse, "El usuario ya está inscrito en el torneo", "ERROR",
+					        JOptionPane.WARNING_MESSAGE);
+					
+				}else {
+					juego.setPersonasApuntadas(juego.getPersonasApuntadas() + 1);
+					ranking.getPersonas().add(user);
+					ranking.getPuntuaciones().add(0);
+					//CENTRAR
+					JOptionPane.showMessageDialog(btnInscribirse, "Has sido inscrito en el torneo correctamente");
+					
+				}
+				
 			}
 			
 			
