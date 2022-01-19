@@ -72,8 +72,8 @@ public class Ranking {
 		this.puntuaciones.add(0);
 		Connection n = new Connection();
 		try {
-			//TODO consulta que inserte a la persona en ranking (INSERT)
-			PreparedStatement consulta = n.getConnection().prepareStatement(null);
+			//TODO consulta que introduce a la persona (COMPROBAR)
+			PreparedStatement consulta = n.getConnection().prepareStatement("INSERT INTO RANKING (DNI, Password, Birth_Date, Name, Surname, Address) VALUES(" + persona.getDni() +"," + persona.getContrasena() +"," + persona.getFechaNac() +"," + persona.getNombre() +"," + persona.getApellidos() +","+ persona.getDomicilio() +")");
 			ResultSet result = consulta.executeQuery();
 			result.next();
 			result.close();
