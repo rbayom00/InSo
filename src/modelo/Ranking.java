@@ -73,9 +73,7 @@ public class Ranking {
 			PreparedStatement consulta = n.getConnection().prepareStatement("INSERT INTO Ranking (DNI, Password, Birth_Date, Name, Surname, Address) VALUES(" + persona.getDni() +"," + persona.getContrasena() +"," + persona.getFechaNac() +"," + persona.getNombre() +"," + persona.getApellidos() +","+ persona.getDomicilio() +")");
 			ResultSet result = consulta.executeQuery();
 			result.next();
-			result.close();
-			
-			
+			result.close();			
 		}catch(SQLException error) {}
 		n.disconnect();
 	}
