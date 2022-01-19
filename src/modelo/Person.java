@@ -74,7 +74,7 @@ public class Person {
 		Connection n = new Connection();
 		try {
 			Statement stat = n.getConnection().createStatement();
-			stat.executeUpdate("INSERT INTO USUARIOS (DNI, contrasena, fecha_nacimiento, nombre, apellidos, domicilio) VALUES ('"+this.dni+"', '"+this.contrasena+"', '"+this.fecha_nac+"', '"+this.nombre+"', '"+this.apellidos+"', '"+this.dom+"');");	
+			stat.executeUpdate("INSERT INTO Users (DNI, Password, Birth_Date, Name, Surname, Address) VALUES ('"+this.dni+"', '"+this.contrasena+"', '"+this.fecha_nac+"', '"+this.nombre+"', '"+this.apellidos+"', '"+this.dom+"');");	
 			stat.close();
 			n.disconnect();
 		} catch (SQLException error) {
@@ -91,10 +91,10 @@ public class Person {
 		Connection n = new Connection();		
 		String contrasenaBD;
 		try {
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select contrasena from usuarios where DNI='"+this.dni+"';");
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select Password from Users where DNI='"+this.dni+"';");
 			ResultSet result = consulta.executeQuery();
 			result.next();
-			contrasenaBD = result.getString("contrasena");
+			contrasenaBD = result.getString("Password");
 			result.close();
 			n.disconnect();					
 			} catch (SQLException error) {
@@ -122,7 +122,7 @@ public class Person {
 		Connection n = new Connection();
 		try {
 			Statement stat = n.getConnection().createStatement();
-			stat.executeUpdate("UPDATE USUARIOS SET Contrasena = '"+this.contrasena+"', fecha_nacimiento='"+this.fecha_nac+"', nombre='"+this.nombre+"', apellidos='"+this.apellidos+"', domicilio='"+this.dom+"' WHERE DNI = '"+this.dni+"';");	
+			stat.executeUpdate("UPDATE Users SET Password = '"+this.contrasena+"', Birth_Date='"+this.fecha_nac+"', Name='"+this.nombre+"', Surname='"+this.apellidos+"', Address='"+this.dom+"' WHERE DNI = '"+this.dni+"';");	
 			stat.close();
 			n.disconnect();
 			} catch (SQLException error) {
@@ -133,7 +133,7 @@ public class Person {
 		Connection n = new Connection();		
 		int userType = 2;
 		try {
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select UserType from usuarios where DNI='"+this.dni+"';");
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select UserType from Users where DNI='"+this.dni+"';");
 			ResultSet result = consulta.executeQuery();
 			result.next();
 			userType = result.getInt("UserType");
@@ -153,13 +153,13 @@ public class Person {
 		String dom;
 		Connection n = new Connection();	
 		try {
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select fecha_nacimiento,nombre,apellidos,domicilio from usuarios where DNI='"+this.dni+"';");
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select Birth_Date,Name,Surname,Address from Users where DNI='"+this.dni+"';");
 			ResultSet result = consulta.executeQuery();
 			result.next();
-			fecha_nac = result.getString("fecha_nacimiento");
-			nombre = result.getString("nombre");
-			apellidos = result.getString("apellidos");
-			dom = result.getString("domicilio");
+			fecha_nac = result.getString("Birth_Date");
+			nombre = result.getString("Name");
+			apellidos = result.getString("Surname");
+			dom = result.getString("Address");
 			result.close();
 			n.disconnect();	
 			this.fecha_nac=fecha_nac;
@@ -178,10 +178,10 @@ public class Person {
 
 		try {
 			PreparedStatement consulta = n.getConnection()
-					.prepareStatement("Select edad from Age where DNI='" + this.dni + "';");
+					.prepareStatement("Select Age from Users where DNI='" + this.dni + "';");
 			ResultSet result = consulta.executeQuery();
 			result.next();
-			edadUser = result.getInt("edad");
+			edadUser = result.getInt("Age");
 			result.close();
 			n.disconnect();
 		} catch (SQLException error) {
@@ -191,7 +191,7 @@ public class Person {
 		}
 
 		if (edadUser >= 18) {
-			logger.info("Usuario de " + edadUser + " es mayor de edad.");
+			logger.info("Usuario de edad" + edadUser + " es mayor de edad.");
 			return true;
 		} else {
 			logger.info("El usuario es menor de edad");

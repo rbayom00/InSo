@@ -32,11 +32,11 @@ public class Ranking {
 		Person persona = null;
 		int puntuacion = 0;
 		try {
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select u.DNI,u.nombre,u.apellidos,r.puntuacion from usuarios as u,ranking as r, juegos as j where u.DNI=r.DNI AND j.nombreJuego=r.nombreJuego;");
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select u.DNI,u.Name,u.Surname,r.Score from Users as u,ranking as r, juegos as j where u.DNI=r.DNI AND j.TournamentID=r.TournamentID;");
 			ResultSet result = consulta.executeQuery();
 			result.next();
-			persona=new Person(result.getString("DNI"),result.getString("nombre"),result.getString("apellidos"));			
-			puntuacion=result.getInt("puntuacion");
+			persona=new Person(result.getString("DNI"),result.getString("Name"),result.getString("Surname"));			
+			puntuacion=result.getInt("Score");
 			result.close();
 			n.disconnect();					
 			} catch (SQLException error) {				
