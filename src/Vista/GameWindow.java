@@ -110,20 +110,24 @@ public class GameWindow extends JFrame {
 		Connection n = new Connection();	
 		int nJuegos;
 		String nombresJuegos;
+		String infoJuegos;
+		String modalities;
 		try {
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select numJuegos from SISTEMA;");
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select GameCount from System_;");
 			ResultSet result = consulta.executeQuery();
 			result.next();
-			nJuegos = result.getInt("numJuegos");
+			nJuegos = result.getInt("GameCount");
 			result.close();
 			if(nJuegos!=0) {
 				for(int i=1;i<=nJuegos;i++) {
-					PreparedStatement consulta2 = n.getConnection().prepareStatement("Select nombreJuego from JUEGOS where numeroJuego='"+i+"';");
+					PreparedStatement consulta2 = n.getConnection().prepareStatement("Select GameName from Tournament where TournamentID='"+i+"';");
 					ResultSet result2 = consulta2.executeQuery();
 					result2.next();
-					nombresJuegos = result2.getString("nombreJuego");
+					nombresJuegos = result2.getString("GameName");
+					infoJuegos = result2.getString("GameDescription");
+					modalities=result2.getString("TournamentModality");
 					result2.close();
-					juegos.add(new Game(nombresJuegos));
+					juegos.add(new Game(nombresJuegos,infoJuegos,modalities));
 				}	
 			}					
 			n.disconnect();					

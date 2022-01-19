@@ -74,7 +74,7 @@ public class Person {
 		Connection n = new Connection();
 		try {
 			Statement stat = n.getConnection().createStatement();
-			stat.executeUpdate("INSERT INTO Users (DNI, Password, Birth_Date, Name, Surname, Address) VALUES ('"+this.dni+"', '"+this.contrasena+"', '"+this.fecha_nac+"', '"+this.nombre+"', '"+this.apellidos+"', '"+this.dom+"');");	
+			stat.executeUpdate("INSERT INTO Users (DNI, Name, Surname, Birth_Date, Address, Password) VALUES ('"+this.dni+"', '"+this.nombre+"', '"+this.apellidos+"', '"+this.fecha_nac+"', '"+this.dom+"', '"+this.contrasena+"');");	
 			stat.close();
 			
 		} catch (SQLException error) {
@@ -96,8 +96,7 @@ public class Person {
 			ResultSet result = consulta.executeQuery();
 			result.next();
 			contrasenaBD = result.getString("Password");
-			result.close();
-							
+			result.close();							
 			} catch (SQLException error) {
 				logger.error("Error SQL: Login de usuario "+this.dni+" incorrecto. Comprobar conexión, query o tabla.");
 				logger.error(error.getMessage());
@@ -164,8 +163,7 @@ public class Person {
 			nombre = result.getString("Name");
 			apellidos = result.getString("Surname");
 			dom = result.getString("Address");
-			result.close();
-			
+			result.close();			
 			this.fecha_nac=fecha_nac;
 			this.nombre=nombre;
 			this.apellidos=apellidos;

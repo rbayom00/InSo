@@ -32,13 +32,12 @@ public class Ranking {
 		Person persona = null;
 		int puntuacion = 0;
 		try {
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select u.DNI,u.Name,u.Surname,r.Score from Users as u,ranking as r, juegos as j where u.DNI=r.DNI AND j.TournamentID=r.TournamentID;");
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select u.DNI,u.Name,u.Surname,r.Score from Users as u,Ranking as r, Tournament as t where u.DNI=r.PlayerDNI AND t.TournamentID=r.TournamentID;");
 			ResultSet result = consulta.executeQuery();
 			result.next();
 			persona=new Person(result.getString("DNI"),result.getString("Name"),result.getString("Surname"));			
 			puntuacion=result.getInt("Score");
-			result.close();
-								
+			result.close();								
 			} catch (SQLException error) {				
 			}
 		n.disconnect();
@@ -51,7 +50,7 @@ public class Ranking {
 		Connection n = new Connection();
 		try {
 			//TODO meter consulta que busque si la persona esta en la tabla ranking (COMPROBAR)
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select u.DNI from Ranking Where u.DNI = " + persona.getDni());
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select DNI from Ranking Where DNI = "+ persona.getDni());
 			ResultSet result = consulta.executeQuery();
 			result.next();
 			inscrito = true;
@@ -72,7 +71,7 @@ public class Ranking {
 		Connection n = new Connection();
 		try {
 			//TODO consulta que introduce a la persona (COMPROBAR)
-			PreparedStatement consulta = n.getConnection().prepareStatement("INSERT INTO RANKING (DNI, Password, Birth_Date, Name, Surname, Address) VALUES(" + persona.getDni() +"," + persona.getContrasena() +"," + persona.getFechaNac() +"," + persona.getNombre() +"," + persona.getApellidos() +","+ persona.getDomicilio() +")");
+			PreparedStatement consulta = n.getConnection().prepareStatement("INSERT INTO Ranking (DNI, Password, Birth_Date, Name, Surname, Address) VALUES(" + persona.getDni() +"," + persona.getContrasena() +"," + persona.getFechaNac() +"," + persona.getNombre() +"," + persona.getApellidos() +","+ persona.getDomicilio() +")");
 			ResultSet result = consulta.executeQuery();
 			result.next();
 			result.close();
