@@ -172,4 +172,57 @@ public class Person {
 			return false;
 		}
 	}*/
+	
+	/*public boolean validarDNI() {
+		String letraMayuscula = "";
+
+		if (dni.length() != 9 || Character.isLetter(this.dni.charAt(8)) == false) {
+			return false;
+		}
+
+		letraMayuscula = (this.dni.substring(8).toUpperCase());
+
+		if (soloNumerosDNI() == true && letraDNI().equals(letraMayuscula)) {
+			return true;
+		}
+
+		else {
+			return false;
+		}
+	}
+	
+	private boolean soloNumerosDNI() {
+
+		String numero = "";
+		String DNI = "";
+		String[] unoNueve = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+		for (int i = 0; i < this.dni.length() - 1; i++) {
+			numero = this.dni.substring(i, i + 1);
+
+			for (int j = 0; j < unoNueve.length; j++) {
+				if (numero.equals(unoNueve[j])) {
+					DNI += unoNueve[j];
+				}
+			}
+		}
+		if (DNI.length() != 8) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	private String letraDNI() {
+		int DNI = Integer.parseInt(this.dni.substring(0,8));
+		int resto = 0;
+		String letra = "";
+		String[] asignacionLetra = {"T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"};
+		
+		resto = DNI % 23;
+		
+		letra = asignacionLetra[resto];
+		
+		return letra;
+	}*/
+	
 }
