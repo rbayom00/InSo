@@ -63,31 +63,6 @@ public class RankingWindow extends JFrame {
 		Box horizontalBoxPerfil = Box.createHorizontalBox();
 		scrollPane.setColumnHeaderView(horizontalBoxPerfil);
 		
-		JButton btnPerfil = new JButton("Perfil");
-		btnPerfil.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-				Admin adminP=new Admin("02773491J","02773491J","2001-06-22","Raúl","Bayón Martínez","C/Colada nº13 1ºC");
-				ProfileAdmin admin = new ProfileAdmin(adminP);
-				admin.setVisible(true);
-			}
-		});
-		btnPerfil.setSize(new Dimension(100, 100));
-		btnPerfil.setPreferredSize(new Dimension(100, 100));
-		btnPerfil.setMinimumSize(new Dimension(100, 100));
-		btnPerfil.setMaximumSize(new Dimension(100, 100));
-		horizontalBoxPerfil.add(btnPerfil);
-		
-		Component horizontalStrut = Box.createHorizontalStrut(850);
-		horizontalBoxPerfil.add(horizontalStrut);
-		
-		JLabel lblNombreJuego = new JLabel((String) null);
-		lblNombreJuego.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNombreJuego.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNombreJuego.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		lblNombreJuego.setAlignmentX(0.5f);
-		horizontalBoxPerfil.add(lblNombreJuego);
-		
 		modelo = new DefaultTableModel() {
 			@Override
 			 public boolean isCellEditable(int row, int column) {

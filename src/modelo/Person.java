@@ -197,7 +197,7 @@ public class Person {
 			logger.info("El usuario es menor de edad");
 			return false;
 		}
-	}*/
+	}/*
 	
 	/*public boolean validarDNI() {
 		String letraMayuscula = "";

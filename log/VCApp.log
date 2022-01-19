@@ -47,3 +47,16 @@
 15:29:40 [main] INFO  controlador.Main - Logger iniciado correctamente.
 15:29:40 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
 15:29:50 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 11111111J correcto.
+16:18:45 [main] INFO  controlador.Main - Logger iniciado correctamente.
+16:18:45 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+16:21:28 [main] INFO  controlador.Main - Logger iniciado correctamente.
+16:21:29 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+16:21:40 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 02773491J correcto.
+16:22:06 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 11111111J correcto.
+16:25:32 [main] INFO  controlador.Main - Logger iniciado correctamente.
+16:25:32 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+16:25:46 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 11111111J correcto.
+16:26:14 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 02773491J correcto.
+16:29:16 [main] INFO  controlador.Main - Logger iniciado correctamente.
+16:29:16 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+16:29:24 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 02773491J correcto.
