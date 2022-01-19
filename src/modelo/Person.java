@@ -125,6 +125,10 @@ public class Person {
 			}
 	}
 	
+	public void verificarUsuario() {
+		
+	}
+	
 	/*public boolean mayorEdad() {
 		Connection n = new Connection();
 		int edadUser;

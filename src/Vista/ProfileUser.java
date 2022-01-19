@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import modelo.Person;
+
 public class ProfileUser extends JFrame {
 	private JTextField textNombre;
 	private JTextField textFieldNombre;
@@ -32,7 +34,7 @@ public class ProfileUser extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ProfileUser() {
+	public ProfileUser(Person user) {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -43,7 +45,7 @@ public class ProfileUser extends JFrame {
 		});
 		setBounds(100, 100, 450, 300);
 		
-		game= new GameWindow();
+		game= new GameWindow(user);
 				
 		Box verticalBox = Box.createVerticalBox();
 		getContentPane().add(verticalBox, BorderLayout.CENTER);

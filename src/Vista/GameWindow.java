@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import modelo.Admin;
 import modelo.Connection;
 import modelo.Game;
+import modelo.Person;
 
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -34,10 +35,12 @@ public class GameWindow extends JFrame {
 	private ArrayList<Box> horizontalBoxes=new ArrayList<Box>();
 	private ArrayList<JButton> btns=new ArrayList<JButton>();
 	private ArrayList<Game> juegos=new ArrayList<Game>();
+	private Person user;
 	/**
 	 * Create the frame.
 	 */
-	public GameWindow() {
+	public GameWindow(Person user) {
+		this.user=user;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -59,6 +62,16 @@ public class GameWindow extends JFrame {
 		JButton btnPerfil = new JButton("Perfil");
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				/*if(==0) {
+					
+				}else if(==1) {
+					
+				}else if(==2) {
+					
+				}*/
+				
+				
+				
 				setVisible(false);
 				Admin adminP=new Admin("02773491J","02773491J","2001-06-22","Raúl","Bayón Martínez","C/Colada nº13 1ºC");
 				ProfileAdmin admin = new ProfileAdmin(adminP);
@@ -84,7 +97,7 @@ public class GameWindow extends JFrame {
 			btns.get(i).addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					setVisible(false);
-					InfoGameWindow infoJuego = new InfoGameWindow(juegos.get(final_i));
+					InfoGameWindow infoJuego = new InfoGameWindow(juegos.get(final_i),user);
 					infoJuego.setVisible(true);
 				}
 			});

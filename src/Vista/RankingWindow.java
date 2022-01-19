@@ -35,21 +35,23 @@ public class RankingWindow extends JFrame {
 
 	private JPanel panel;
 	private Game juego;
+	private Person user;
 	private JTable table;
 	private Ranking ranking;
 	private DefaultTableModel modelo;
 	/**
 	 * Create the frame.
 	 */
-	public RankingWindow(Game juego) {
+	public RankingWindow(Game juego,Person user) {
 		this.juego=juego;
+		this.user=user;
 		this.ranking=new Ranking(this.juego);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		getContentPane().setLayout(new GridLayout(0, 1, 0, 0));	
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				InfoGameWindow infoGame=new InfoGameWindow(juego);
+				InfoGameWindow infoGame=new InfoGameWindow(juego,user);
 				infoGame.setVisible(true);
 				e.getWindow().dispose();
 			}

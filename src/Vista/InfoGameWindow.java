@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 
 import modelo.Admin;
 import modelo.Game;
+import modelo.Person;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -27,17 +29,19 @@ import javax.swing.SwingConstants;
 
 public class InfoGameWindow extends JFrame {
 	private Game juego;
+	private Person user;
 	/**
 	 * Create the frame.
 	 */
-	public InfoGameWindow(Game juego) {
+	public InfoGameWindow(Game juego,Person user) {
+		this.user=user;
 		this.juego=juego;
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		getContentPane().setLayout(new GridLayout(0, 1, 0, 0));		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				GameWindow game= new GameWindow();
+				GameWindow game= new GameWindow(user);
 				game.setVisible(true);
 				e.getWindow().dispose();
 			}
@@ -89,7 +93,7 @@ public class InfoGameWindow extends JFrame {
 		btnRanking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
-				RankingWindow ranking=new RankingWindow(juego);
+				RankingWindow ranking=new RankingWindow(juego,user);
 				ranking.setVisible(true);
 			}
 		});

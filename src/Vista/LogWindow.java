@@ -106,7 +106,7 @@ public class LogWindow extends JFrame {
 						Person p=new Person(dni,contrasena);
 						if(p.consultarInicio()) {
 							setVisible(false);
-							GameWindow game = new GameWindow();
+							GameWindow game = new GameWindow(p);
 							game.setVisible(true);
 						}else {
 							textFieldDni.setText("");

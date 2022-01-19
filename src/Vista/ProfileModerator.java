@@ -6,13 +6,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
+import modelo.Moderator;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JOptionPane;
+
+import modelo.Admin;
+import modelo.Connection;
+import modelo.Game;
+
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ProfileModerator extends JFrame {
 	private JTextField textNombre;
@@ -32,7 +44,7 @@ public class ProfileModerator extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ProfileModerator() {
+	public ProfileModerator(Moderator mod) {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -42,8 +54,7 @@ public class ProfileModerator extends JFrame {
 			}
 		});
 		setBounds(100, 100, 450, 300);
-		
-		game= new GameWindow();
+		game= new GameWindow(mod);
 				
 		Box verticalBox = Box.createVerticalBox();
 		getContentPane().add(verticalBox, BorderLayout.CENTER);

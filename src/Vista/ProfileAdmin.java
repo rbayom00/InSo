@@ -48,7 +48,7 @@ public class ProfileAdmin extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				GameWindow game=new GameWindow();
+				GameWindow game=new GameWindow(admin);
 				game.setVisible(true);
 				e.getWindow().dispose();
 			}
