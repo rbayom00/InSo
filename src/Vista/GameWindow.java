@@ -106,7 +106,6 @@ public class GameWindow extends JFrame {
 			});
 		}
 	}
-	
 	public void crearBotonesJuegos() {
 		Connection n = new Connection();	
 		int nJuegos;
@@ -151,6 +150,6 @@ public class GameWindow extends JFrame {
 					aux+=1;
 				}
 			}		
-		}		
+		}	
 	}
 }

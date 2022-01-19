@@ -39,23 +39,22 @@ public class ProfileModerator extends JFrame {
 	private JTextField textFieldDni;
 	private JTextField textContrasena;
 	private JTextField textFieldContrasena;
-	public GameWindow game;
 	
 	/**
 	 * Create the frame.
 	 */
 	public ProfileModerator(Moderator mod) {
+		mod.rellenarAllDatos();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				GameWindow game=new GameWindow(mod);
 				game.setVisible(true);
 				e.getWindow().dispose();
 			}
 		});
 		setBounds(100, 100, 450, 300);
-		game= new GameWindow(mod);
-				
 		Box verticalBox = Box.createVerticalBox();
 		getContentPane().add(verticalBox, BorderLayout.CENTER);
 		
@@ -64,11 +63,12 @@ public class ProfileModerator extends JFrame {
 		
 		textNombre = new JTextField();
 		textNombre.setEditable(false);
-		textNombre.setText("Nombre:");
+		textNombre.setText("NombrePITO:");
 		horizontalBox.add(textNombre);
 		textNombre.setColumns(10);
 		
 		textFieldNombre = new JTextField();
+		textFieldNombre.setText(mod.getNombre());
 		horizontalBox.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
@@ -82,6 +82,7 @@ public class ProfileModerator extends JFrame {
 		textApellidos.setColumns(10);
 		
 		textFieldApellidos = new JTextField();
+		textFieldApellidos.setText(mod.getApellidos());
 		horizontalBox_1.add(textFieldApellidos);
 		textFieldApellidos.setColumns(10);
 		
@@ -95,6 +96,7 @@ public class ProfileModerator extends JFrame {
 		textDomicilio.setColumns(10);
 		
 		textFieldDomicilio = new JTextField();
+		textFieldDomicilio.setText(mod.getDomicilio());
 		horizontalBox_2.add(textFieldDomicilio);
 		textFieldDomicilio.setColumns(10);
 		
@@ -108,6 +110,7 @@ public class ProfileModerator extends JFrame {
 		textFechaNac.setColumns(10);
 		
 		textFieldFechaNac = new JTextField();
+		textFieldFechaNac.setText(mod.getFechaNac());
 		horizontalBox_3.add(textFieldFechaNac);
 		textFieldFechaNac.setColumns(10);
 		
@@ -121,6 +124,8 @@ public class ProfileModerator extends JFrame {
 		textDni.setColumns(10);
 		
 		textFieldDni = new JTextField();
+		textFieldDni.setEditable(false);
+		textFieldDni.setText(mod.getDni());
 		horizontalBox_4.add(textFieldDni);
 		textFieldDni.setColumns(10);
 		
@@ -140,15 +145,23 @@ public class ProfileModerator extends JFrame {
 		Box horizontalBox_6 = Box.createHorizontalBox();
 		verticalBox.add(horizontalBox_6);
 		
-		JButton btnModificarPerfil = new JButton("Modificar Perfil");
-		horizontalBox_6.add(btnModificarPerfil);
-		
 		JButton btnAnadirJuego = new JButton("Añadir Juego");
 		btnAnadirJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String name = JOptionPane.showInputDialog("Por favor introduzca el nombre del juego.");
+				Game juego=new Game(name);
+				juego.anadirJuegos(juego);
 			}
 		});
-		horizontalBox_6.add(btnAnadirJuego);		
+		horizontalBox_6.add(btnAnadirJuego);
+		
+		JButton btnModificarPerfil = new JButton("Modificar Perfil");
+		btnModificarPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mod.editarPerfil(textFieldContrasena.getText(),textFieldFechaNac.getText(),textFieldNombre.getText(),textFieldApellidos.getText(),textFieldDomicilio.getText());
+			}
+		});
+		horizontalBox_6.add(btnModificarPerfil);			
 	}
 
 }

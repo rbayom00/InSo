@@ -25,3 +25,25 @@
 13:09:35 [main] INFO  controlador.Main - Logger iniciado correctamente.
 13:09:35 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
 13:09:47 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 02773491J correcto.
+15:06:32 [main] INFO  controlador.Main - Logger iniciado correctamente.
+15:06:32 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+15:06:41 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 02773491J correcto.
+15:09:27 [main] INFO  controlador.Main - Logger iniciado correctamente.
+15:09:27 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+15:09:35 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 02773491J correcto.
+15:09:57 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 11111111J correcto.
+15:17:45 [main] INFO  controlador.Main - Logger iniciado correctamente.
+15:17:46 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+15:18:01 [AWT-EventQueue-0] ERROR controlador.Main - Error SQL: Login de usuario 111111111J incorrecto. Comprobar conexión, query o tabla.
+15:18:01 [AWT-EventQueue-0] ERROR controlador.Main - Illegal operation on empty result set.
+15:18:27 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 11111111J correcto.
+15:19:06 [main] INFO  controlador.Main - Logger iniciado correctamente.
+15:19:07 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+15:19:11 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 11111111J correcto.
+15:27:06 [main] INFO  controlador.Main - Logger iniciado correctamente.
+15:27:07 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+15:27:32 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 11111111J correcto.
+15:28:21 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 11111111J correcto.
+15:29:40 [main] INFO  controlador.Main - Logger iniciado correctamente.
+15:29:40 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+15:29:50 [AWT-EventQueue-0] INFO  controlador.Main - Login de usuario 11111111J correcto.

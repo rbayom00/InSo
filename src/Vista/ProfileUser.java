@@ -10,10 +10,12 @@ import java.awt.event.WindowEvent;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import modelo.Game;
 import modelo.Person;
 
 public class ProfileUser extends JFrame {
@@ -35,18 +37,17 @@ public class ProfileUser extends JFrame {
 	 * Create the frame.
 	 */
 	public ProfileUser(Person user) {
+		user.rellenarAllDatos();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				GameWindow game=new GameWindow(user);
 				game.setVisible(true);
 				e.getWindow().dispose();
 			}
 		});
 		setBounds(100, 100, 450, 300);
-		
-		game= new GameWindow(user);
-				
 		Box verticalBox = Box.createVerticalBox();
 		getContentPane().add(verticalBox, BorderLayout.CENTER);
 		
@@ -60,6 +61,7 @@ public class ProfileUser extends JFrame {
 		textNombre.setColumns(10);
 		
 		textFieldNombre = new JTextField();
+		textFieldNombre.setText(user.getNombre());
 		horizontalBox.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
@@ -73,6 +75,7 @@ public class ProfileUser extends JFrame {
 		textApellidos.setColumns(10);
 		
 		textFieldApellidos = new JTextField();
+		textFieldApellidos.setText(user.getApellidos());
 		horizontalBox_1.add(textFieldApellidos);
 		textFieldApellidos.setColumns(10);
 		
@@ -86,6 +89,7 @@ public class ProfileUser extends JFrame {
 		textDomicilio.setColumns(10);
 		
 		textFieldDomicilio = new JTextField();
+		textFieldDomicilio.setText(user.getDomicilio());
 		horizontalBox_2.add(textFieldDomicilio);
 		textFieldDomicilio.setColumns(10);
 		
@@ -99,6 +103,7 @@ public class ProfileUser extends JFrame {
 		textFechaNac.setColumns(10);
 		
 		textFieldFechaNac = new JTextField();
+		textFieldFechaNac.setText(user.getFechaNac());
 		horizontalBox_3.add(textFieldFechaNac);
 		textFieldFechaNac.setColumns(10);
 		
@@ -112,6 +117,8 @@ public class ProfileUser extends JFrame {
 		textDni.setColumns(10);
 		
 		textFieldDni = new JTextField();
+		textFieldDni.setEditable(false);
+		textFieldDni.setText(user.getDni());
 		horizontalBox_4.add(textFieldDni);
 		textFieldDni.setColumns(10);
 		
@@ -132,7 +139,12 @@ public class ProfileUser extends JFrame {
 		verticalBox.add(horizontalBox_6);
 		
 		JButton btnModificarPerfil = new JButton("Modificar Perfil");
-		horizontalBox_6.add(btnModificarPerfil);
+		btnModificarPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				user.editarPerfil(textFieldContrasena.getText(),textFieldFechaNac.getText(),textFieldNombre.getText(),textFieldApellidos.getText(),textFieldDomicilio.getText());
+			}
+		});
+		horizontalBox_6.add(btnModificarPerfil);	
 	}
 
 }

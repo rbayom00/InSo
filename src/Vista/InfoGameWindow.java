@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import modelo.Admin;
 import modelo.Game;
+import modelo.Moderator;
 import modelo.Person;
 import modelo.Ranking;
 
@@ -75,10 +76,22 @@ public class InfoGameWindow extends JFrame {
 		JButton btnPerfil = new JButton("Perfil");
 		btnPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-				Admin adminP=new Admin("02773491J","02773491J","2001-06-22","Raúl","Bayón Martínez","C/Colada nº13 1ºC");
-				ProfileAdmin admin = new ProfileAdmin(adminP);
-				admin.setVisible(true);
+				int userType=user.getUserType();
+				if(userType==0) {
+					setVisible(false);
+					Admin adminP=new Admin(user.getDni(), user.getContrasena(), user.getFechaNac(), user.getNombre(), user.getApellidos(), user.getDomicilio());
+					ProfileAdmin admin = new ProfileAdmin(adminP);
+					admin.setVisible(true);
+				}else if(userType==1) {
+					setVisible(false);
+					Moderator moderatorP=new Moderator(user.getDni(), user.getContrasena(), user.getFechaNac(), user.getNombre(), user.getApellidos(), user.getDomicilio());
+					ProfileModerator moderator = new ProfileModerator(moderatorP);
+					moderator.setVisible(true);
+				}else if(userType==2) {
+					setVisible(false);
+					ProfileUser userProfile = new ProfileUser(user);
+					userProfile.setVisible(true);
+				}
 			}
 		});
 		btnPerfil.setSize(new Dimension(100, 100));

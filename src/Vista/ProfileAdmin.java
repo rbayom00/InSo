@@ -44,6 +44,7 @@ public class ProfileAdmin extends JFrame {
 	 * Create the frame.
 	 */
 	public ProfileAdmin(Admin admin) {
+		admin.rellenarAllDatos();
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -149,7 +150,7 @@ public class ProfileAdmin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String name = JOptionPane.showInputDialog("Por favor introduzca el nombre del juego.");
 				Game juego=new Game(name);
-				anadirJuegos(juego);
+				juego.anadirJuegos(juego);
 			}
 		});
 		horizontalBox_6.add(btnAnadirJuego);
@@ -161,24 +162,5 @@ public class ProfileAdmin extends JFrame {
 			}
 		});
 		horizontalBox_6.add(btnModificarPerfil);		
-	}
-	
-	public void anadirJuegos(Game juego) {
-		Connection n = new Connection();
-		int numJuegos = 0;
-		try {
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select numJuegos from SISTEMA;");
-			ResultSet result = consulta.executeQuery();
-			result.next();
-			numJuegos = result.getInt("numJuegos");
-			result.close();
-			Statement stat = n.getConnection().createStatement();
-			stat.executeUpdate("UPDATE SISTEMA SET numJuegos ="+String.valueOf(numJuegos+1)+";");	
-			stat.executeUpdate("INSERT INTO JUEGOS (numeroJuego,nombreJuego) VALUES ("+String.valueOf(numJuegos+1)+",'"+juego.getNombreJuego()+"');");
-			stat.close();
-			n.disconnect();					
-			} catch (SQLException error) {
-				 JOptionPane.showMessageDialog(null, "Excepción lanzada.\nComprueba consola para + info","testStatementBBDD() ERROR",JOptionPane.ERROR_MESSAGE);
-			}
-	}
+	}	
 }

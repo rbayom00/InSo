@@ -122,7 +122,7 @@ public class Person {
 		Connection n = new Connection();
 		try {
 			Statement stat = n.getConnection().createStatement();
-			stat.executeUpdate("UPDATE USUARIOS SET Contrasena = '"+this.contrasena+"', fecha_nacimiento='"+this.fecha_nac+"', nombre='"+this.nombre+"', apellidos='"+this.apellidos+"', domicilio='"+this.apellidos+"' WHERE DNI = '"+this.dni+"';");	
+			stat.executeUpdate("UPDATE USUARIOS SET Contrasena = '"+this.contrasena+"', fecha_nacimiento='"+this.fecha_nac+"', nombre='"+this.nombre+"', apellidos='"+this.apellidos+"', domicilio='"+this.dom+"' WHERE DNI = '"+this.dni+"';");	
 			stat.close();
 			n.disconnect();
 			} catch (SQLException error) {
@@ -144,6 +144,32 @@ public class Person {
 				logger.error(error.getMessage());
 			}
 		return userType;	
+	}
+	
+	public void rellenarAllDatos() {
+		String fecha_nac;
+		String nombre;
+		String apellidos;
+		String dom;
+		Connection n = new Connection();	
+		try {
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select fecha_nacimiento,nombre,apellidos,domicilio from usuarios where DNI='"+this.dni+"';");
+			ResultSet result = consulta.executeQuery();
+			result.next();
+			fecha_nac = result.getString("fecha_nacimiento");
+			nombre = result.getString("nombre");
+			apellidos = result.getString("apellidos");
+			dom = result.getString("domicilio");
+			result.close();
+			n.disconnect();	
+			this.fecha_nac=fecha_nac;
+			this.nombre=nombre;
+			this.apellidos=apellidos;
+			this.dom=dom;
+			} catch (SQLException error) {
+				logger.error("Error SQL: Extracción de los datos de usuario "+this.dni+" incorrecta. Comprobar conexión, query o tabla.");
+				logger.error(error.getMessage());
+			}
 	}
 	
 	/*public boolean mayorEdad() {
