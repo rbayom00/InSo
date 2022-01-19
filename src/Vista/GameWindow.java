@@ -106,6 +106,7 @@ public class GameWindow extends JFrame {
 			});
 		}
 	}
+	
 	public void crearBotonesJuegos() {
 		Connection n = new Connection();	
 		int nJuegos;
@@ -120,7 +121,7 @@ public class GameWindow extends JFrame {
 			result.close();
 			if(nJuegos!=0) {
 				for(int i=1;i<=nJuegos;i++) {
-					PreparedStatement consulta2 = n.getConnection().prepareStatement("Select GameName from Tournament where TournamentID='"+i+"';");
+					PreparedStatement consulta2 = n.getConnection().prepareStatement("Select GameName,GameDescription,TournamentModality from Tournament where TournamentID='"+i+"';");
 					ResultSet result2 = consulta2.executeQuery();
 					result2.next();
 					nombresJuegos = result2.getString("GameName");
