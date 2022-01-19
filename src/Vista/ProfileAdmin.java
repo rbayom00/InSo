@@ -148,11 +148,8 @@ public class ProfileAdmin extends JFrame {
 		JButton btnAnadirJuego = new JButton("Añadir Juego");
 		btnAnadirJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String name = JOptionPane.showInputDialog("Por favor introduzca el nombre del juego.");
-				String infoJuego = JOptionPane.showInputDialog("Por favor introduzca información sobre el juego.");
-				String modality = JOptionPane.showInputDialog("Por favor introduzca F para torneo gratis o P para torneo de pago.");
-				Game juego=new Game(name,infoJuego,modality);
-				juego.anadirJuegos(juego);
+				AddGameWindow addGame=new AddGameWindow();
+				addGame.setVisible(true);
 			}
 		});
 		horizontalBox_6.add(btnAnadirJuego);

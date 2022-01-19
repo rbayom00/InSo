@@ -139,25 +139,17 @@ public class InfoGameWindow extends JFrame {
 		JButton btnInscribirse = new JButton("Apuntarse");
 		
 		//ACCION DE INSCRIBIRSE
-		btnInscribirse.addActionListener(new ActionListener() {
-
-			
-			public void actionPerformed(ActionEvent e) {
-				
+		btnInscribirse.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {				
 				//COMPROBACION DE SI EL USUARIO YA ESTA INSCRITO EN EL TORNEO
-				
-				if(ranking.isInscrito(user)) {
+				if(ranking.isInscrito(user,juego)) {
 					JOptionPane.showMessageDialog(null, "El usuario ya está inscrito en el torneo", "ERROR",
-					        JOptionPane.WARNING_MESSAGE);
-					
+					        JOptionPane.WARNING_MESSAGE);					
 				}else {
 					ranking.addPersona(user);
 					JOptionPane.showMessageDialog(null, "Has sido inscrito en el torneo correctamente");
-				}
-				
-			}
-			
-			
+				}				
+			}			
 		});
 		
 		btnInscribirse.setSize(new Dimension(200, 80));

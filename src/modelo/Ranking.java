@@ -45,12 +45,12 @@ public class Ranking {
 		personas.add(persona);
 	}	
 	
-	public boolean isInscrito(Person persona) {
+	public boolean isInscrito(Person persona,Game juego) {
 		boolean inscrito = false;
 		Connection n = new Connection();
 		try {
 			//TODO meter consulta que busque si la persona esta en la tabla ranking (COMPROBAR)
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select DNI from Ranking Where DNI = "+ persona.getDni());
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select PlayerDNI from Players Where PlayerDNI = "+persona.getDni()+" and TournamentID="+juego.getTournamentID()+";");
 			ResultSet result = consulta.executeQuery();
 			result.next();
 			inscrito = true;

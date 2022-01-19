@@ -27,31 +27,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AddGameWindow extends JFrame {
-	private JTextField textNombre;
-	private JTextField textFieldNombre;
+	private JTextField txtNombreDelJuego;	
 	private JTextField textInfoJuego;
+	private JTextField textModality;
+	private JTextField textFieldNombreDelJuego;
 	private JTextField textFieldInfoJuego;
-	private JTextField textPrecio;
-	private JTextField textFieldPrecio;
-	private JTextField textPremio;
-	private JTextField textFieldPremio;
-	private JTextField textNumeroPlazas;
-	private JTextField textFieldNumeroPlazas;
-	
+	private JTextField textFieldModality;
 	/**
 	 * Create the frame.
 	 */
-	public AddGameWindow(Game game) {
-		//game.rellenarAllDatos();
+	public AddGameWindow() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		addWindowListener(new WindowAdapter() {
-			/*@Override
-			public void windowClosing(WindowEvent e) {
-				AddGameWindow game = new AddGameWindow(game);
-				game.setVisible(true);
-				e.getWindow().dispose();
-			}*/
-		});
 		setBounds(100, 100, 450, 300);
 		Box verticalBox = Box.createVerticalBox();
 		getContentPane().add(verticalBox, BorderLayout.CENTER);
@@ -59,75 +45,61 @@ public class AddGameWindow extends JFrame {
 		Box horizontalBox = Box.createHorizontalBox();
 		verticalBox.add(horizontalBox);
 		
-		textNombre = new JTextField();
-		textNombre.setEditable(false);
-		textNombre.setText("Nombre:");
-		horizontalBox.add(textNombre);
-		textNombre.setColumns(10);
+		txtNombreDelJuego = new JTextField();
+		txtNombreDelJuego.setText("Nombre del torneo:");
+		txtNombreDelJuego.setEditable(false);
+		txtNombreDelJuego.setColumns(10);
+		horizontalBox.add(txtNombreDelJuego);
 		
-		textFieldNombre = new JTextField();
-		textFieldNombre.setText(game.getNombreJuego());
-		horizontalBox.add(textFieldNombre);
-		textFieldNombre.setColumns(10);
+		textFieldNombreDelJuego = new JTextField();
+		textFieldNombreDelJuego.setText((String) null);
+		textFieldNombreDelJuego.setColumns(10);
+		horizontalBox.add(textFieldNombreDelJuego);
 		
 		Box horizontalBox_1 = Box.createHorizontalBox();
 		verticalBox.add(horizontalBox_1);
 		
 		textInfoJuego = new JTextField();
+		textInfoJuego.setText("Informaci\u00F3n del torneo:");
 		textInfoJuego.setEditable(false);
-		textInfoJuego.setText("Apellidos:");
-		horizontalBox_1.add(textInfoJuego);
 		textInfoJuego.setColumns(10);
+		horizontalBox_1.add(textInfoJuego);
 		
 		textFieldInfoJuego = new JTextField();
-		textFieldInfoJuego.setText(game.getInfoJuego());
-		horizontalBox_1.add(textFieldInfoJuego);
+		textFieldInfoJuego.setText((String) null);
 		textFieldInfoJuego.setColumns(10);
+		horizontalBox_1.add(textFieldInfoJuego);
 		
-		Box horizontalBox_2 = Box.createHorizontalBox();
-		verticalBox.add(horizontalBox_2);
+		Box horizontalBox_1_1 = Box.createHorizontalBox();
+		verticalBox.add(horizontalBox_1_1);
 		
-		textPrecio = new JTextField();
-		textPrecio.setText("Domicilio:");
-		textPrecio.setEditable(false);
-		horizontalBox_2.add(textPrecio);
-		textPrecio.setColumns(10);
+		textModality = new JTextField();
+		textModality.setText("Modalidad del torneo:");
+		textModality.setEditable(false);
+		textModality.setColumns(10);
+		horizontalBox_1_1.add(textModality);
 		
-		textFieldPrecio = new JTextField();
-		textFieldPrecio.setText(game.getPrecio());
-		horizontalBox_2.add(textFieldPrecio);
-		textFieldPrecio.setColumns(10);
+		textFieldModality = new JTextField();
+		textFieldModality.setText((String) null);
+		textFieldModality.setColumns(10);
+		horizontalBox_1_1.add(textFieldModality);
 		
-		Box horizontalBox_3 = Box.createHorizontalBox();
-		verticalBox.add(horizontalBox_3);
+		Box horizontalBox_1_1_1 = Box.createHorizontalBox();
+		verticalBox.add(horizontalBox_1_1_1);
 		
-		textPremio = new JTextField();
-		textPremio.setText("Fecha de nacimiento:");
-		textPremio.setEditable(false);
-		horizontalBox_3.add(textPremio);
-		textPremio.setColumns(10);
-		
-		textFieldPremio = new JTextField();
-		textFieldPremio.setText(game.getPremio());
-		horizontalBox_3.add(textFieldPremio);
-		textFieldPremio.setColumns(10);
-		
-		Box horizontalBox_4 = Box.createHorizontalBox();
-		verticalBox.add(horizontalBox_4);
-		
-		textNumeroPlazas = new JTextField();
-		textNumeroPlazas.setText("DNI:");
-		textNumeroPlazas.setEditable(false);
-		horizontalBox_4.add(textNumeroPlazas);
-		textNumeroPlazas.setColumns(10);
-		
-		textFieldNumeroPlazas = new JTextField();
-		textFieldNumeroPlazas.setEditable(false);
-		textFieldNumeroPlazas.setText(String.valueOf(game.getNumeroPlazas()));
-		horizontalBox_4.add(textFieldNumeroPlazas);
-		textFieldNumeroPlazas.setColumns(10);
+		JButton btnNewButton = new JButton("Aceptar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String name = textFieldNombreDelJuego.getText();
+				String infoJuego = textFieldInfoJuego.getText();
+				String modality = textFieldModality.getText();
+				Game juego=new Game(name,infoJuego,modality);
+				//juego.setPrecio(textFieldPrecio.getText());
+				juego.anadirJuegos(juego);
+			}
+		});
+		horizontalBox_1_1_1.add(btnNewButton);
 		
 		
 	}
-
 }

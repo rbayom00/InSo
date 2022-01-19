@@ -19,11 +19,16 @@ public class Game {
 	private int numeroPlazas;
 	private int personasApuntadas;
 	private String modality;
+	private int tournamentID;
 	
-	public Game(String nombreJuego,String infoJuego,String modality) {		
+	public Game(String nombreJuego,String infoJuego,String modality) {
 		this.nombreJuego=nombreJuego;
 		this.infoJuego=infoJuego;	
 		this.modality=modality;
+	}
+	
+	public int getTournamentID(){
+		return this.tournamentID;
 	}
 	
 	public void setNombreJuego(String nombreJuego) {
@@ -82,6 +87,10 @@ public class Game {
 		return this.nombreJuego;
 	}
 	
+	public void getNumJuegos() {
+		
+	}
+	
 	public void anadirJuegos(Game juego) {
 		Connection n = new Connection();
 		int numJuegos = 0;
@@ -94,6 +103,7 @@ public class Game {
 			Statement stat = n.getConnection().createStatement();
 			stat.executeUpdate("UPDATE System_ SET GameCount ="+String.valueOf(numJuegos+1)+";");
 			stat.executeUpdate("INSERT INTO Tournament (TournamentID,TournamentName,GameName,GameDescription,TournamentModality) VALUES ("+String.valueOf(numJuegos+1)+",'"+juego.getNombreJuego()+"','"+juego.getNombreJuego()+"','"+juego.getInfoJuego()+"','"+juego.getModality()+"');");
+			this.tournamentID=numJuegos+1;
 			stat.close();
 			} catch (SQLException error) {
 				 JOptionPane.showMessageDialog(null, "Excepción lanzada.\nComprueba consola para + info","testStatementBBDD() ERROR",JOptionPane.ERROR_MESSAGE);
