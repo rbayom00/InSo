@@ -43,7 +43,7 @@ public class Ranking {
 		n.disconnect();
 		puntuaciones.add(puntuacion);
 		personas.add(persona);
-	}
+	}	
 	
 	public boolean isInscrito(Person persona) {
 		boolean inscrito = false;
