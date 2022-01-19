@@ -125,8 +125,21 @@ public class Person {
 			}
 	}
 	
-	public void verificarUsuario() {
-		
+	public int getUserType() {
+		Connection n = new Connection();		
+		int userType = 2;
+		try {
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select UserType from usuarios where DNI='"+this.dni+"';");
+			ResultSet result = consulta.executeQuery();
+			result.next();
+			userType = result.getInt("UserType");
+			result.close();
+			n.disconnect();					
+			} catch (SQLException error) {
+				logger.error("Error SQL: Verificación de usuario "+this.dni+" incorrecto. Comprobar conexión, query o tabla.");
+				logger.error(error.getMessage());
+			}
+		return userType;	
 	}
 	
 	/*public boolean mayorEdad() {
