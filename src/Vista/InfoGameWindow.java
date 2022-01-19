@@ -14,8 +14,10 @@ import javax.swing.border.EmptyBorder;
 import modelo.Admin;
 import modelo.Game;
 import modelo.Person;
+import modelo.Ranking;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.Box;
@@ -30,6 +32,7 @@ import javax.swing.SwingConstants;
 public class InfoGameWindow extends JFrame {
 	private Game juego;
 	private Person user;
+	private Ranking ranking;
 	/**
 	 * Create the frame.
 	 */
@@ -37,6 +40,9 @@ public class InfoGameWindow extends JFrame {
 		this.user=user;
 		this.juego=juego;
 		
+		//EL RANKING CORRESPONDIENTE AL TORNEO
+		
+		ranking = new Ranking(this.juego);
 		/**
 		 * CODIGO PARA PROBAR QUE FURRULA LA INFO SOBRE JUEGOS
 		 */
@@ -118,6 +124,23 @@ public class InfoGameWindow extends JFrame {
 		horizontalBox.add(btnRanking);
 		
 		JButton btnInscribirse = new JButton("Apuntarse");
+		
+		//ACCION DE INSCRIBIRSE
+		btnInscribirse.addActionListener(new ActionListener() {
+
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				juego.setPersonasApuntadas(juego.getPersonasApuntadas() + 1);
+				ranking.getPersonas().add(user);
+				ranking.getPuntuaciones().add(0);
+				//CENTRAR
+				JOptionPane.showMessageDialog(btnInscribirse, "Has sido inscrito en el torneo correctamente");
+			}
+			
+			
+		});
+		
 		btnInscribirse.setSize(new Dimension(200, 80));
 		btnInscribirse.setMinimumSize(new Dimension(200, 80));
 		btnInscribirse.setMaximumSize(new Dimension(200, 80));
