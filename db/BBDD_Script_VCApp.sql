@@ -14,11 +14,9 @@ CREATE TABLE IF NOT EXISTS Users(
 	Birth_Date DATE NOT NULL,
 	Age INT,
 	Address VARCHAR(128) NOT NULL,
-    PhoneNumber INT,
 	Password VARCHAR(256) NOT NULL,
 	#'0' for Admin, '1' for Mod, '2' for Users
-	UserType INT NOT NULL,
-    price DECIMAL(16,2) DEFAULT '0.00' NOT NULL,
+	UserType INT DEFAULT 2 NOT NULL,
     PRIMARY KEY(DNI)
 );
 
@@ -68,6 +66,13 @@ CREATE TABLE IF NOT EXISTS Ranking(
     FOREIGN KEY (TournamentID) REFERENCES Tournament(TournamentID)
 );
 
+CREATE TABLE IF NOT EXISTS Players(
+	TournamentID VARCHAR(5) NOT NULL,
+	PlayerDNI CHAR(9) NOT NULL,
+	PRIMARY KEY (TournamentID),
+    FOREIGN KEY (TournamentID) REFERENCES Tournament(TournamentID)
+);
+
 CREATE TABLE IF NOT EXISTS Plays(
 	TournamentID VARCHAR(5) NOT NULL,
 	DNI CHAR(9),
@@ -83,5 +88,6 @@ CREATE TABLE IF NOT EXISTS Free_Tournament(
 
 CREATE TABLE IF NOT EXISTS Paid_Tournament(
 	PaidTournamentID VARCHAR(5) NOT NULL,
+	Price DECIMAL(16,2) NOT NULL,
     FOREIGN KEY (PaidTournamentID) REFERENCES Tournament(TournamentID)
 );
