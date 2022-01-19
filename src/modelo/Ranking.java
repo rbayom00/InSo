@@ -56,8 +56,7 @@ public class Ranking {
 			inscrito = true;
 			result.close();
 		}catch (SQLException error) {
-			inscrito = false;
-			
+			inscrito = false;			
 		}
 		n.disconnect();
 		return inscrito;
