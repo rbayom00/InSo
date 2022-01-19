@@ -38,9 +38,10 @@ public class Ranking {
 			persona=new Person(result.getString("DNI"),result.getString("Name"),result.getString("Surname"));			
 			puntuacion=result.getInt("Score");
 			result.close();
-			n.disconnect();					
+								
 			} catch (SQLException error) {				
 			}
+		n.disconnect();
 		puntuaciones.add(puntuacion);
 		personas.add(persona);
 	}
@@ -58,8 +59,9 @@ public class Ranking {
 			n.disconnect();
 		}catch (SQLException error) {
 			inscrito = false;
-			n.disconnect();
+			
 		}
+		n.disconnect();
 		return inscrito;
 	}
 	
@@ -75,9 +77,9 @@ public class Ranking {
 			ResultSet result = consulta.executeQuery();
 			result.next();
 			result.close();
-			n.disconnect();
+			
 			
 		}catch(SQLException error) {}
-		
+		n.disconnect();
 	}
 }

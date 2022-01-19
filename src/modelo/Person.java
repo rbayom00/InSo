@@ -76,13 +76,14 @@ public class Person {
 			Statement stat = n.getConnection().createStatement();
 			stat.executeUpdate("INSERT INTO Users (DNI, Password, Birth_Date, Name, Surname, Address) VALUES ('"+this.dni+"', '"+this.contrasena+"', '"+this.fecha_nac+"', '"+this.nombre+"', '"+this.apellidos+"', '"+this.dom+"');");	
 			stat.close();
-			n.disconnect();
+			
 		} catch (SQLException error) {
 			 JOptionPane.showMessageDialog(null, "Excepción lanzada.\nComprueba consola para + info","testStatementBBDD() ERROR",JOptionPane.ERROR_MESSAGE);
 			 logger.error("Error SQL: Registro de usuario fallido. Comprobar conexión, query o tabla.");
 			 logger.error(error.getMessage());
 			return false;
 		}
+		n.disconnect();
 		logger.info("Registro de usuario "+this.dni+" correcto.");
 		return true;
 	}
@@ -96,12 +97,13 @@ public class Person {
 			result.next();
 			contrasenaBD = result.getString("Password");
 			result.close();
-			n.disconnect();					
+							
 			} catch (SQLException error) {
 				logger.error("Error SQL: Login de usuario "+this.dni+" incorrecto. Comprobar conexión, query o tabla.");
 				logger.error(error.getMessage());
 				return false;
 			}
+		n.disconnect();	
 		if(this.contrasena.equals(contrasenaBD)) {
 			logger.info("Login de usuario "+this.dni+" correcto.");
 			return true;
@@ -124,9 +126,10 @@ public class Person {
 			Statement stat = n.getConnection().createStatement();
 			stat.executeUpdate("UPDATE Users SET Password = '"+this.contrasena+"', Birth_Date='"+this.fecha_nac+"', Name='"+this.nombre+"', Surname='"+this.apellidos+"', Address='"+this.dom+"' WHERE DNI = '"+this.dni+"';");	
 			stat.close();
-			n.disconnect();
+			
 			} catch (SQLException error) {
 			}
+		n.disconnect();
 	}
 	
 	public int getUserType() {
@@ -138,11 +141,12 @@ public class Person {
 			result.next();
 			userType = result.getInt("UserType");
 			result.close();
-			n.disconnect();					
+							
 			} catch (SQLException error) {
 				logger.error("Error SQL: Verificación de usuario "+this.dni+" incorrecto. Comprobar conexión, query o tabla.");
 				logger.error(error.getMessage());
 			}
+		n.disconnect();	
 		return userType;	
 	}
 	
@@ -161,7 +165,7 @@ public class Person {
 			apellidos = result.getString("Surname");
 			dom = result.getString("Address");
 			result.close();
-			n.disconnect();	
+			
 			this.fecha_nac=fecha_nac;
 			this.nombre=nombre;
 			this.apellidos=apellidos;
@@ -170,6 +174,7 @@ public class Person {
 				logger.error("Error SQL: Extracción de los datos de usuario "+this.dni+" incorrecta. Comprobar conexión, query o tabla.");
 				logger.error(error.getMessage());
 			}
+		n.disconnect();	
 	}
 	
 	/*public boolean mayorEdad() {

@@ -84,9 +84,10 @@ public class Game {
 			stat.executeUpdate("UPDATE SISTEMA SET numJuegos ="+String.valueOf(numJuegos+1)+";");	
 			stat.executeUpdate("INSERT INTO JUEGOS (numeroJuego,nombreJuego) VALUES ("+String.valueOf(numJuegos+1)+",'"+juego.getNombreJuego()+"');");
 			stat.close();
-			n.disconnect();					
+							
 			} catch (SQLException error) {
 				 JOptionPane.showMessageDialog(null, "Excepción lanzada.\nComprueba consola para + info","testStatementBBDD() ERROR",JOptionPane.ERROR_MESSAGE);
 			}
+		n.disconnect();	
 	}	
 }
