@@ -70,7 +70,6 @@ public class Person {
 		Connection n = new Connection();
 		try {
 			Statement stat = n.getConnection().createStatement();
-			stat.executeUpdate("INSERT INTO SISTEMA VALUES ('"+this.nombre+"');");
 			stat.executeUpdate("INSERT INTO USUARIOS (DNI, contrasena, fecha_nacimiento, nombre, apellidos, domicilio) VALUES ('"+this.dni+"', '"+this.contrasena+"', '"+this.fecha_nac+"', '"+this.nombre+"', '"+this.apellidos+"', '"+this.dom+"');");	
 			stat.close();
 			n.disconnect();
