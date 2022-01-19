@@ -82,7 +82,7 @@ public class InfoGameWindow extends JFrame {
 		scrollPane.setViewportView(verticalBox);
 		
 		JTextPane textPaneInfo = new JTextPane();
-		textPaneInfo.setText("Nombre: "+ this.juego.getNombreJuego() + "\r\n\r\nDescripcion: " + this.juego.getInfoJuego());
+		textPaneInfo.setText("Nombre: <dynamic>\r\n\r\nDescripcion: <dynamic>\r\n\r\nPrecio de la Inscripcion: " + this.juego.getPrecio() + "\r\n\r\nPremio:" + this.juego.getPremio() + "\r\n\r\nPlazas totales: " + this.juego.getNumeroPlazas() + "\r\n\r\nPlazas disponibles: " + (Integer.valueOf(this.juego.getNumeroPlazas()) - this.juego.getPersonasApuntadas()));
 		textPaneInfo.setEditable(false);
 		textPaneInfo.setCaretPosition(0);
 		verticalBox.add(textPaneInfo);
