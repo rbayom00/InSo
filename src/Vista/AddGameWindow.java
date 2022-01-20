@@ -160,6 +160,8 @@ public class AddGameWindow extends JFrame {
 
 							juego.setNumeroPlazas(Integer.valueOf(textFieldPlazas.getText()));
 							juego.anadirJuegos(juego);
+							JOptionPane.showMessageDialog(null, "El juego ha sido creado con exito");	
+							setVisible(false);
 							
 						}else {
 							//SI EL TEXTO ES INCORRECTO, SE BORRA EL CAMPO Y SALTA UN PANEL DE ERROR
