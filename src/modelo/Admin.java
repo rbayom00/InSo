@@ -1,5 +1,6 @@
 package modelo;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,9 +55,22 @@ public class Admin extends Person{
 		boolean d = false;
 		try {
 			Statement stat = n.getConnection().createStatement();
-			stat.executeUpdate("UPDATE Users SET "+attr+" = '"+content+"' WHERE DNI = '"+personDNI+"';");
-			logger.info("Modificación de usuario "+personDNI+" en la base de datos correcto");
-			d = true;
+			if(attr.equals("Password")) {
+				try {
+					content = Hashing.toString(Hashing.getSHA(content));
+					stat.executeUpdate("UPDATE Users SET "+attr+" = '"+content+"' WHERE DNI = '"+personDNI+"';");
+					logger.info("Modificación de usuario "+personDNI+" en la base de datos correcto");
+					d = true;
+				} catch (NoSuchAlgorithmException e) {
+					logger.error("Error interno (Hashing): "+e.getMessage());
+				}
+				
+			}else {
+				stat.executeUpdate("UPDATE Users SET "+attr+" = '"+content+"' WHERE DNI = '"+personDNI+"';");
+				logger.info("Modificación de usuario "+personDNI+" en la base de datos correcto");
+				d = true;
+			}
+			
 		} catch (SQLException error) {
 			logger.error("Error SQL: Error al actualizar el usuario "+personDNI+". Comprobar conexión, query o tabla.");
 			logger.error(error.getMessage());
