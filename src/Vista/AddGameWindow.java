@@ -32,7 +32,16 @@ public class AddGameWindow extends JFrame {
 	private JTextField textModality;
 	private JTextField textFieldNombreDelJuego;
 	private JTextField textFieldInfoJuego;
-	private JTextField textFieldModality;
+	private JTextField textFieldPremio;
+	private Box horizontalBox_1_2;
+	private JTextField txtPrecioDelTorneo;
+	private JTextField textFieldPrecio;
+	private Box horizontalBox_1_3;
+	private JTextField txtPlazasTotales;
+	private JTextField textFieldPlazas;
+	private Box horizontalBox_1_4;
+	private JTextField txtModalidad;
+	private JTextField textFieldModalidad;
 	/**
 	 * Create the frame.
 	 */
@@ -60,7 +69,7 @@ public class AddGameWindow extends JFrame {
 		verticalBox.add(horizontalBox_1);
 		
 		textInfoJuego = new JTextField();
-		textInfoJuego.setText("Informaci\u00F3n del torneo:");
+		textInfoJuego.setText("Informacion del torneo:");
 		textInfoJuego.setEditable(false);
 		textInfoJuego.setColumns(10);
 		horizontalBox_1.add(textInfoJuego);
@@ -70,19 +79,61 @@ public class AddGameWindow extends JFrame {
 		textFieldInfoJuego.setColumns(10);
 		horizontalBox_1.add(textFieldInfoJuego);
 		
+		horizontalBox_1_2 = Box.createHorizontalBox();
+		verticalBox.add(horizontalBox_1_2);
+		
+		txtPrecioDelTorneo = new JTextField();
+		txtPrecioDelTorneo.setText("Precio de inscripcion:");
+		txtPrecioDelTorneo.setEditable(false);
+		txtPrecioDelTorneo.setColumns(10);
+		horizontalBox_1_2.add(txtPrecioDelTorneo);
+		
+		textFieldPrecio = new JTextField();
+		textFieldPrecio.setText((String) null);
+		textFieldPrecio.setColumns(10);
+		horizontalBox_1_2.add(textFieldPrecio);
+		
 		Box horizontalBox_1_1 = Box.createHorizontalBox();
 		verticalBox.add(horizontalBox_1_1);
 		
 		textModality = new JTextField();
-		textModality.setText("Modalidad del torneo:");
+		textModality.setText("Premio:");
 		textModality.setEditable(false);
 		textModality.setColumns(10);
 		horizontalBox_1_1.add(textModality);
 		
-		textFieldModality = new JTextField();
-		textFieldModality.setText((String) null);
-		textFieldModality.setColumns(10);
-		horizontalBox_1_1.add(textFieldModality);
+		textFieldPremio = new JTextField();
+		textFieldPremio.setText((String) null);
+		textFieldPremio.setColumns(10);
+		horizontalBox_1_1.add(textFieldPremio);
+		
+		horizontalBox_1_3 = Box.createHorizontalBox();
+		verticalBox.add(horizontalBox_1_3);
+		
+		txtPlazasTotales = new JTextField();
+		txtPlazasTotales.setText("Plazas totales:");
+		txtPlazasTotales.setEditable(false);
+		txtPlazasTotales.setColumns(10);
+		horizontalBox_1_3.add(txtPlazasTotales);
+		
+		textFieldPlazas = new JTextField();
+		textFieldPlazas.setText((String) null);
+		textFieldPlazas.setColumns(10);
+		horizontalBox_1_3.add(textFieldPlazas);
+		
+		horizontalBox_1_4 = Box.createHorizontalBox();
+		verticalBox.add(horizontalBox_1_4);
+		
+		txtModalidad = new JTextField();
+		txtModalidad.setText("Modalidad:\r\n(F:gratis, P:pago)");
+		txtModalidad.setEditable(false);
+		txtModalidad.setColumns(10);
+		horizontalBox_1_4.add(txtModalidad);
+		
+		textFieldModalidad = new JTextField();
+		textFieldModalidad.setText((String) null);
+		textFieldModalidad.setColumns(10);
+		horizontalBox_1_4.add(textFieldModalidad);
 		
 		Box horizontalBox_1_1_1 = Box.createHorizontalBox();
 		verticalBox.add(horizontalBox_1_1_1);
@@ -90,12 +141,39 @@ public class AddGameWindow extends JFrame {
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String name = textFieldNombreDelJuego.getText();
-				String infoJuego = textFieldInfoJuego.getText();
-				String modality = textFieldModality.getText();
-				Game juego=new Game(name,infoJuego,modality);
-				//juego.setPrecio(textFieldPrecio.getText());
-				juego.anadirJuegos(juego);
+				
+				//COMPRUEBA QUE NINGUN CAMPO ESTE VACIO
+				if(textFieldNombreDelJuego.getText().length() == 0 || textFieldInfoJuego.getText().length() == 0 || txtModalidad.getText().length() == 0 || textFieldPrecio.getText().length() == 0 || textFieldPremio.getText().length() == 0 || textFieldPlazas.getText().length() == 0) {
+					JOptionPane.showMessageDialog(null, "Todos los campos deben contener datos", "ERROR",
+					        JOptionPane.WARNING_MESSAGE);	
+					
+				}else {
+					String name = textFieldNombreDelJuego.getText();
+					String infoJuego = textFieldInfoJuego.getText();
+					if(txtModalidad.getText().matches("[FP]")) {
+						String modality = txtModalidad.getText();
+						Game juego=new Game(name,infoJuego,modality);
+						juego.setPrecio(textFieldPrecio.getText());
+						juego.setPremio(textFieldPremio.getText());
+						// COMPRUEBA QUE LO PASADO EN PLAZAS ES UN NUMERO Y NO TIENE LETRAS (PROBAR)
+						if(textFieldPlazas.getText().matches("[0-100]")) {
+
+							juego.setNumeroPlazas(Integer.valueOf(textFieldPlazas.getText()));
+							juego.anadirJuegos(juego);
+							
+						}else {
+							//SI EL TEXTO ES INCORRECTO, SE BORRA EL CAMPO Y SALTA UN PANEL DE ERROR
+							textFieldPlazas.setText(null);
+							JOptionPane.showMessageDialog(null, "El campo Plazas Totales requiere un numero (Max. 100)", "ERROR",
+							        JOptionPane.WARNING_MESSAGE);				
+						}
+						
+					}else {
+						JOptionPane.showMessageDialog(null, "Modalidad Incorrecta (F:torneos gratuitos, P:torneos de pago)", "ERROR",
+						        JOptionPane.WARNING_MESSAGE);	
+					}
+					
+				}
 			}
 		});
 		horizontalBox_1_1_1.add(btnNewButton);

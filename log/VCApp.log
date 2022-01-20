@@ -96,3 +96,33 @@
 17:41:35 [AWT-EventQueue-0] ERROR controlador.Main - Table 'test.users' doesn't exist
 17:50:15 [main] INFO  controlador.Main - Logger iniciado correctamente.
 17:50:15 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+01:45:35 [main] INFO  controlador.Main - Logger iniciado correctamente.
+01:45:35 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+01:46:17 [AWT-EventQueue-0] ERROR controlador.Main - Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio
+01:46:17 [AWT-EventQueue-0] ERROR controlador.Main - Unknown database 'vcapp'
+01:46:20 [AWT-EventQueue-0] ERROR controlador.Main - Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio
+01:46:20 [AWT-EventQueue-0] ERROR controlador.Main - Unknown database 'vcapp'
+01:46:21 [AWT-EventQueue-0] ERROR controlador.Main - Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio
+01:46:21 [AWT-EventQueue-0] ERROR controlador.Main - Unknown database 'vcapp'
+01:46:21 [AWT-EventQueue-0] ERROR controlador.Main - Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio
+01:46:21 [AWT-EventQueue-0] ERROR controlador.Main - Unknown database 'vcapp'
+01:46:21 [AWT-EventQueue-0] ERROR controlador.Main - Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio
+01:46:21 [AWT-EventQueue-0] ERROR controlador.Main - Unknown database 'vcapp'
+01:46:21 [AWT-EventQueue-0] ERROR controlador.Main - Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio
+01:46:21 [AWT-EventQueue-0] ERROR controlador.Main - Unknown database 'vcapp'
+01:46:25 [AWT-EventQueue-0] ERROR controlador.Main - Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio
+01:46:25 [AWT-EventQueue-0] ERROR controlador.Main - Unknown database 'vcapp'
+01:46:25 [AWT-EventQueue-0] ERROR controlador.Main - Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio
+01:46:25 [AWT-EventQueue-0] ERROR controlador.Main - Unknown database 'vcapp'
+01:46:26 [AWT-EventQueue-0] ERROR controlador.Main - Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio
+01:46:26 [AWT-EventQueue-0] ERROR controlador.Main - Unknown database 'vcapp'
+01:46:43 [AWT-EventQueue-0] ERROR controlador.Main - Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio
+01:46:43 [AWT-EventQueue-0] ERROR controlador.Main - Unknown database 'vcapp'
+01:46:56 [main] INFO  controlador.Main - Logger iniciado correctamente.
+01:46:56 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+01:47:04 [AWT-EventQueue-0] ERROR controlador.Main - Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio
+01:47:04 [AWT-EventQueue-0] ERROR controlador.Main - Unknown database 'vcapp'
+01:48:02 [main] INFO  controlador.Main - Logger iniciado correctamente.
+01:48:02 [AWT-EventQueue-0] INFO  controlador.Main - Ejecución correcta de la interfaz gráfica.
+01:48:12 [AWT-EventQueue-0] ERROR controlador.Main - Error en la conexión: Error SQL, comprueba BBDD, Login o Servicio
+01:48:12 [AWT-EventQueue-0] ERROR controlador.Main - Unknown database 'vcapp'
