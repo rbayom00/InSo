@@ -71,7 +71,10 @@ public class AdminDBAccess extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String a;
 				if((a = requestData("el DNI")) != null) {
-					admin.removePerson(a);
+					boolean res = admin.removePerson(a);
+					if(!res) {
+						JOptionPane.showMessageDialog(null, "Problema al completar tu petición, inténtalo de nuevo.","BBDD Error",JOptionPane.ERROR_MESSAGE);
+					}
 					refreshProfileListTable(admin);
 				}
 			}

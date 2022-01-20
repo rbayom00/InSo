@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 import modelo.Admin;
 import modelo.Connection;
-import modelo.Game;
+import modelo.Tournament;
 
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -152,7 +152,7 @@ public class AddGameWindow extends JFrame {
 					String infoJuego = textFieldInfoJuego.getText();
 					if(txtModalidad.getText().matches("[FP]")) {
 						String modality = txtModalidad.getText();
-						Game juego=new Game(name,infoJuego,modality);
+						Tournament juego=new Tournament(name,infoJuego,modality);
 						juego.setPrecio(textFieldPrecio.getText());
 						juego.setPremio(textFieldPremio.getText());
 						// COMPRUEBA QUE LO PASADO EN PLAZAS ES UN NUMERO Y NO TIENE LETRAS (PROBAR)

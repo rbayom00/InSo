@@ -10,7 +10,12 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-public class Game {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import controlador.Main;
+
+public class Tournament {
 	
 	private String nombreJuego;
 	private String infoJuego;
@@ -20,8 +25,9 @@ public class Game {
 	private int personasApuntadas;
 	private String modality;
 	private int tournamentID;
+	private static final Logger logger = LogManager.getLogger(Tournament.class);
 	
-	public Game(String nombreJuego,String infoJuego,String modality) {
+	public Tournament(String nombreJuego,String infoJuego,String modality) {
 		this.nombreJuego=nombreJuego;
 		this.infoJuego=infoJuego;	
 		this.modality=modality;
@@ -31,15 +37,19 @@ public class Game {
 		return this.tournamentID;
 	}
 	
-	public void setNombreJuego(String nombreJuego) {
+	public void setNombreTorneo(String nombreJuego) {
 		this.nombreJuego = nombreJuego;
 	}
 	
-	public String getInfoJuego() {
+	public String getNombreTorneo() {
+		return this.nombreJuego;
+	}
+	
+	public String getInfoTorneo() {
 		return infoJuego;
 	}
 
-	public void setInfoJuego(String infoJuego) {
+	public void setInfoTorneo(String infoJuego) {
 		this.infoJuego = infoJuego;
 	}
 
@@ -82,16 +92,12 @@ public class Game {
 	public void setPersonasApuntadas(int personasApuntadas) {
 		this.personasApuntadas = personasApuntadas;
 	}
-
-	public String getNombreJuego() {
-		return this.nombreJuego;
-	}
 	
-	public void getNumJuegos() {
+	public void getNumTorneos() {
 		
 	}
 	
-	public void anadirJuegos(Game juego) {
+	public void anadirJuegos(Tournament torneo) {
 		Connection n = new Connection();
 		int numJuegos = 0;
 		try {
@@ -102,11 +108,13 @@ public class Game {
 			result.close();
 			Statement stat = n.getConnection().createStatement();
 			stat.executeUpdate("UPDATE System_ SET GameCount ="+String.valueOf(numJuegos+1)+";");
-			stat.executeUpdate("INSERT INTO Tournament (TournamentID,TournamentName,GameName,GameDescription,TournamentModality) VALUES ("+String.valueOf(numJuegos+1)+",'"+juego.getNombreJuego()+"','"+juego.getNombreJuego()+"','"+juego.getInfoJuego()+"','"+juego.getModality()+"');");
+			stat.executeUpdate("INSERT INTO Tournament (TournamentID,TournamentName,GameName,GameDescription,TournamentModality) VALUES ("+String.valueOf(numJuegos+1)+",'"+torneo.getNombreTorneo()+"','"+torneo.getNombreTorneo()+"','"+torneo.getInfoTorneo()+"','"+torneo.getModality()+"');");
 			this.tournamentID=numJuegos+1;
 			stat.close();
 			} catch (SQLException error) {
-				 JOptionPane.showMessageDialog(null, "Excepción lanzada.\nComprueba consola para + info","testStatementBBDD() ERROR",JOptionPane.ERROR_MESSAGE);
+				 JOptionPane.showMessageDialog(null, "Problema al completar tu petición, inténtalo de nuevo.","BBDD Error",JOptionPane.ERROR_MESSAGE);
+				 logger.error("Error SQL: Error al crear el torneo "+torneo.getNombreTorneo()+". Comprobar conexión, query o tabla.");
+				 logger.error(error.getMessage());
 			}
 		n.disconnect();	
 	}	

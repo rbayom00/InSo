@@ -13,7 +13,7 @@ import controlador.Main;
  */
 
 public class Connection {
-	private static final Logger logger = LogManager.getLogger(Main.class);
+	private static final Logger logger = LogManager.getLogger(Connection.class);
 	public static final String user = "VCApp";
     public static final String pass = "vc@PPV@1d3fR5n0";
     public static final String host = "localhost";

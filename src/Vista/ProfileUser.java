@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import modelo.Game;
+import modelo.Tournament;
 import modelo.Person;
 
 public class ProfileUser extends JFrame {

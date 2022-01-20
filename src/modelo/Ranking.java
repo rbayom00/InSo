@@ -5,15 +5,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Ranking {
 	
-	private Game game;
+	private Tournament tournament;
 	private ArrayList<Person> personas;
 	private ArrayList<Integer> puntuaciones;
 	private int numParticipantes;
+	private static final Logger logger = LogManager.getLogger(Ranking.class);
 	
-	public Ranking(Game game) {
-		this.game=game;
+	public Ranking(Tournament tournament) {
+		this.tournament=tournament;
 		rellenarPersonas();
 	}
 	
@@ -38,14 +42,16 @@ public class Ranking {
 			persona=new Person(result.getString("DNI"),result.getString("Name"),result.getString("Surname"));			
 			puntuacion=result.getInt("Score");
 			result.close();								
-			} catch (SQLException error) {				
-			}
+		} catch (SQLException error) {
+			logger.error("Error SQL: Error al rellenar persona en Ranking. Comprobar conexión, query o tabla.");
+			logger.error(error.getMessage());
+		}
 		n.disconnect();
 		puntuaciones.add(puntuacion);
 		personas.add(persona);
 	}	
 	
-	public boolean isInscrito(Person persona,Game juego) {
+	public boolean isInscrito(Person persona,Tournament juego) {
 		boolean inscrito = false;
 		Connection n = new Connection();
 		try {
@@ -74,7 +80,10 @@ public class Ranking {
 			ResultSet result = consulta.executeQuery();
 			result.next();
 			result.close();			
-		}catch(SQLException error) {}
+		} catch(SQLException error) {
+			logger.error("Error SQL: Error al añadir persona "+persona.getDni()+". Comprobar conexión, query o tabla.");
+			logger.error(error.getMessage());
+		}
 		n.disconnect();
 	}
 }

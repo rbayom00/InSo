@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import modelo.Admin;
 import modelo.Connection;
-import modelo.Game;
+import modelo.Tournament;
 
 import javax.swing.JScrollPane;
 import javax.swing.Box;

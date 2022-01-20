@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import modelo.Admin;
 import modelo.Connection;
-import modelo.Game;
+import modelo.Tournament;
 import modelo.Moderator;
 import modelo.Person;
 
@@ -35,7 +35,7 @@ public class GameWindow extends JFrame {
 	private Box verticalBoxGames;
 	private ArrayList<Box> horizontalBoxes=new ArrayList<Box>();
 	private ArrayList<JButton> btns=new ArrayList<JButton>();
-	private ArrayList<Game> juegos=new ArrayList<Game>();
+	private ArrayList<Tournament> juegos=new ArrayList<Tournament>();
 	private Person user;
 	/**
 	 * Create the frame.
@@ -128,7 +128,7 @@ public class GameWindow extends JFrame {
 					infoJuegos = result2.getString("GameDescription");
 					modalities=result2.getString("TournamentModality");
 					result2.close();
-					juegos.add(new Game(nombresJuegos,infoJuegos,modalities));
+					juegos.add(new Tournament(nombresJuegos,infoJuegos,modalities));
 				}	
 			}					
 			n.disconnect();					
@@ -139,7 +139,7 @@ public class GameWindow extends JFrame {
 				horizontalBoxes.add(Box.createHorizontalBox());
 			}
 			for(int i=0;i<juegos.size();i++) {				
-				JButton boton=new JButton(juegos.get(i).getNombreJuego());
+				JButton boton=new JButton(juegos.get(i).getNombreTorneo());
 				boton.setPreferredSize(new Dimension(990, 990));
 				boton.setMaximumSize(new Dimension(990, 1100));
 				btns.add(boton);

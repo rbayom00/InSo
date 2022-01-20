@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 import modelo.Admin;
 import modelo.Connection;
-import modelo.Game;
+import modelo.Tournament;
 
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -151,7 +151,7 @@ public class ProfileModerator extends JFrame {
 				String name = JOptionPane.showInputDialog("Por favor introduzca el nombre del juego.");
 				String infoJuego = JOptionPane.showInputDialog("Por favor introduzca información sobre el juego.");
 				String modality = JOptionPane.showInputDialog("Por favor introduzca F para torneo gratis o P para torneo de pago.");
-				Game juego=new Game(name,infoJuego,modality);
+				Tournament juego=new Tournament(name,infoJuego,modality);
 				juego.anadirJuegos(juego);
 			}
 		});

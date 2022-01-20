@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import modelo.Admin;
-import modelo.Game;
+import modelo.Tournament;
 import modelo.Moderator;
 import modelo.Person;
 import modelo.Ranking;
@@ -31,13 +31,13 @@ import java.awt.ComponentOrientation;
 import javax.swing.SwingConstants;
 
 public class InfoGameWindow extends JFrame {
-	private Game juego;
+	private Tournament juego;
 	private Person user;
 	private Ranking ranking;
 	/**
 	 * Create the frame.
 	 */
-	public InfoGameWindow(Game juego,Person user) {
+	public InfoGameWindow(Tournament juego,Person user) {
 		this.user=user;
 		this.juego=juego;
 		
@@ -103,7 +103,7 @@ public class InfoGameWindow extends JFrame {
 		Component horizontalStrut = Box.createHorizontalStrut(850);
 		horizontalBoxPerfil.add(horizontalStrut);
 		
-		JLabel lblNombreJuego = new JLabel(juego.getNombreJuego());
+		JLabel lblNombreJuego = new JLabel(juego.getNombreTorneo());
 		lblNombreJuego.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNombreJuego.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombreJuego.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
@@ -114,7 +114,7 @@ public class InfoGameWindow extends JFrame {
 		scrollPane.setViewportView(verticalBox);
 		
 		JTextPane textPaneInfo = new JTextPane();
-		textPaneInfo.setText("Nombre: " + this.juego.getNombreJuego() + "\r\n\r\nDescripcion: " + this.juego.getInfoJuego() +" \r\n\r\nPrecio de la Inscripcion: " + this.juego.getPrecio() + "\r\n\r\nPremio: " + this.juego.getPremio() + "\r\n\r\nPlazas totales: " + this.juego.getNumeroPlazas() + "\r\n\r\nPlazas disponibles: " + (Integer.valueOf(this.juego.getNumeroPlazas()) - this.juego.getPersonasApuntadas()));
+		textPaneInfo.setText("Nombre: " + this.juego.getNombreTorneo() + "\r\n\r\nDescripcion: " + this.juego.getInfoTorneo() +" \r\n\r\nPrecio de la Inscripcion: " + this.juego.getPrecio() + "\r\n\r\nPremio: " + this.juego.getPremio() + "\r\n\r\nPlazas totales: " + this.juego.getNumeroPlazas() + "\r\n\r\nPlazas disponibles: " + (Integer.valueOf(this.juego.getNumeroPlazas()) - this.juego.getPersonasApuntadas()));
 		textPaneInfo.setEditable(false);
 		textPaneInfo.setCaretPosition(0);
 		verticalBox.add(textPaneInfo);

@@ -168,10 +168,10 @@ public class Person {
 			this.nombre=nombre;
 			this.apellidos=apellidos;
 			this.dom=dom;
-			} catch (SQLException error) {
-				logger.error("Error SQL: Extracción de los datos de usuario "+this.dni+" incorrecta. Comprobar conexión, query o tabla.");
-				logger.error(error.getMessage());
-			}
+		} catch (SQLException error) {
+			logger.error("Error SQL: Extracción de los datos de usuario "+this.dni+" incorrecta. Comprobar conexión, query o tabla.");
+			logger.error(error.getMessage());
+		}
 		n.disconnect();	
 	}
 	

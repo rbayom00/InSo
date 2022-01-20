@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Admin;
-import modelo.Game;
+import modelo.Tournament;
 import modelo.Person;
 import modelo.Ranking;
 
@@ -34,7 +34,7 @@ import javax.swing.JTable;
 public class RankingWindow extends JFrame {
 
 	private JPanel panel;
-	private Game juego;
+	private Tournament juego;
 	private Person user;
 	private JTable table;
 	private Ranking ranking;
@@ -42,7 +42,7 @@ public class RankingWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RankingWindow(Game juego,Person user) {
+	public RankingWindow(Tournament juego,Person user) {
 		this.juego=juego;
 		this.user=user;
 		this.ranking=new Ranking(this.juego);

@@ -88,17 +88,20 @@ public class Admin extends Person{
 	/*
 	 * Borra el perfil del DNI indicado en el argumento
 	 */
-	public void removePerson(String personDNI) {
+	public boolean removePerson(String personDNI) {
 		Connection n = new Connection();
+		boolean d = false;
 		try {
 			Statement stat = n.getConnection().createStatement();
 			stat.executeUpdate("DELETE FROM Users WHERE DNI = '"+personDNI+"';");
 			logger.info("Borrado de usuario "+personDNI+" de la base de datos correcto");
+			d = true;
 		} catch (SQLException error) {
 			logger.error("Error SQL: Error al eliminar el usuario "+personDNI+". Comprobar conexión, query o tabla.");
 			logger.error(error.getMessage());
 		}
 		n.disconnect();
+		return d;
 	}
 	
 	
