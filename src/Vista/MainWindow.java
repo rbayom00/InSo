@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -45,16 +47,18 @@ public class MainWindow {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 		
-		Component verticalStrut = Box.createVerticalStrut(2000);
+		Component verticalStrut = Box.createVerticalStrut(1800);
 		GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
 		gbc_verticalStrut.insets = new Insets(0, 0, 5, 5);
 		gbc_verticalStrut.gridx = 1;
 		gbc_verticalStrut.gridy = 0;
 		frame.getContentPane().add(verticalStrut, gbc_verticalStrut);
 		
-		JButton btnLogo = new JButton("SAAAAAAAAAAAAAA");
+		JButton btnLogo = new JButton("Logo");
+		btnLogo.setBorder(null);
+		btnLogo.setIcon(new ImageIcon(MainWindow.class.getResource("/Logo/Logo APP.png")));
 		GridBagConstraints gbc_btnLogo = new GridBagConstraints();
-		btnLogo.setMinimumSize(new Dimension(150, 30));
+		btnLogo.setMinimumSize(new Dimension(450, 300));
 		btnLogo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLogo.setSize(new Dimension(95, 23));
 		gbc_btnLogo.insets = new Insets(0, 0, 5, 5);
