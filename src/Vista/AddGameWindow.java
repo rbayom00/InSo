@@ -141,8 +141,6 @@ public class AddGameWindow extends JFrame {
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				//COMPRUEBA QUE NINGUN CAMPO ESTE VACIO
 				if(textFieldNombreDelJuego.getText().length() == 0 || textFieldInfoJuego.getText().length() == 0 || txtModalidad.getText().length() == 0 || textFieldPrecio.getText().length() == 0 || textFieldPremio.getText().length() == 0 || textFieldPlazas.getText().length() == 0) {
 					JOptionPane.showMessageDialog(null, "Todos los campos deben contener datos", "ERROR",
 					        JOptionPane.WARNING_MESSAGE);	
@@ -155,21 +153,16 @@ public class AddGameWindow extends JFrame {
 						Tournament juego=new Tournament(name,infoJuego,modality);
 						juego.setPrecio(textFieldPrecio.getText());
 						juego.setPremio(textFieldPremio.getText());
-						// COMPRUEBA QUE LO PASADO EN PLAZAS ES UN NUMERO Y NO TIENE LETRAS (PROBAR)
 						if(textFieldPlazas.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
-
 							juego.setNumeroPlazas(Integer.valueOf(textFieldPlazas.getText()));
 							juego.anadirJuegos(juego);
 							JOptionPane.showMessageDialog(null, "El juego ha sido creado con exito");	
-							setVisible(false);
-							
+							setVisible(false);							
 						}else {
-							//SI EL TEXTO ES INCORRECTO, SE BORRA EL CAMPO Y SALTA UN PANEL DE ERROR
 							textFieldPlazas.setText(null);
 							JOptionPane.showMessageDialog(null, "El campo Plazas Totales requiere un numero", "ERROR",
 							        JOptionPane.WARNING_MESSAGE);				
-						}
-						
+						}						
 					}else {
 						JOptionPane.showMessageDialog(null, "Modalidad Incorrecta (F:torneos gratuitos, P:torneos de pago)", "ERROR",
 						        JOptionPane.WARNING_MESSAGE);	

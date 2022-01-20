@@ -122,11 +122,8 @@ public class InfoGameWindow extends JFrame {
 		horizontalBox.add(btnRanking);
 		
 		JButton btnInscribirse = new JButton("Apuntarse");
-		
-		//ACCION DE INSCRIBIRSE
 		btnInscribirse.addActionListener(new ActionListener() {			
-			public void actionPerformed(ActionEvent e) {				
-				//COMPROBACION DE SI EL USUARIO YA ESTA INSCRITO EN EL TORNEO
+			public void actionPerformed(ActionEvent e) {
 				if(!user.mayorEdad()&&juego.getModality().equals("P")) {
 					JOptionPane.showMessageDialog(null, "Para participar en un torneo de pago has de ser mayor de 18 años.", "ERROR",
 					        JOptionPane.WARNING_MESSAGE);

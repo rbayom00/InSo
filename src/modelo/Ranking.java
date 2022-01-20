@@ -107,7 +107,6 @@ public class Ranking {
 		boolean inscrito = false;
 		Connection n = new Connection();
 		try {
-			//TODO meter consulta que busque si la persona esta en la tabla ranking (COMPROBAR)
 			PreparedStatement consulta = n.getConnection().prepareStatement("Select PlayerDNI from ranking Where PlayerDNI = '"+persona.getDni()+"' and TournamentID='"+juego.getTournamentID()+"';");
 			ResultSet result = consulta.executeQuery();
 			result.next();
@@ -120,15 +119,11 @@ public class Ranking {
 		n.disconnect();
 		return inscrito;
 	}
-	
-	//METODO QUE AÑADE A UNA PERSONA AL RANKING(BASE DE DATOS Y ARRAYLIST)
 	public void addPersona(Person persona,Tournament juego) {
-		//Se añaden los datos al ArrayList, al añadirlos a la vez, la posicion en el ArrayList de la persona y su puntuacion es la misma
 		this.personas.add(persona);
 		this.puntuaciones.add(0);
 		Connection n = new Connection();
 		try {
-			//consulta que introduce a la persona (COMPROBAR)
 			Statement stat = n.getConnection().createStatement();
 			stat.executeUpdate("insert into Ranking(tournamentID,PlayerDNI,Score) values ('"+juego.getTournamentID()+"','"+persona.getDni()+"',0);");	
 			stat.close();	
