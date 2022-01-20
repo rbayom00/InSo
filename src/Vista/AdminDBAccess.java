@@ -115,7 +115,12 @@ public class AdminDBAccess extends JFrame {
 		Box horizontalBox_1 = Box.createHorizontalBox();
 		verticalBox.add(horizontalBox_1);
 		
-		tableModel = new DefaultTableModel();
+		tableModel = new DefaultTableModel() {
+			@Override
+			 public boolean isCellEditable(int row, int column) {
+			       return false;
+			 }
+		};		
 		profileList = admin.getProfileList();
 		Person p = null;
 		try {

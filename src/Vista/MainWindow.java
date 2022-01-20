@@ -19,6 +19,7 @@ import java.awt.FlowLayout;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Cursor;
+import javax.swing.JLabel;
 
 public class MainWindow {
 
@@ -51,6 +52,16 @@ public class MainWindow {
 		gbc_verticalStrut.gridy = 0;
 		frame.getContentPane().add(verticalStrut, gbc_verticalStrut);
 		
+		JButton btnLogo = new JButton("SAAAAAAAAAAAAAA");
+		GridBagConstraints gbc_btnLogo = new GridBagConstraints();
+		btnLogo.setMinimumSize(new Dimension(150, 30));
+		btnLogo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnLogo.setSize(new Dimension(95, 23));
+		gbc_btnLogo.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLogo.gridx = 1;
+		gbc_btnLogo.gridy = 1;
+		frame.getContentPane().add(btnLogo, gbc_btnLogo);
+		
 		Component horizontalStrut = Box.createHorizontalStrut(2000);
 		GridBagConstraints gbc_horizontalStrut = new GridBagConstraints();
 		gbc_horizontalStrut.insets = new Insets(0, 0, 5, 5);
@@ -72,28 +83,28 @@ public class MainWindow {
 		GridBagConstraints gbc_btnIniciarSesion = new GridBagConstraints();
 		gbc_btnIniciarSesion.insets = new Insets(0, 0, 5, 5);
 		gbc_btnIniciarSesion.gridx = 1;
-		gbc_btnIniciarSesion.gridy = 1;
+		gbc_btnIniciarSesion.gridy = 2;
 		frame.getContentPane().add(btnIniciarSesion, gbc_btnIniciarSesion);
 		
 		Component horizontalStrut_3 = Box.createHorizontalStrut(2000);
 		GridBagConstraints gbc_horizontalStrut_3 = new GridBagConstraints();
 		gbc_horizontalStrut_3.insets = new Insets(0, 0, 5, 5);
 		gbc_horizontalStrut_3.gridx = 2;
-		gbc_horizontalStrut_3.gridy = 1;
+		gbc_horizontalStrut_3.gridy = 2;
 		frame.getContentPane().add(horizontalStrut_3, gbc_horizontalStrut_3);
 		
 		Component verticalStrut_2 = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut_2 = new GridBagConstraints();
 		gbc_verticalStrut_2.insets = new Insets(0, 0, 5, 5);
 		gbc_verticalStrut_2.gridx = 1;
-		gbc_verticalStrut_2.gridy = 2;
+		gbc_verticalStrut_2.gridy = 3;
 		frame.getContentPane().add(verticalStrut_2, gbc_verticalStrut_2);
 		
 		Component horizontalStrut_1 = Box.createHorizontalStrut(2000);
 		GridBagConstraints gbc_horizontalStrut_1 = new GridBagConstraints();
 		gbc_horizontalStrut_1.insets = new Insets(0, 0, 5, 5);
 		gbc_horizontalStrut_1.gridx = 0;
-		gbc_horizontalStrut_1.gridy = 3;
+		gbc_horizontalStrut_1.gridy = 4;
 		frame.getContentPane().add(horizontalStrut_1, gbc_horizontalStrut_1);
 		
 		JButton btnRegistrarse = new JButton("Registrarse");
@@ -111,21 +122,21 @@ public class MainWindow {
 		GridBagConstraints gbc_btnRegistrarse = new GridBagConstraints();
 		gbc_btnRegistrarse.insets = new Insets(0, 0, 5, 5);
 		gbc_btnRegistrarse.gridx = 1;
-		gbc_btnRegistrarse.gridy = 4;
+		gbc_btnRegistrarse.gridy = 5;
 		frame.getContentPane().add(btnRegistrarse, gbc_btnRegistrarse);
 		
 		Component horizontalStrut_2 = Box.createHorizontalStrut(2000);
 		GridBagConstraints gbc_horizontalStrut_2 = new GridBagConstraints();
 		gbc_horizontalStrut_2.insets = new Insets(0, 0, 5, 5);
 		gbc_horizontalStrut_2.gridx = 2;
-		gbc_horizontalStrut_2.gridy = 3;
+		gbc_horizontalStrut_2.gridy = 4;
 		frame.getContentPane().add(horizontalStrut_2, gbc_horizontalStrut_2);
 		
 		Component verticalStrut_1 = Box.createVerticalStrut(2000);
 		GridBagConstraints gbc_verticalStrut_1 = new GridBagConstraints();
 		gbc_verticalStrut_1.insets = new Insets(0, 0, 5, 5);
 		gbc_verticalStrut_1.gridx = 1;
-		gbc_verticalStrut_1.gridy = 5;
+		gbc_verticalStrut_1.gridy = 6;
 		frame.getContentPane().add(verticalStrut_1, gbc_verticalStrut_1);
 	}
 

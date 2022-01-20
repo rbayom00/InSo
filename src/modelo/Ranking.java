@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.JOptionPane;
 
@@ -42,7 +44,32 @@ public class Ranking {
 	}
 	
 	private void ordenarPersonas() {
-		
+		ArrayList<Integer> puntAux=new ArrayList<Integer>();
+		ArrayList<Person> persAux=new ArrayList<Person>();
+		for(int i=0;i<puntuaciones.size();i++) {
+			puntAux.add(puntuaciones.get(i));
+		}	
+		Comparator<Integer> comparador = Collections.reverseOrder();
+		Collections.sort(puntAux, comparador);
+		for(int i=0;i<puntAux.size();i++) {
+			persAux.add(getPersona(puntAux.get(i)));
+		}
+		personas.clear();
+		puntuaciones.clear();
+		for(int i=0;i<puntAux.size();i++) {
+			personas.add(persAux.get(i));
+			puntuaciones.add(puntAux.get(i));
+		}		
+	}
+	
+	private Person getPersona(int puntuacion) {
+		int pos=0;
+		for(int i=0;i<puntuaciones.size();i++) {
+			if(puntuaciones.get(i)==puntuacion) {
+				pos=i;
+			}
+		}
+		return personas.get(pos);
 	}
 	
 	private void rellenarPersonas(int tournamentID) {
