@@ -38,12 +38,13 @@ public class InfoGameWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public InfoGameWindow(Tournament juego,Person user) {
+		user.rellenarAllDatos();
 		this.user=user;
 		this.juego=juego;
 		
 		//EL RANKING CORRESPONDIENTE AL TORNEO
 		
-		//ranking = new Ranking(this.juego);
+		ranking = new Ranking(this.juego);
 		/**
 		 * CODIGO PARA PROBAR QUE FURRULA LA INFO SOBRE JUEGOS
 		 */
@@ -146,12 +147,11 @@ public class InfoGameWindow extends JFrame {
 					JOptionPane.showMessageDialog(null, "El usuario ya está inscrito en el torneo", "ERROR",
 					        JOptionPane.WARNING_MESSAGE);					
 				}else {
-					ranking.addPersona(user);
+					ranking.addPersona(user,juego);
 					JOptionPane.showMessageDialog(null, "Has sido inscrito en el torneo correctamente");
 				}				
 			}			
-		});
-		
+		});		
 		btnInscribirse.setSize(new Dimension(200, 80));
 		btnInscribirse.setMinimumSize(new Dimension(200, 80));
 		btnInscribirse.setMaximumSize(new Dimension(200, 80));
