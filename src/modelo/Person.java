@@ -4,6 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -203,6 +206,19 @@ public class Person {
 			logger.info("El usuario es menor de edad");
 			return false;
 		}
+	}
+	
+	public boolean validarFecha() {
+        try {
+        
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+            formatoFecha.setLenient(false);
+            formatoFecha.parse(this.fecha_nac);
+            
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
 	}
 	
 	public boolean validarDNI() {

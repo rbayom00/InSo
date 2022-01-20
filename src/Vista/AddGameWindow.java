@@ -172,7 +172,6 @@ public class AddGameWindow extends JFrame {
 						JOptionPane.showMessageDialog(null, "Modalidad Incorrecta (F:torneos gratuitos, P:torneos de pago)", "ERROR",
 						        JOptionPane.WARNING_MESSAGE);	
 					}
-					
 				}
 			}
 		});

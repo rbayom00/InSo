@@ -116,26 +116,34 @@ public class RegWindow extends JFrame {
 										contrasena=textFieldContrasena.getText();
 										Person p=new Person(dni,contrasena,fechaNac,nombre,apellidos,domicilio);
 											
-										if(p.validarDNI()) {
-											if(p.registrarUsuario()) {
-												JOptionPane.showMessageDialog(null, "Usuario registrado correctamente, ya puede iniciar sesión.");
-												setVisible(false);
-												MainWindow main=new MainWindow();
-												main.frame.setVisible(true);
+										if(p.validarFecha()) {
+											if(p.validarDNI()) {
+												if(p.registrarUsuario()) {
+													JOptionPane.showMessageDialog(null, "Usuario registrado correctamente, ya puede iniciar sesión.");
+													setVisible(false);
+													MainWindow main=new MainWindow();
+													main.frame.setVisible(true);
+												}else {
+													JOptionPane.showMessageDialog(null, "Registro fallido pruebe de nuevo.");
+													textFieldNombre.setText("");
+													textFieldApellidos.setText("");
+													textFieldDomicilio.setText("");
+													textFieldFechaNac.setText("");
+													textFieldDni.setText("");
+													textFieldContrasena.setText("");
+												}				
 											}else {
-												JOptionPane.showMessageDialog(null, "Registro fallido pruebe de nuevo.");
-												textFieldNombre.setText("");
-												textFieldApellidos.setText("");
-												textFieldDomicilio.setText("");
-												textFieldFechaNac.setText("");
+												JOptionPane.showMessageDialog(null, "DNI erroneo, intente de nuevo");
+												
 												textFieldDni.setText("");
-												textFieldContrasena.setText("");
-											}				
-										}else {
-											JOptionPane.showMessageDialog(null, "DNI erroneo, intente de nuevo");
+											}
 											
-											textFieldDni.setText("");
-										}			
+										}else {
+											JOptionPane.showMessageDialog(null, "Fecha incorrecta, intente de nuevo");
+											
+											textFieldFechaNac.setText("");
+										}
+													
 																
 									}else {
 										JOptionPane.showMessageDialog(null, "Introduzca una contraseña.");
