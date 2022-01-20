@@ -141,8 +141,8 @@ public class GameWindow extends JFrame {
 			}
 			for(int i=0;i<juegos.size();i++) {				
 				JButton boton=new JButton(juegos.get(i).getNombreTorneo());
-				boton.setPreferredSize(new Dimension(990, 990));
-				boton.setMaximumSize(new Dimension(990, 1100));
+				boton.setPreferredSize(new Dimension(958, 400));
+				boton.setMaximumSize(new Dimension(958, 400));
 				btns.add(boton);
 			}
 			int aux=0;

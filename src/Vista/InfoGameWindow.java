@@ -41,22 +41,7 @@ public class InfoGameWindow extends JFrame {
 		user.rellenarAllDatos();
 		this.user=user;
 		this.juego=juego;
-		
-		//EL RANKING CORRESPONDIENTE AL TORNEO
-		
 		ranking = new Ranking(this.juego);
-		/**
-		 * CODIGO PARA PROBAR QUE FURRULA LA INFO SOBRE JUEGOS
-		 */
-		/*
-		this.juego.setInfoJuego("petancaaaaaaaa");
-		this.juego.setNumeroPlazas(30);
-		this.juego.setPremio("UN JAMON");
-		this.juego.setPrecio("14 RUBLOS");
-		this.juego.setPersonasApuntadas(5);
-		*/
-		
-		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		getContentPane().setLayout(new GridLayout(0, 1, 0, 0));		
 		addWindowListener(new WindowAdapter() {
@@ -143,13 +128,18 @@ public class InfoGameWindow extends JFrame {
 		btnInscribirse.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {				
 				//COMPROBACION DE SI EL USUARIO YA ESTA INSCRITO EN EL TORNEO
-				if(ranking.isInscrito(user,juego)) {
-					JOptionPane.showMessageDialog(null, "El usuario ya está inscrito en el torneo", "ERROR",
-					        JOptionPane.WARNING_MESSAGE);					
+				if(!user.mayorEdad()&&juego.getModality().equals("P")) {
+					JOptionPane.showMessageDialog(null, "Para participar en un torneo de pago has de ser mayor de 18 años.", "ERROR",
+					        JOptionPane.WARNING_MESSAGE);
 				}else {
-					ranking.addPersona(user,juego);
-					JOptionPane.showMessageDialog(null, "Has sido inscrito en el torneo correctamente");
-				}				
+					if(ranking.isInscrito(user,juego)) {
+						JOptionPane.showMessageDialog(null, "El usuario ya está inscrito en el torneo", "ERROR",
+						        JOptionPane.WARNING_MESSAGE);					
+					}else {
+						ranking.addPersona(user,juego);
+						JOptionPane.showMessageDialog(null, "Has sido inscrito en el torneo correctamente");
+					}	
+				}							
 			}			
 		});		
 		btnInscribirse.setSize(new Dimension(200, 80));

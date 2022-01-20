@@ -180,10 +180,10 @@ public class Person {
 	public String toString() {
 		return "DNI: "+this.dni+", "+this.nombre+" "+this.apellidos;
 	}
+	
 	public boolean mayorEdad() {
 		Connection n = new Connection();
 		int edadUser;
-
 		try {
 			PreparedStatement consulta = n.getConnection()
 					.prepareStatement("Select Age from Users where DNI='" + this.dni + "';");
@@ -197,7 +197,6 @@ public class Person {
 			logger.error(error.getMessage());
 			return false;
 		}
-
 		if (edadUser >= 18) {
 			logger.info("Usuario de edad" + edadUser + " es mayor de edad.");
 			return true;
