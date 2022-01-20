@@ -56,9 +56,9 @@ public class MainWindow {
 		
 		JButton btnLogo = new JButton("Logo");
 		btnLogo.setBorder(null);
-		btnLogo.setIcon(new ImageIcon(MainWindow.class.getResource("/Logo/Logo APP.png")));
+		btnLogo.setIcon(new ImageIcon(MainWindow.class.getResource("/logo/logo.png")));
 		GridBagConstraints gbc_btnLogo = new GridBagConstraints();
-		btnLogo.setMinimumSize(new Dimension(450, 300));
+		btnLogo.setMinimumSize(new Dimension(490, 260));
 		btnLogo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLogo.setSize(new Dimension(95, 23));
 		gbc_btnLogo.insets = new Insets(0, 0, 5, 5);
