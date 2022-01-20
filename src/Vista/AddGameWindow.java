@@ -164,7 +164,7 @@ public class AddGameWindow extends JFrame {
 						}else {
 							//SI EL TEXTO ES INCORRECTO, SE BORRA EL CAMPO Y SALTA UN PANEL DE ERROR
 							textFieldPlazas.setText(null);
-							JOptionPane.showMessageDialog(null, "El campo Plazas Totales requiere un numero (Max. 100)", "ERROR",
+							JOptionPane.showMessageDialog(null, "El campo Plazas Totales requiere un numero", "ERROR",
 							        JOptionPane.WARNING_MESSAGE);				
 						}
 						
