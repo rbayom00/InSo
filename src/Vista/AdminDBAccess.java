@@ -30,13 +30,19 @@ public class AdminDBAccess extends JFrame {
 
 	public AdminDBAccess(Admin admin) {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				ProfileAdmin pAdmin=new ProfileAdmin(admin);
+				pAdmin.setVisible(true);
+				e.getWindow().dispose();
+			}
+		});		
 		Box verticalBox = Box.createVerticalBox();
 		contentPane.add(verticalBox, BorderLayout.NORTH);
 		
