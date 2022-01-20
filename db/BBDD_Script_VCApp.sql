@@ -62,7 +62,6 @@ CREATE TABLE IF NOT EXISTS Ranking(
 	TournamentID VARCHAR(5) NOT NULL,
 	PlayerDNI CHAR(9) NOT NULL,
 	Score INT DEFAULT 0,
-	PRIMARY KEY (TournamentID),
     FOREIGN KEY (TournamentID) REFERENCES Tournament(TournamentID)
 );
 
