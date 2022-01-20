@@ -178,8 +178,7 @@ public class Person {
 	public String toString() {
 		return "DNI: "+this.dni+", "+this.nombre+" "+this.apellidos;
 	}
-	
-	/*public boolean mayorEdad() {
+	public boolean mayorEdad() {
 		Connection n = new Connection();
 		int edadUser;
 
@@ -204,9 +203,9 @@ public class Person {
 			logger.info("El usuario es menor de edad");
 			return false;
 		}
-	}/*
+	}
 	
-	/*public boolean validarDNI() {
+	public boolean validarDNI() {
 		String letraMayuscula = "";
 
 		if (dni.length() != 9 || Character.isLetter(this.dni.charAt(8)) == false) {
@@ -245,6 +244,7 @@ public class Person {
 		}
 	}
 	
+	
 	private String letraDNI() {
 		int DNI = Integer.parseInt(this.dni.substring(0,8));
 		int resto = 0;
@@ -256,6 +256,6 @@ public class Person {
 		letra = asignacionLetra[resto];
 		
 		return letra;
-	}*/
+	}
 	
 }

@@ -104,7 +104,7 @@ public class RegWindow extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!textFieldNombre.getText().equals("")) {
 					if(!textFieldApellidos.getText().equals("")) {						
-						if(!textFieldDomicilio.getText().equals("")) {							
+						if(!textFieldDomicilio.getText().equals("")) {
 							if(!textFieldFechaNac.getText().equals("")) {
 								if(!textFieldDni.getText().equals("")) {
 									if(!textFieldContrasena.getText().equals("")) {
@@ -115,20 +115,28 @@ public class RegWindow extends JFrame {
 										dni=textFieldDni.getText();
 										contrasena=textFieldContrasena.getText();
 										Person p=new Person(dni,contrasena,fechaNac,nombre,apellidos,domicilio);
-										if(p.registrarUsuario()) {
-											JOptionPane.showMessageDialog(null, "Usuario registrado correctamente, ya puede iniciar sesión.");
-											setVisible(false);
-											MainWindow main=new MainWindow();
-											main.frame.setVisible(true);
+											
+										if(p.validarDNI()) {
+											if(p.registrarUsuario()) {
+												JOptionPane.showMessageDialog(null, "Usuario registrado correctamente, ya puede iniciar sesión.");
+												setVisible(false);
+												MainWindow main=new MainWindow();
+												main.frame.setVisible(true);
+											}else {
+												JOptionPane.showMessageDialog(null, "Registro fallido pruebe de nuevo.");
+												textFieldNombre.setText("");
+												textFieldApellidos.setText("");
+												textFieldDomicilio.setText("");
+												textFieldFechaNac.setText("");
+												textFieldDni.setText("");
+												textFieldContrasena.setText("");
+											}				
 										}else {
-											JOptionPane.showMessageDialog(null, "Registro fallido pruebe de nuevo.");
-											textFieldNombre.setText("");
-											textFieldApellidos.setText("");
-											textFieldDomicilio.setText("");
-											textFieldFechaNac.setText("");
+											JOptionPane.showMessageDialog(null, "DNI erroneo, intente de nuevo");
+											
 											textFieldDni.setText("");
-											textFieldContrasena.setText("");
-										}										
+										}			
+																
 									}else {
 										JOptionPane.showMessageDialog(null, "Introduzca una contraseña.");
 									}									
