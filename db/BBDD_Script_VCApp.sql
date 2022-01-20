@@ -55,8 +55,8 @@ CREATE TABLE IF NOT EXISTS Tournament(
 	GameDescription VARCHAR(1024) NOT NULL,
 	#'P' for paid, 'F' for free
 	TournamentModality CHAR(1) NOT NULL,
-	Price VARCHAR(6),
-	Prize VARCHAR(1024),
+	Price VARCHAR(6) DEFAULT '',
+	Prize VARCHAR(1024) DEFAULT '',
 	Places INT NOT NULL,
     PRIMARY KEY(TournamentID)
 );
