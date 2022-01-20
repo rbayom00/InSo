@@ -112,7 +112,7 @@ public class Tournament {
 			result.close();
 			Statement stat = n.getConnection().createStatement();
 			stat.executeUpdate("UPDATE System_ SET GameCount ="+String.valueOf(numJuegos+1)+" where SystemName='VCApp';");
-			stat.executeUpdate("INSERT INTO Tournament (TournamentID,TournamentName,GameName,GameDescription,TournamentModality) VALUES ("+String.valueOf(numJuegos+1)+",'"+torneo.getNombreTorneo()+"','"+torneo.getNombreTorneo()+"','"+torneo.getInfoTorneo()+"','"+torneo.getModality()+"');");
+			stat.executeUpdate("INSERT INTO Tournament (TournamentID,TournamentName,GameName,GameDescription,TournamentModality,Price,Prize,Places) VALUES ("+String.valueOf(numJuegos+1)+",'"+torneo.getNombreTorneo()+"','"+torneo.getNombreTorneo()+"','"+torneo.getInfoTorneo()+"','"+torneo.getModality()+"','"+torneo.getPrecio()+"','"+torneo.getPremio()+"','"+torneo.getNumeroPlazas()+"');");
 			this.tournamentID=numJuegos+1;
 			stat.close();
 			} catch (SQLException error) {
@@ -120,6 +120,38 @@ public class Tournament {
 				 logger.error("Error SQL: Error al crear el torneo "+torneo.getNombreTorneo()+". Comprobar conexión, query o tabla.");
 				 logger.error(error.getMessage());
 			}
+		n.disconnect();	
+	}
+
+	public void rellenarAllDatos() {
+		String nombreJuego;
+		String infoJuego;
+		String precio;
+		String premio;
+		int numeroPlazas;
+		String modality;
+		Connection n = new Connection();	
+		try {
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select TournamentName,GameDescription,TournamentModality,Price,Prize,Places from tournament where TournamentID='"+this.tournamentID+"';");
+			ResultSet result = consulta.executeQuery();
+			result.next();
+			nombreJuego = result.getString("TournamentName");
+			infoJuego = result.getString("GameDescription");
+			precio = result.getString("Price");
+			premio = result.getString("Prize");
+			numeroPlazas = result.getInt("Places");
+			modality = result.getString("TournamentModality");
+			result.close();			
+			this.nombreJuego=nombreJuego;
+			this.infoJuego=infoJuego;
+			this.precio=precio;
+			this.premio=premio;
+			this.numeroPlazas=numeroPlazas;
+			this.modality=modality;
+		} catch (SQLException error) {
+			logger.error("Error SQL: Extracción de los datos de tournament "+this.tournamentID+" incorrecta. Comprobar conexión, query o tabla.");
+			logger.error(error.getMessage());
+		}
 		n.disconnect();	
 	}	
 }

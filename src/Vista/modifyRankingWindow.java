@@ -31,14 +31,14 @@ public class modifyRankingWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public modifyRankingWindow(String tournamentID,Admin admin) {		
+	public modifyRankingWindow(String tournamentID,Person user) {		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		getContentPane().setLayout(new GridLayout(0, 1, 0, 0));	
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				ProfileAdmin pAdmin=new ProfileAdmin(admin);
-				pAdmin.setVisible(true);
+				GameWindow game=new GameWindow(user);
+				game.setVisible(true);
 				e.getWindow().dispose();
 			}
 		});	

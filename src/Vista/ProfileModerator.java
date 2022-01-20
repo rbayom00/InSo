@@ -39,7 +39,7 @@ public class ProfileModerator extends JFrame {
 	private JTextField textFieldDni;
 	private JTextField textContrasena;
 	private JTextField textFieldContrasena;
-	
+	private JButton btnModificarRanking;
 	/**
 	 * Create the frame.
 	 */
@@ -164,6 +164,17 @@ public class ProfileModerator extends JFrame {
 			}
 		});
 		horizontalBox_6.add(btnModificarPerfil);			
+		
+		btnModificarRanking = new JButton("Modificar Ranking");
+		btnModificarRanking.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String tournamentID = JOptionPane.showInputDialog("Por favor introduzca el id del torneo:");
+				modifyRankingWindow mdfyRnkWnd=new modifyRankingWindow(tournamentID,mod);
+				mdfyRnkWnd.setVisible(true);
+				setVisible(false);
+			}
+		});
+		horizontalBox_6.add(btnModificarRanking);
 	}
 
 }

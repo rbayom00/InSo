@@ -32,14 +32,13 @@ import javax.swing.SwingConstants;
 
 public class InfoGameWindow extends JFrame {
 	private Tournament juego;
-	private Person user;
 	private Ranking ranking;
 	/**
 	 * Create the frame.
 	 */
 	public InfoGameWindow(Tournament juego,Person user) {
 		user.rellenarAllDatos();
-		this.user=user;
+		juego.rellenarAllDatos();
 		this.juego=juego;
 		ranking = new Ranking(this.juego);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -100,7 +99,7 @@ public class InfoGameWindow extends JFrame {
 		scrollPane.setViewportView(verticalBox);
 		
 		JTextPane textPaneInfo = new JTextPane();
-		textPaneInfo.setText("Nombre: " + this.juego.getNombreTorneo() + "\r\n\r\nDescripcion: " + this.juego.getInfoTorneo() +" \r\n\r\nPrecio de la Inscripcion: " + this.juego.getPrecio() + "\r\n\r\nPremio: " + this.juego.getPremio() + "\r\n\r\nPlazas totales: " + this.juego.getNumeroPlazas() + "\r\n\r\nPlazas disponibles: " + (Integer.valueOf(this.juego.getNumeroPlazas()) - this.juego.getPersonasApuntadas()));
+		textPaneInfo.setText("Nombre: " + this.juego.getNombreTorneo() + "\r\n\r\nDescripcion: " + this.juego.getInfoTorneo() +" \r\n\r\nPrecio de la Inscripcion: " + this.juego.getPrecio() + "\r\n\r\nPremio: " + this.juego.getPremio() + "\r\n\r\nPlazas totales: " + this.juego.getNumeroPlazas() + "\r\n\r\nPlazas disponibles: " + (this.juego.getNumeroPlazas()-ranking.getPersonas().size()));
 		textPaneInfo.setEditable(false);
 		textPaneInfo.setCaretPosition(0);
 		verticalBox.add(textPaneInfo);
@@ -137,7 +136,8 @@ public class InfoGameWindow extends JFrame {
 						        JOptionPane.WARNING_MESSAGE);					
 					}else {
 						ranking.addPersona(user,juego);
-						JOptionPane.showMessageDialog(null, "Has sido inscrito en el torneo correctamente");
+						textPaneInfo.setText("Nombre: " + juego.getNombreTorneo() + "\r\n\r\nDescripcion: " + juego.getInfoTorneo() +" \r\n\r\nPrecio de la Inscripcion: " + juego.getPrecio() + "\r\n\r\nPremio: " + juego.getPremio() + "\r\n\r\nPlazas totales: " + juego.getNumeroPlazas() + "\r\n\r\nPlazas disponibles: " + (juego.getNumeroPlazas()-ranking.getPersonas().size()));
+						JOptionPane.showMessageDialog(null, "Has sido inscrito en el torneo correctamente");						
 					}	
 				}							
 			}			

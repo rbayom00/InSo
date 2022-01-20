@@ -23,6 +23,10 @@ public class Ranking {
 	private static final Logger logger = LogManager.getLogger(Ranking.class);
 	
 	public Ranking(Tournament tournament) {
+		if(personas!=null&&puntuaciones!=null) {
+			personas.clear();
+			puntuaciones.clear();
+		}
 		this.tournament=tournament;
 		this.tournamentID=tournament.getTournamentID();
 		rellenarPersonas(tournament.getTournamentID());
@@ -30,6 +34,10 @@ public class Ranking {
 	}
 	
 	public Ranking(String tournamentID) {
+		if(personas!=null&&puntuaciones!=null) {
+			personas.clear();
+			puntuaciones.clear();
+		}
 		this.tournamentID=Integer.parseInt(tournamentID);
 		rellenarPersonas(this.tournamentID);
 		ordenarPersonas();
@@ -120,7 +128,7 @@ public class Ranking {
 		this.puntuaciones.add(0);
 		Connection n = new Connection();
 		try {
-			//TODO consulta que introduce a la persona (COMPROBAR)
+			//consulta que introduce a la persona (COMPROBAR)
 			Statement stat = n.getConnection().createStatement();
 			stat.executeUpdate("insert into Ranking(tournamentID,PlayerDNI,Score) values ('"+juego.getTournamentID()+"','"+persona.getDni()+"',0);");	
 			stat.close();	
