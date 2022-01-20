@@ -68,13 +68,6 @@ CREATE TABLE IF NOT EXISTS Ranking(
     FOREIGN KEY (TournamentID) REFERENCES Tournament(TournamentID)
 );
 
-CREATE TABLE IF NOT EXISTS Players(
-	TournamentID VARCHAR(5) NOT NULL,
-	PlayerDNI CHAR(9) NOT NULL,
-	PRIMARY KEY (TournamentID),
-    FOREIGN KEY (TournamentID) REFERENCES Tournament(TournamentID)
-);
-
 CREATE TABLE IF NOT EXISTS Plays(
 	TournamentID VARCHAR(5) NOT NULL,
 	DNI CHAR(9),
