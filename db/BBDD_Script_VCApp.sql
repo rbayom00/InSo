@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Users(
 	Name VARCHAR(96) NOT NULL,
 	Surname VARCHAR(128) NOT NULL,
 	Birth_Date DATE NOT NULL,
-	Age INT,
+	Age INT DEFAULT(TIMESTAMPDIFF(YEAR,Birth_Date,CURDATE())),
 	Address VARCHAR(128) NOT NULL,
 	Password VARCHAR(256) NOT NULL,
 	#'0' for Admin, '1' for Mod, '2' for Users
