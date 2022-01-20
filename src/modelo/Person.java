@@ -175,6 +175,10 @@ public class Person {
 		n.disconnect();	
 	}
 	
+	public String toString() {
+		return "DNI: "+this.dni+", "+this.nombre+" "+this.apellidos;
+	}
+	
 	/*public boolean mayorEdad() {
 		Connection n = new Connection();
 		int edadUser;

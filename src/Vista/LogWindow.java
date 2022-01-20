@@ -113,13 +113,13 @@ public class LogWindow extends JFrame {
 							textFieldContrasena.setText("");
 							textFieldDni.setText("");
 							textFieldContrasena.setText("");
-							JOptionPane.showMessageDialog(null, "DNI o contraseña erroneos.");
+							JOptionPane.showMessageDialog(null, "DNI o clave erroneos.");
 						}						
 					}else {
-						JOptionPane.showMessageDialog(null, "Introduzca una contraseña.");
+						JOptionPane.showMessageDialog(null, "Introduzca una clave.");
 					}									
 				}else {
-					JOptionPane.showMessageDialog(null, "Introduzca su dni.");
+					JOptionPane.showMessageDialog(null, "Introduzca su DNI.");
 				}							
 			}
 		});
@@ -155,7 +155,7 @@ public class LogWindow extends JFrame {
 		textContrasena = new JTextField();
 		textContrasena.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		textContrasena.setMinimumSize(new Dimension(110, 20));
-		textContrasena.setText("Contraseña:");
+		textContrasena.setText("Clave:");
 		textContrasena.setEditable(false);
 		textContrasena.setColumns(10);
 		GridBagConstraints gbc_textContrasena = new GridBagConstraints();

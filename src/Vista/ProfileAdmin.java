@@ -25,6 +25,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 
 public class ProfileAdmin extends JFrame {
 	private JTextField textNombre;
@@ -39,6 +43,8 @@ public class ProfileAdmin extends JFrame {
 	private JTextField textFieldDni;
 	private JTextField textContrasena;
 	private JTextField textFieldContrasena;
+	private Box horizontalBox_Options;
+	private JButton btnAdminOptions;
 
 	/**
 	 * Create the frame.
@@ -57,6 +63,21 @@ public class ProfileAdmin extends JFrame {
 		setBounds(100, 100, 450, 300);
 		Box verticalBox = Box.createVerticalBox();
 		getContentPane().add(verticalBox, BorderLayout.CENTER);
+		
+		horizontalBox_Options = Box.createHorizontalBox();
+		verticalBox.add(horizontalBox_Options);
+		btnAdminOptions = new JButton("Modificar Base de Datos");
+		btnAdminOptions.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnAdminOptions.setPreferredSize(new Dimension(180, 53));
+		btnAdminOptions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				AdminDBAccess admDBAccess = new AdminDBAccess(admin);
+				admDBAccess.setVisible(true);
+			}
+		});
+		btnAdminOptions.setBackground(Color.ORANGE);
+		horizontalBox_Options.add(btnAdminOptions);
 		
 		Box horizontalBox = Box.createHorizontalBox();
 		verticalBox.add(horizontalBox);
@@ -133,7 +154,7 @@ public class ProfileAdmin extends JFrame {
 		verticalBox.add(horizontalBox_5);
 		
 		textContrasena = new JTextField();
-		textContrasena.setText("Contraseña:");
+		textContrasena.setText("Clave:");
 		textContrasena.setEditable(false);
 		horizontalBox_5.add(textContrasena);
 		textContrasena.setColumns(10);
@@ -160,6 +181,6 @@ public class ProfileAdmin extends JFrame {
 				admin.editarPerfil(textFieldContrasena.getText(),textFieldFechaNac.getText(),textFieldNombre.getText(),textFieldApellidos.getText(),textFieldDomicilio.getText());
 			}
 		});
-		horizontalBox_6.add(btnModificarPerfil);		
+		horizontalBox_6.add(btnModificarPerfil);
 	}	
 }
