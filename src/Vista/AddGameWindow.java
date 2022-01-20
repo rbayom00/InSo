@@ -29,7 +29,7 @@ import java.sql.Statement;
 public class AddGameWindow extends JFrame {
 	private JTextField txtNombreDelJuego;	
 	private JTextField textInfoJuego;
-	private JTextField textModality;
+	private JTextField textPremio;
 	private JTextField textFieldNombreDelJuego;
 	private JTextField textFieldInfoJuego;
 	private JTextField textFieldPremio;
@@ -96,11 +96,11 @@ public class AddGameWindow extends JFrame {
 		Box horizontalBox_1_1 = Box.createHorizontalBox();
 		verticalBox.add(horizontalBox_1_1);
 		
-		textModality = new JTextField();
-		textModality.setText("Premio:");
-		textModality.setEditable(false);
-		textModality.setColumns(10);
-		horizontalBox_1_1.add(textModality);
+		textPremio = new JTextField();
+		textPremio.setText("Premio:");
+		textPremio.setEditable(false);
+		textPremio.setColumns(10);
+		horizontalBox_1_1.add(textPremio);
 		
 		textFieldPremio = new JTextField();
 		textFieldPremio.setText((String) null);
@@ -150,13 +150,13 @@ public class AddGameWindow extends JFrame {
 				}else {
 					String name = textFieldNombreDelJuego.getText();
 					String infoJuego = textFieldInfoJuego.getText();
-					if(txtModalidad.getText().matches("[FP]")) {
+					if(textFieldModalidad.getText().equals("F") || textFieldModalidad.getText().equals("P")) {
 						String modality = txtModalidad.getText();
 						Tournament juego=new Tournament(name,infoJuego,modality);
 						juego.setPrecio(textFieldPrecio.getText());
 						juego.setPremio(textFieldPremio.getText());
 						// COMPRUEBA QUE LO PASADO EN PLAZAS ES UN NUMERO Y NO TIENE LETRAS (PROBAR)
-						if(textFieldPlazas.getText().matches("[0-100]")) {
+						if(textFieldPlazas.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
 
 							juego.setNumeroPlazas(Integer.valueOf(textFieldPlazas.getText()));
 							juego.anadirJuegos(juego);
