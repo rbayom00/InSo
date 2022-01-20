@@ -111,7 +111,7 @@ public class Tournament {
 			numJuegos = result.getInt("GameCount");
 			result.close();
 			Statement stat = n.getConnection().createStatement();
-			stat.executeUpdate("UPDATE System_ SET GameCount ="+String.valueOf(numJuegos+1)+";");
+			stat.executeUpdate("UPDATE System_ SET GameCount ="+String.valueOf(numJuegos+1)+" where SystemName='VCApp';");
 			stat.executeUpdate("INSERT INTO Tournament (TournamentID,TournamentName,GameName,GameDescription,TournamentModality) VALUES ("+String.valueOf(numJuegos+1)+",'"+torneo.getNombreTorneo()+"','"+torneo.getNombreTorneo()+"','"+torneo.getInfoTorneo()+"','"+torneo.getModality()+"');");
 			this.tournamentID=numJuegos+1;
 			stat.close();

@@ -151,7 +151,7 @@ public class AddGameWindow extends JFrame {
 					String name = textFieldNombreDelJuego.getText();
 					String infoJuego = textFieldInfoJuego.getText();
 					if(textFieldModalidad.getText().equals("F") || textFieldModalidad.getText().equals("P")) {
-						String modality = txtModalidad.getText();
+						String modality = textFieldModalidad.getText();
 						Tournament juego=new Tournament(name,infoJuego,modality);
 						juego.setPrecio(textFieldPrecio.getText());
 						juego.setPremio(textFieldPremio.getText());
