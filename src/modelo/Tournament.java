@@ -30,11 +30,15 @@ public class Tournament {
 	public Tournament(String nombreJuego,String infoJuego,String modality) {
 		this.nombreJuego=nombreJuego;
 		this.infoJuego=infoJuego;	
-		this.modality=modality;
+		this.modality=modality;		
 	}
 	
 	public int getTournamentID(){
 		return this.tournamentID;
+	}
+	
+	public void setTournamentID(int tournamentID){
+		this.tournamentID=tournamentID;
 	}
 	
 	public void setNombreTorneo(String nombreJuego) {

@@ -33,7 +33,6 @@ import javax.swing.JTable;
 
 public class RankingWindow extends JFrame {
 
-	private JPanel panel;
 	private Tournament juego;
 	private Person user;
 	private JTable table;

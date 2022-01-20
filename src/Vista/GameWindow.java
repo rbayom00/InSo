@@ -97,6 +97,7 @@ public class GameWindow extends JFrame {
 		
 		for(int i=0;i<juegos.size();i++) {
 			final int final_i=i;
+			juegos.get(i).setTournamentID(i+1);;
 			btns.get(i).addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					setVisible(false);

@@ -3,7 +3,10 @@ package modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 public class Ranking {
 	
 	private Tournament tournament;
+	private int tournamentID;
 	private ArrayList<Person> personas;
 	private ArrayList<Integer> puntuaciones;
 	private int numParticipantes;
@@ -18,7 +22,13 @@ public class Ranking {
 	
 	public Ranking(Tournament tournament) {
 		this.tournament=tournament;
-		rellenarPersonas();
+		this.tournamentID=tournament.getTournamentID();
+		rellenarPersonas(tournament.getTournamentID());
+	}
+	
+	public Ranking(String tournamentID) {
+		this.tournamentID=Integer.parseInt(tournamentID);
+		rellenarPersonas(this.tournamentID);
 	}
 	
 	public ArrayList<Person> getPersonas(){
@@ -29,26 +39,29 @@ public class Ranking {
 		return puntuaciones;
 	}
 	
-	private void rellenarPersonas() {
+	private void rellenarPersonas(int tournamentID) {
 		Connection n = new Connection();
 		this.personas=new ArrayList<Person>();
 		this.puntuaciones=new ArrayList<Integer>();
 		Person persona = null;
 		int puntuacion = 0;
 		try {
-			PreparedStatement consulta = n.getConnection().prepareStatement("Select u.DNI,u.Name,u.Surname,r.Score from Users as u,Ranking as r, Tournament as t where u.DNI=r.PlayerDNI AND t.TournamentID=r.TournamentID;");
+			PreparedStatement consulta = n.getConnection().prepareStatement("Select u.DNI,u.Name,u.Surname,r.Score from Users as u,Ranking as r, Tournament as t where u.DNI=r.PlayerDNI AND t.TournamentID='"+tournamentID+"' AND r.TournamentID='"+tournamentID+"';");			
 			ResultSet result = consulta.executeQuery();
 			result.next();
+			String dni=result.getString("DNI");
+			String name=result.getString("Name");
+			String surname=result.getString("Surname");
 			persona=new Person(result.getString("DNI"),result.getString("Name"),result.getString("Surname"));			
-			puntuacion=result.getInt("Score");
+			puntuacion=result.getInt("r.Score");
+			puntuaciones.add(puntuacion);
+			personas.add(persona);
 			result.close();								
 		} catch (SQLException error) {
 			logger.error("Error SQL: Error al rellenar persona en Ranking. Comprobar conexión, query o tabla.");
 			logger.error(error.getMessage());
 		}
-		n.disconnect();
-		puntuaciones.add(puntuacion);
-		personas.add(persona);
+		n.disconnect();		
 	}	
 	
 	public boolean isInscrito(Person persona,Tournament juego) {
@@ -85,5 +98,32 @@ public class Ranking {
 			logger.error(error.getMessage());
 		}
 		n.disconnect();
+	}
+	
+	public boolean actualizarRanking(String dni,String puntuacion) {
+		int pos=-1;
+		for(int i=0;i<personas.size();i++) {
+			if(personas.get(i).getDni().equals(dni)) {
+				pos=i;
+			}
+		}
+		if(pos==-1) {
+			return false;
+		}else {
+			puntuaciones.set(pos, Integer.parseInt(puntuacion));
+			Connection n = new Connection();
+			try {
+				Statement stat = n.getConnection().createStatement();
+				stat.executeUpdate("update Ranking set Score="+Integer.parseInt(puntuacion)+" where PlayerDNI='"+dni+"' and TournamentID='"+this.tournamentID+"';");	
+				stat.close();			
+			} catch (SQLException error) {
+				 JOptionPane.showMessageDialog(null, "Excepción lanzada.\nComprueba consola para + info","testStatementBBDD() ERROR",JOptionPane.ERROR_MESSAGE);
+				 logger.error("Error SQL: Actualización de puntuación de ranking fallida. Comprobar conexión, query o tabla.");
+				 logger.error(error.getMessage());
+				return false;
+			}
+			n.disconnect();
+			return true;
+		}
 	}
 }

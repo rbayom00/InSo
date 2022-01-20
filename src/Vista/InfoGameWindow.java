@@ -43,7 +43,7 @@ public class InfoGameWindow extends JFrame {
 		
 		//EL RANKING CORRESPONDIENTE AL TORNEO
 		
-		ranking = new Ranking(this.juego);
+		//ranking = new Ranking(this.juego);
 		/**
 		 * CODIGO PARA PROBAR QUE FURRULA LA INFO SOBRE JUEGOS
 		 */

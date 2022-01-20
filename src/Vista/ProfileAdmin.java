@@ -45,6 +45,7 @@ public class ProfileAdmin extends JFrame {
 	private JTextField textFieldContrasena;
 	private Box horizontalBox_Options;
 	private JButton btnAdminOptions;
+	private JButton btnModificarRanking;
 
 	/**
 	 * Create the frame.
@@ -182,5 +183,16 @@ public class ProfileAdmin extends JFrame {
 			}
 		});
 		horizontalBox_6.add(btnModificarPerfil);
+		
+		btnModificarRanking = new JButton("Modificar Ranking");
+		btnModificarRanking.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String tournamentID = JOptionPane.showInputDialog("Por favor introduzca el id del torneo:");
+				modifyRankingWindow mdfyRnkWnd=new modifyRankingWindow(tournamentID,admin);
+				mdfyRnkWnd.setVisible(true);
+				setVisible(false);
+			}
+		});
+		horizontalBox_6.add(btnModificarRanking);
 	}	
 }

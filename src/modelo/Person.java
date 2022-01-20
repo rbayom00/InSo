@@ -78,8 +78,7 @@ public class Person {
 		try {
 			Statement stat = n.getConnection().createStatement();
 			stat.executeUpdate("INSERT INTO Users (DNI, Name, Surname, Birth_Date, Address, Password) VALUES ('"+this.dni+"', '"+this.nombre+"', '"+this.apellidos+"', '"+this.fecha_nac+"', '"+this.dom+"', '"+this.contrasena+"');");	
-			stat.close();
-			
+			stat.close();			
 		} catch (SQLException error) {
 			 JOptionPane.showMessageDialog(null, "Excepción lanzada.\nComprueba consola para + info","testStatementBBDD() ERROR",JOptionPane.ERROR_MESSAGE);
 			 logger.error("Error SQL: Registro de usuario fallido. Comprobar conexión, query o tabla.");

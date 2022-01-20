@@ -31,8 +31,6 @@ public class ProfileUser extends JFrame {
 	private JTextField textFieldDni;
 	private JTextField textContrasena;
 	private JTextField textFieldContrasena;
-	public GameWindow game;
-
 	/**
 	 * Create the frame.
 	 */
